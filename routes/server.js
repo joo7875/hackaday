@@ -55,7 +55,7 @@ app.set('views', './views');
 app.set('view engine', 'ejs');
 
 app.get('/index', function (req, res) {
-    console.log('\ninside /');
+    console.log('\ninside /index');
     res.render('index.ejs', {
         title: 'Index Title',
         description: 'Index Description'
@@ -63,16 +63,27 @@ app.get('/index', function (req, res) {
 });
 
 app.get('/users', function (req, res) {
-    console.log('\ninside /');
+    console.log('\ninside /users');
     res.send('respond with a resource');
 });
 
 app.get('/', function (req, res) {
     console.log('\ninside /');
-    res.render('index-test.ejs', {
-        dataType: null,
-        apiData: null
+    var url = apiData.apiUrl + '/projects' + apiData.apiKey + '&sortby=newest';
+    console.log('\nProject Data Query: ', url);
+
+    request.get(url, function (error, response, body) {
+        var bodyData = parseJSON(body);
+        res.render('main', {
+            dataType: null,
+            apiData: bodyData
+        });
     });
+    // console.log('\ninside /');
+    // res.render('main.ejs', {
+    //     dataType: null,
+    //     apiData: null
+    // });
 });
 
 // Queries HAD API for user data

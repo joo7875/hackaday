@@ -54,6 +54,19 @@ console.log('Listening on port: ', port);
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
+app.get('/index', function (req, res) {
+    console.log('\ninside /');
+    res.render('index.ejs', {
+        title: 'Index Title',
+        description: 'Index Description'
+    });
+});
+
+app.get('/users', function (req, res) {
+    console.log('\ninside /');
+    res.send('respond with a resource');
+});
+
 app.get('/', function (req, res) {
     console.log('\ninside /');
     res.render('index-test.ejs', {

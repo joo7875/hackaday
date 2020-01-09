@@ -25,8 +25,8 @@
             padding: 0px;
             color: #fff;
             background-color: #e0e0e0;
-            position: relative;
-            overflow: hidden;
+            /*position: relative;
+            overflow: hidden;*/
         }
         .image {
             height: 100%;
@@ -34,7 +34,7 @@
             object-fit: cover;
         }
     </style>
-    
+
 </head>
 
 <body>
@@ -42,7 +42,11 @@
     <div class="content">
         <div class="grid-container">
             <% for (var i = 0; i < (apiData.projects).length; i++) { %>
-            <div class="item"><img class="image" id="img" src="<%= (apiData.projects[i]).image_url %>" /></div>
+                <% if (((apiData.projects[i]).image_url) != null) { %>
+                <div class="item"><img class="image" id="img" src="<%= (apiData.projects[i]).image_url %>" /></div>
+                <% } else { %>
+                <div class="item"></div>
+                <% } %>
             <% } %>
         </div>
     </div>

@@ -11,21 +11,22 @@
 <p><a href="/users/1">Get User's Data</a></p>
 
     <!-- Renders API Data: -->
-<% if (dataType) { %>
-    <div>
-        <h2><%= dataType %></h2>
-        <% if (dataType === 'oAuth Data') { %>
-            <div>Token: <%= token %></div>
-        <% } %>
 
+    <div>
         <hr>
         <br>
         <br>
-        <% for (var i = 0; i < (apiData.projects).length; i++) { %>
-        	<div><%= (apiData.projects[i]).id %></div>
+        <% for (var i = 0; i < (apiData.users).length; i++) { %>
+        	<div><%= (apiData.users[i]).username %></div>
+    	<% } %>
+    	<hr>
+        <br>
+        <br>
+        <% for (var i = 0; i < (apiData1.projects).length; i++) { %>
+        	<div><%= (apiData1.projects[i]).name %></div>
     	<% } %>
     </div>
-<% } %>
+
 
 </body>
 </html>

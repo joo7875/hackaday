@@ -45,6 +45,7 @@ var http = require('http'),
     app = express(),
     server = http.createServer(app),
     port = 3000;
+    async = require('async');
 
 server.listen(port);
 console.log('Listening on port: ', port);
@@ -63,22 +64,48 @@ app.get('/index', function (req, res) {
 });
 
 app.get('/users', function (req, res) {
+    // console.log('\ninside /users');
+    // res.send('respond with a resource');
     console.log('\ninside /users');
-    res.send('respond with a resource');
+
+    var url = apiData.apiUrl + '/users' + apiData.apiKey,
+        url_test = apiData.apiUrl + '/projects' + apiData.apiKey + '&sortby=newest';
+
+    console.log('\nProject Data Query: ', url_test);
+    console.log('\nUser Data Query: ', url);
+
+
+
+
+
+
 });
+
 
 app.get('/', function (req, res) {
     console.log('\ninside /');
-    var url = apiData.apiUrl + '/projects' + apiData.apiKey + '&sortby=newest';
-    console.log('\nProject Data Query: ', url);
+    var url_project = apiData.apiUrl + '/projects' + apiData.apiKey + '&sortby=newest';
+    console.log('\nProject Data Query: ', url_project);
 
-    request.get(url, function (error, response, body) {
+    var url_user = apiData.apiUrl + '/users' + apiData.apiKey;
+    console.log('\nProject Data Query: ', url_user);
+
+    request.get(url_project, function (error, response, body) {
         var bodyData = parseJSON(body);
         res.render('main', {
             dataType: null,
             apiData: bodyData
         });
     });
+
+    request.get(url_user, function (error, response, body) {
+        var bodyData = parseJSON(body);
+        res.render('main', {
+            dataType: null,
+            apiData: bodyData
+        });
+    });
+
     // console.log('\ninside /');
     // res.render('main.ejs', {
     //     dataType: null,

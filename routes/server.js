@@ -66,13 +66,15 @@ app.get('/index', function (req, res) {
 const rp = require("request-promise");
 
 app.get('/users', function (req, res) {
-    var url = apiData.apiUrl + '/users' + apiData.apiKey,
-        url_test = apiData.apiUrl + '/projects' + apiData.apiKey + '&sortby=newest';
 
-      Promise
-      .all([rp({uri: url, json:true}), rp({uri: url_test, json:true})])
-      .then(([apiData, apiData_test]) => {
-          res.render('index-test', {apiData, apiData_test});
+    var id = 0;
+    var url_project = apiData.apiUrl + '/projects' + apiData.apiKey + '&per_page=18&sortby=newest';
+    var url_user = apiData.apiUrl + '/projects/' + id + '/team' + apiData.apiKey + '&per_page=18&sortby=newest';
+
+    Promise
+      .all([rp({uri: url_project, json:true}), rp({uri: url_user, json:true})])
+      .then(([projectsApi, usersApi]) => {
+          res.render('index-test', {projectsApi, usersApi});
       }).catch(err => {
           console.log(err);
           res.sendStatus(500);
@@ -97,11 +99,12 @@ app.get('/users', function (req, res) {
 
 app.get('/', function (req, res) {
     console.log('\ninside /');
-    var url_project = apiData.apiUrl + '/projects' + apiData.apiKey + '&sortby=newest';
+
+    var url_project = apiData.apiUrl + '/projects' + apiData.apiKey + '&per_page=18&sortby=newest';
     console.log('\nProject Data Query: ', url_project);
 
     var url_user = apiData.apiUrl + '/users' + apiData.apiKey;
-    console.log('\nProject Data Query: ', url_user);
+    console.log('\nUser Data Query: ', url_user);
 
     Promise
       .all([rp({uri: url_project, json:true}), rp({uri: url_user, json:true})])
@@ -146,6 +149,21 @@ app.get('/users/:id', function (req, res) {
 app.get('/projects/skulls', function (req, res) {
     console.log('\ninside /projects/skulls');
     var url = apiData.apiUrl + '/projects' + apiData.apiKey + '&sortby=skulls';
+    console.log('\nProject Data Query: ', url);
+
+    request.get(url, function (error, response, body) {
+        var bodyData = parseJSON(body);
+        res.render('index-test', {
+            dataType: 'Top Skulled Projects',
+            apiData: bodyData
+        });
+    });
+});
+
+app.get('/projects/:id/team', function (req, res) {
+    console.log('\ninside /projects/:id/team');
+    var id = req.params.id,
+        url = apiData.apiUrl + '/projects/' + id + '/team' + apiData.apiKey + '&sortby=newest';
     console.log('\nProject Data Query: ', url);
 
     request.get(url, function (error, response, body) {

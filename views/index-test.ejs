@@ -15,18 +15,7 @@
     <!-- Renders API Data: -->
 
     <div>
-        <hr>
-        <br>
-        <br>
-        <% for (var i = 0; i < (apiData.users).length; i++) { %>
-        	<div><%= (apiData.users[i]).username %></div>
-    	<% } %>
-    	<hr>
-        <br>
-        <br>
-        <% for (var i = 0; i < (apiData_test.projects).length; i++) { %>
-        <div><%= (apiData_test.projects[i]).name%></div>
-    <% } %>
+        <div><%= JSON.stringify(usersApi) %></div>
     </div>
 
 

@@ -11,7 +11,7 @@
         .content {
             margin-left: 1em;
             margin-right: 1em;
-            margin-top: 10em;
+            margin-top: 20em;
             margin-bottom: 1em;
         }
         .grid-container {
@@ -28,13 +28,13 @@
             grid-auto-rows: 390px; 
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
             grid-column-gap: 1em;
-            grid-row-gap: 3em;
+            grid-row-gap: 4em;
         }
         .item {
             border-radius: 0px;
             padding: 0px;
             color: black;
-            background-color: gray;
+            background-color: lightgray;
             /*position: relative;
             overflow: hidden;*/
         }
@@ -52,22 +52,25 @@
     <div class="content">
         <div class="grid-image-container">
             <% for (var i = 0; i < (projectsApi.projects).length; i++) { %>
-                <% if (((projectsApi.projects[i]).image_url) != null) { %>
+                <% if ((projectsApi.projects[i]).image_url != null) { %>
                 <div class="item">
+                    <div><%= (projectsApi.projects[i]).owner_id %></div>
                     <img class="image_attr" src="<%= (projectsApi.projects[i]).image_url %>" />
                     <div><%= (projectsApi.projects[i]).name %></div>
-
-                        <% for (var j = 0; j < (usersApi.users).length; j++) { %>
-                            <% if ((projectsApi.projects[i]).owner_id == (usersApi.users[j]).id) { %>
-                                <div><%= (usersApi.users[j]).screen_name %></div>
-                            <% } %>
+                    
+                    <!-- <% for (var j = 0; j < (usersApi.users).length; j++) { %>
+                        <% if ((projectsApi.projects[i]).owner_id == (usersApi.users[j]).id) { %>
+                            <div><%= (usersApi.users[j]).screen_name %></div>
                         <% } %>
+                    <% } %> -->
                 </div>
                 <% } else { %>
                 <div class="item">
+                    <div><%= (projectsApi.projects[i]).owner_id %></div>
                     <img class="image_attr" />
                     <div><%= (projectsApi.projects[i]).name %></div>
-                    <div><%= (projectsApi.projects[i]).owner_id %></div>
+                    
+
                 </div>
                 <% } %>
             <% } %>

@@ -44,7 +44,7 @@ var http = require('http'),
     request = require('request'), // https://www.npmjs.com/package/request
     app = express(),
     server = http.createServer(app),
-    port = 3000;
+    port = 3000,
     async = require('async');
 
 server.listen(port);
@@ -63,21 +63,34 @@ app.get('/index', function (req, res) {
     });
 });
 
-app.get('/users', function (req, res) {
-    // console.log('\ninside /users');
-    // res.send('respond with a resource');
-    console.log('\ninside /users');
+const rp = require("request-promise");
 
+app.get('/users', function (req, res) {
     var url = apiData.apiUrl + '/users' + apiData.apiKey,
         url_test = apiData.apiUrl + '/projects' + apiData.apiKey + '&sortby=newest';
 
-    console.log('\nProject Data Query: ', url_test);
-    console.log('\nUser Data Query: ', url);
+      Promise
+      .all([rp({uri: url, json:true}), rp({uri: url_test, json:true})])
+      .then(([apiData, apiData_test]) => {
+          res.render('index-test', {apiData, apiData_test});
+      }).catch(err => {
+          console.log(err);
+          res.sendStatus(500);
+      });
+    // console.log('\ninside /users');
+    // res.send('respond with a resource');
 
+    // console.log('\ninside /users');
 
+    // var url = apiData.apiUrl + '/users' + apiData.apiKey,
+    //     url_test = apiData.apiUrl + '/projects' + apiData.apiKey + '&sortby=newest';
 
-
-
+    // request.get(url_test, function (error, response, body) {
+    //     var bodyData = parseJSON(body);
+    //     res.render('index-test', {
+    //         apiData: bodyData
+    //     });
+    // });
 
 });
 
@@ -90,21 +103,14 @@ app.get('/', function (req, res) {
     var url_user = apiData.apiUrl + '/users' + apiData.apiKey;
     console.log('\nProject Data Query: ', url_user);
 
-    request.get(url_project, function (error, response, body) {
-        var bodyData = parseJSON(body);
-        res.render('main', {
-            dataType: null,
-            apiData: bodyData
-        });
-    });
-
-    request.get(url_user, function (error, response, body) {
-        var bodyData = parseJSON(body);
-        res.render('main', {
-            dataType: null,
-            apiData: bodyData
-        });
-    });
+    Promise
+      .all([rp({uri: url_project, json:true}), rp({uri: url_user, json:true})])
+      .then(([projectsApi, usersApi]) => {
+          res.render('main', {projectsApi, usersApi});
+      }).catch(err => {
+          console.log(err);
+          res.sendStatus(500);
+      });
 
     // console.log('\ninside /');
     // res.render('main.ejs', {

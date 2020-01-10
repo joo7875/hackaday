@@ -51,18 +51,23 @@
 
     <div class="content">
         <div class="grid-image-container">
-            <% for (var i = 0; i < (apiData.projects).length; i++) { %>
-                <% if (((apiData.projects[i]).image_url) != null) { %>
+            <% for (var i = 0; i < (projectsApi.projects).length; i++) { %>
+                <% if (((projectsApi.projects[i]).image_url) != null) { %>
                 <div class="item">
-                    <img class="image_attr" src="<%= (apiData.projects[i]).image_url %>" />
-                    <div><%= (apiData.projects[i]).name %></div>
-                    <div><%= (apiData.projects[i]).owner_id %></div>
+                    <img class="image_attr" src="<%= (projectsApi.projects[i]).image_url %>" />
+                    <div><%= (projectsApi.projects[i]).name %></div>
+
+                        <% for (var j = 0; j < (usersApi.users).length; j++) { %>
+                            <% if ((projectsApi.projects[i]).owner_id == (usersApi.users[j]).id) { %>
+                                <div><%= (usersApi.users[j]).screen_name %></div>
+                            <% } %>
+                        <% } %>
                 </div>
                 <% } else { %>
                 <div class="item">
                     <img class="image_attr" />
-                    <div><%= (apiData.projects[i]).name %></div>
-                    <div><%= (apiData.projects[i]).owner_id %></div>
+                    <div><%= (projectsApi.projects[i]).name %></div>
+                    <div><%= (projectsApi.projects[i]).owner_id %></div>
                 </div>
                 <% } %>
             <% } %>

@@ -119,7 +119,7 @@ app.get('/projects/:page_id', function (req, res) {
     
     let page = req.params.page_id;
 
-    var url_project = apiData.apiUrl + '/projects' + apiData.apiKey + '&page=' + page + '&per_page=18&sortby=newest';
+    var url_project = apiData.apiUrl + '/projects' + apiData.apiKey + '&page=' + page + '&per_page=21&sortby=newest';
     console.log('\nProject Data Query: ', url_project);
 
     // var url_user = apiData.apiUrl + '/users' + apiData.apiKey;

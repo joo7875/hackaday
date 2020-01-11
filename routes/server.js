@@ -114,23 +114,34 @@ app.get('/users', function (req, res) {
 });
 
 
-app.get('/', function (req, res) {
+app.get('/projects/:page_id', function (req, res) {
     console.log('\ninside /');
+    
+    let page = req.params.page_id;
 
-    var url_project = apiData.apiUrl + '/projects' + apiData.apiKey + '&per_page=18&sortby=newest';
+    var url_project = apiData.apiUrl + '/projects' + apiData.apiKey + '&page=' + page + '&per_page=18&sortby=newest';
     console.log('\nProject Data Query: ', url_project);
 
-    var url_user = apiData.apiUrl + '/users' + apiData.apiKey;
-    console.log('\nUser Data Query: ', url_user);
+    // var url_user = apiData.apiUrl + '/users' + apiData.apiKey;
+    // console.log('\nUser Data Query: ', url_user);
 
-    Promise
-      .all([rp({uri: url_project, json:true}), rp({uri: url_user, json:true})])
-      .then(([projectsApi, usersApi]) => {
-          res.render('main', {projectsApi, usersApi});
-      }).catch(err => {
-          console.log(err);
-          res.sendStatus(500);
-      });
+    request.get(url_project, function (error, response, body) {
+        var bodyData = parseJSON(body);
+        res.render('main', {
+            projectsApi: bodyData
+        });
+        console.log('req', req.params.page_id);
+    });
+
+
+    // Promise
+    //   .all([rp({uri: url_project, json:true}), rp({uri: url_user, json:true})])
+    //   .then(([projectsApi, usersApi]) => {
+    //       res.render('main', {projectsApi, usersApi});
+    //   }).catch(err => {
+    //       console.log(err);
+    //       res.sendStatus(500);
+    //   });
 
     // console.log('\ninside /');
     // res.render('main.ejs', {

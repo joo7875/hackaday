@@ -129,12 +129,7 @@
                     </div>
                     <img class="image_attr" src="<%= (projectsApi.projects[i]).image_url %>" />
                     <div><%= (projectsApi.projects[i]).name %></div>
-                    
-                    <!-- <% for (var j = 0; j < (usersApi.users).length; j++) { %>
-                        <% if ((projectsApi.projects[i]).owner_id == (usersApi.users[j]).id) { %>
-                            <div><%= (usersApi.users[j]).screen_name %></div>
-                        <% } %>
-                    <% } %> -->
+                  
                 </div>
                 <% } else { %>
                 <div class="item">
@@ -158,8 +153,10 @@
         <!-- pagination -->
         <div>
             <% for (var i = 1; i <= projectsApi.last_page; i++) { %>
-                <a href="" target="_blank"><span><%= i %>&nbsp;</span></a>
+                <a href="/projects/<%= i %>" target="_self"><span><%= i %>&nbsp;</span></a>
             <% } %>
+
+            <% var page_id = i %>
         </div>
 
     </div>

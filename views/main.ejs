@@ -127,7 +127,9 @@
                             <div class="tooltip_content_3">screen_name <br> about_me</div>
                         </div>
                     </div>
-                    <img class="image_attr" src="<%= (projectsApi.projects[i]).image_url %>" />
+                    <a href="/projects/detail/<%= projectsApi.projects[i].id %>" target="_blank">
+                      <img class="image_attr" src="<%= (projectsApi.projects[i]).image_url %>" />
+                    </a>
                     <div><%= (projectsApi.projects[i]).name %></div>
                   
                 </div>
@@ -153,7 +155,7 @@
         <!-- pagination -->
         <div>
             <% for (var i = 1; i <= projectsApi.last_page; i++) { %>
-                <a href="/projects/<%= i %>" target="_self"><span><%= i %>&nbsp;</span></a>
+                <a href="/projects/page/<%= i %>" target="_self"><span><%= i %>&nbsp;</span></a>
             <% } %>
 
             <% var page_id = i %>

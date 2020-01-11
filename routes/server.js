@@ -114,8 +114,8 @@ app.get('/users', function (req, res) {
 });
 
 
-app.get('/projects/:page_id', function (req, res) {
-    console.log('\ninside /');
+app.get('/projects/page/:page_id', function (req, res) {
+    console.log('\ninside /projects/page/:page_id');
     
     let page = req.params.page_id;
 
@@ -131,6 +131,42 @@ app.get('/projects/:page_id', function (req, res) {
             projectsApi: bodyData
         });
         console.log('req', req.params.page_id);
+    });
+
+
+    // Promise
+    //   .all([rp({uri: url_project, json:true}), rp({uri: url_user, json:true})])
+    //   .then(([projectsApi, usersApi]) => {
+    //       res.render('main', {projectsApi, usersApi});
+    //   }).catch(err => {
+    //       console.log(err);
+    //       res.sendStatus(500);
+    //   });
+
+    // console.log('\ninside /');
+    // res.render('main.ejs', {
+    //     dataType: null,
+    //     apiData: null
+    // });
+});
+
+app.get('/projects/detail/:project_id', function (req, res) {
+    console.log('\ninside /projects/detail/:project_id');
+    
+    let projectId = req.params.project_id;
+
+    var url_project = apiData.apiUrl + '/projects/' + projectId + apiData.apiKey;
+    console.log('\nProject Data Query: ', url_project);
+
+    // var url_user = apiData.apiUrl + '/users' + apiData.apiKey;
+    // console.log('\nUser Data Query: ', url_user);
+
+    request.get(url_project, function (error, response, body) {
+        var bodyData = parseJSON(body);
+        res.render('main_detail', {
+            projectsApi_detail: bodyData
+        });
+        console.log('req', req.params.project_id);
     });
 
 

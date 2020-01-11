@@ -34,7 +34,6 @@
             border-radius: 0px;
             padding: 0px;
             color: black;
-            background-color: lightgray;
             /*position: relative;
             overflow: hidden;*/
         }
@@ -43,6 +42,70 @@
             width: 100%;
             object-fit: cover;
         }
+        .image_default {
+            background-color: lightgray;
+        }
+        .tooltip {
+          position: relative;
+          display: inline-block;
+        }
+
+        .tooltip .tooltip_content {
+          visibility: hidden;
+          width: 300px;
+          background-color: black;
+          color: #fff;
+          text-align: center;
+          border-radius: 6px;
+          padding: 10px;
+          position: absolute;
+          z-index: 1;
+          /*tooltip 상자 위 위치 작을수록 위로*/
+          top: -110px;
+          /*작을 수록 왼쪽으로*/
+          left: 120%;
+        }
+
+        .tooltip .tooltip_content::after {
+          content: "";
+          position: absolute;
+          /*arrow 위 위치, 작을수록 위로*/
+          top: 90%;
+          right: 100%;
+          margin-top: -5px;
+          border-width: 5px;
+          border-style: solid;
+          border-color: transparent black transparent transparent;
+        }
+        .tooltip:hover .tooltip_content {
+          visibility: visible;
+        }
+        #circle {
+          width: 60px;
+          height: 60px;
+          -webkit-border-radius: 30px;
+          -moz-border-radius: 30px;
+          border-radius: 30px;
+          background: white;
+        }
+        .tooltip_content_2 {
+            grid-column: 2 / span 3;
+            grid-row: 1;
+            padding-bottom: 10px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .tooltip_content_3 {
+            grid-column: 1 / span 3;
+            grid-row: 2;
+            text-align: left;
+        }
+        .grid {
+            display: grid;
+            grid-row-gap: 10px;
+        }
     </style>
 
 </head>
@@ -50,11 +113,20 @@
 <body>
 
     <div class="content">
+
+        <!-- grid -->
         <div class="grid-image-container">
             <% for (var i = 0; i < (projectsApi.projects).length; i++) { %>
                 <% if ((projectsApi.projects[i]).image_url != null) { %>
                 <div class="item">
-                    <div><%= (projectsApi.projects[i]).owner_id %></div>
+                    <div class="tooltip">
+                        <%= (projectsApi.projects[i]).owner_id %>
+                        <div class="grid tooltip_content">
+                            <div class="tooltip_content_1" id="circle"></div>
+                            <div class="tooltip_content_2">projects&nbsp;|&nbsp;followers</div>
+                            <div class="tooltip_content_3">screen_name <br> about_me</div>
+                        </div>
+                    </div>
                     <img class="image_attr" src="<%= (projectsApi.projects[i]).image_url %>" />
                     <div><%= (projectsApi.projects[i]).name %></div>
                     
@@ -66,8 +138,15 @@
                 </div>
                 <% } else { %>
                 <div class="item">
-                    <div><%= (projectsApi.projects[i]).owner_id %></div>
-                    <img class="image_attr" />
+                    <div class="tooltip">
+                        <%= (projectsApi.projects[i]).owner_id %>
+                        <div class="grid tooltip_content">
+                            <div class="tooltip_content_1" id="circle"></div>
+                            <div class="tooltip_content_2">projects&nbsp;|&nbsp;followers</div>
+                            <div class="tooltip_content_3">screen_name <br> about_me</div>
+                        </div>
+                    </div>
+                    <img class="image_attr image_default" />
                     <div><%= (projectsApi.projects[i]).name %></div>
                     
 
@@ -75,6 +154,14 @@
                 <% } %>
             <% } %>
         </div>
+
+        <!-- pagination -->
+        <div>
+            <% for (var i = 1; i <= projectsApi.last_page; i++) { %>
+                <a href="" target="_blank"><span><%= i %>&nbsp;</span></a>
+            <% } %>
+        </div>
+
     </div>
 
 

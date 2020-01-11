@@ -67,18 +67,35 @@ const rp = require("request-promise");
 
 app.get('/users', function (req, res) {
 
-    var id = 0;
+    var id = req.params.id;
     var url_project = apiData.apiUrl + '/projects' + apiData.apiKey + '&per_page=18&sortby=newest';
     var url_user = apiData.apiUrl + '/projects/' + id + '/team' + apiData.apiKey + '&per_page=18&sortby=newest';
 
-    Promise
-      .all([rp({uri: url_project, json:true}), rp({uri: url_user, json:true})])
+    Promise.all([rp({uri: url_project, json:true}), rp({uri: url_user, json:true})])
       .then(([projectsApi, usersApi]) => {
-          res.render('index-test', {projectsApi, usersApi});
+
+          let usersList = usersApi.team.map(g => g.user);
+          usersList = usersList.flat();
+
+          const finalList = [];
+          for (let i = 0; i < projectsApi.projects.length; i++) {
+            const object = {};
+            object.projectName = projectsApi.projects[i].name;
+
+            for (let j = 0; j < usersList.length; j++) {
+              if (projectsApi.projects[i].owner_id === usersList[j].id) {
+                object.userName = usersList[j].screen_name;
+              }
+            }
+
+            finalList.push(object);
+          }
+          res.render('index-test', {finalList});
       }).catch(err => {
           console.log(err);
           res.sendStatus(500);
       });
+
     // console.log('\ninside /users');
     // res.send('respond with a resource');
 
@@ -122,12 +139,29 @@ app.get('/', function (req, res) {
     // });
 });
 
+// Parse URL-encoded bodies (as sent by HTML forms)
+
+
+// Parse JSON bodies (as sent by API clients)
+app.use(express.json());
+
+app.post('/test', function(request, response){
+      var user_name=req.body.user;
+      var password=req.body.password;
+      console.log("User name = "+user_name+", password is "+password);
+      res.end("yes");
+});
+
 // Queries HAD API for user data
 app.get('/users/:id', function (req, res) {
     console.log('\ninside /users/:id');
 
-    var id = req.params.id,
-        url = apiData.apiUrl + '/users/' + id + apiData.apiKey;
+    const id = parseInt(req.params.id, 10);
+      if (!id) {
+        return res.status(400).json({error: 'Incorrect id'});
+      }
+
+    var url = apiData.apiUrl + '/users/' + id + apiData.apiKey;
 
     console.log('\nUser Data Query: ', url);
 

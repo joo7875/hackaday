@@ -162,8 +162,20 @@
         <div style="height: 100px;margin-top: 50px;">
           <% for (var i = 1; i <= projectsApi.last_page; i++) { %>
             <% if (i == projectsApi.page) { %>
-              <a href="/projects/page/<%= i-1 %>" target="_self"><span style="border: 1px black solid">Previous</span></a>
-              <a href="/projects/page/<%= i+1 %>" target="_self"><span style="border: 1px black solid">Next</span></a>
+
+              <% if (i == 1) { %>
+                <a href="/projects/page/<%= i+1 %>" target="_self"><span style="border: 1px black solid">Next</span></a>
+                <a href="/projects/page/<%= projectsApi.last_page %>" target="_self"><span style="border: 1px black solid">Last</span></a>
+              <% } else if(i == projectsApi.last_page) { %>
+                <a href="/projects/page/<%= 1 %>" target="_self"><span style="border: 1px black solid">First</span></a>
+                <a href="/projects/page/<%= i-1 %>" target="_self"><span style="border: 1px black solid">Previous</span></a>
+              <% } else { %>
+                <a href="/projects/page/<%= 1 %>" target="_self"><span style="border: 1px black solid">First</span></a>
+                <a href="/projects/page/<%= i-1 %>" target="_self"><span style="border: 1px black solid">Previous</span></a>
+                <a href="/projects/page/<%= i+1 %>" target="_self"><span style="border: 1px black solid">Next</span></a>
+                <a href="/projects/page/<%= projectsApi.last_page %>" target="_self"><span style="border: 1px black solid">Last</span></a>
+              <% } %>
+              
             <% } %>
           <% } %>
           

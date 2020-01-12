@@ -45,7 +45,8 @@ var http = require('http'),
     app = express(),
     server = http.createServer(app),
     port = 3000,
-    async = require('async');
+    async = require('async'),
+    request_p = require('request-promise');
 
 server.listen(port);
 console.log('Listening on port: ', port);
@@ -119,20 +120,58 @@ app.get('/projects/page/:page_id', function (req, res) {
     
     let page = req.params.page_id;
     console.log('req', req.params.page_id);
+    // let userId = req.params.user_id;
+    // console.log('req', req.params.user_id);
 
     var url_project = apiData.apiUrl + '/projects' + apiData.apiKey + '&page=' + page + '&per_page=21&sortby=newest';
     console.log('\nProject Data Query: ', url_project);
 
-    // var url_user = apiData.apiUrl + '/users' + apiData.apiKey;
+    // var url_user = apiData.apiUrl + '/users/' + userId + apiData.apiKey;
     // console.log('\nUser Data Query: ', url_user);
 
-    request.get(url_project, function (error, response, body) {
-        var bodyData = parseJSON(body);
-        res.render('main', {
-            projectsApi: bodyData
-        });
+    var url_user = [];
+
+    // request.get(url_project, function (error, response, body) {
+    //     var bodyData = parseJSON(body);
+    //     // res.render('main', {
+    //     //     projectsApi: bodyData
+    //     // });
+
+    //     for (var i = 0; i < (bodyData.projects).length; i++) {
+    //         url_user.push(apiData.apiUrl + '/users/' + (bodyData.projects[i]).owner_id + apiData.apiKey);
+    //     }
+    //     console.log('\nArray: ', url_user);
+    // });
+
+     request(url_project, function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            var data1 = JSON.parse(body);
+
+            for (var i = 0; i < (data1.projects).length; i++) {
+               url_user.push(apiData.apiUrl + '/users/' + (data1.projects[i]).owner_id + apiData.apiKey);
+            }
+
+            console.log('Array', url_user);
+
+            // Request Array 보내기 검색
+            request(url_user, function(error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    var data2 = JSON.parse(body);
+                    console.log('data1', data1, 'data2', data2);
+
+                    res.render("main.ejs", { data1: data1, data2: data2 });
+                }
+            });
+        }
     });
 
+    // request.get(url_user, function (error, response, body) {
+    //     var userData = parseJSON(body);
+    //     res.render('main', {
+    //         usersApi: userData  
+    //     });
+    //     console.log('userData: ', JSON.stringify(userData));
+    // });
 
     // Promise
     //   .all([rp({uri: url_project, json:true}), rp({uri: url_user, json:true})])

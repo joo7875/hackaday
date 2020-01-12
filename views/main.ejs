@@ -102,6 +102,10 @@
             display: grid;
             grid-row-gap: 10px;
         }
+        .pagination {
+          margin-top: 100px;
+          text-align: center;
+        }
     </style>
 
 </head>
@@ -114,9 +118,11 @@
         <div class="grid-image-container">
             <% for (var i = 0; i < (projectsApi.projects).length; i++) { %>
                 <% if ((projectsApi.projects[i]).image_url != null) { %>
-                <div class="item">
+                <div>
                     <div class="tooltip">
                         <%= (projectsApi.projects[i]).owner_id %>
+                        <% var user_id = (projectsApi.projects[i]).owner_id %>
+
                         <div class="grid tooltip_content">
                             <div class="tooltip_content_1" id="circle"></div>
                             <div class="tooltip_content_2 text_center">projects&nbsp;|&nbsp;followers</div>
@@ -130,7 +136,7 @@
                   
                 </div>
                 <% } else { %>
-                <div class="item">
+                <div>
                     <div class="tooltip">
                         <%= (projectsApi.projects[i]).owner_id %>
                         <div class="grid tooltip_content">
@@ -159,21 +165,20 @@
             <% var page_id = i %>
         </div> -->
 
-        <div style="height: 100px;margin-top: 50px;">
+        <div class="pagination">
           <% for (var i = 1; i <= projectsApi.last_page; i++) { %>
             <% if (i == projectsApi.page) { %>
-
               <% if (i == 1) { %>
-                <a href="/projects/page/<%= i+1 %>" target="_self"><span style="border: 1px black solid">Next</span></a>
-                <a href="/projects/page/<%= projectsApi.last_page %>" target="_self"><span style="border: 1px black solid">Last</span></a>
+                <a href="/projects/page/<%= i+1 %>" target="_self"><span>Next</span></a>
+                <a href="/projects/page/<%= projectsApi.last_page %>" target="_self"><span>Last</span></a>
               <% } else if(i == projectsApi.last_page) { %>
-                <a href="/projects/page/<%= 1 %>" target="_self"><span style="border: 1px black solid">First</span></a>
-                <a href="/projects/page/<%= i-1 %>" target="_self"><span style="border: 1px black solid">Previous</span></a>
+                <a href="/projects/page/<%= 1 %>" target="_self"><span>First</span></a>
+                <a href="/projects/page/<%= i-1 %>" target="_self"><span>Previous</span></a>
               <% } else { %>
-                <a href="/projects/page/<%= 1 %>" target="_self"><span style="border: 1px black solid">First</span></a>
-                <a href="/projects/page/<%= i-1 %>" target="_self"><span style="border: 1px black solid">Previous</span></a>
-                <a href="/projects/page/<%= i+1 %>" target="_self"><span style="border: 1px black solid">Next</span></a>
-                <a href="/projects/page/<%= projectsApi.last_page %>" target="_self"><span style="border: 1px black solid">Last</span></a>
+                <a href="/projects/page/<%= 1 %>" target="_self"><span>First</span></a>
+                <a href="/projects/page/<%= i-1 %>" target="_self"><span>Previous</span></a>
+                <a href="/projects/page/<%= i+1 %>" target="_self"><span>Next</span></a>
+                <a href="/projects/page/<%= projectsApi.last_page %>" target="_self"><span>Last</span></a>
               <% } %>
               
             <% } %>
@@ -181,14 +186,6 @@
           
           <% var page_id = i %>
         </div>
-        <!-- <div style="text-align:center;height: 500px;">
-          <input type="button" id="first" onclick="firstPage()" value="first" />
-          <input type="button" id="previous" onclick="previousPage()" value="previous" />
-          <input type="button" id="next" onclick="nextPage()" value="next" />
-          <input type="button" id="last" onclick="lastPage()" value="last" />
-
-          <div id="list"></div>
-        </div> -->
 
     </div>
 

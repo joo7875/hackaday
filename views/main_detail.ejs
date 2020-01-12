@@ -7,6 +7,54 @@
     <style>
         body {
             font: 15px arial, san-serif;
+            margin: 0px;
+        }
+        .top {
+          text-align: center;
+          background-color: orange;
+          height: 300px;
+        }
+        .content {
+          margin-left: 0px;
+          margin-right: 0px;
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-template-rows: 50px 1fr 1fr;
+        }
+        .grid_small {
+          background-color: yellow;
+          text-align: center;
+          float: right;
+          min-width: 300px;
+          max-width: 500px;
+          width: 500px;
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr 1fr;
+          grid-template-rows: 1fr;
+        }
+        .grid_main {
+          background-color: lightgray;
+          display: grid;
+          grid-template-columns: 2fr 1fr;
+          grid-template-rows: 1fr;
+        }
+        .grid_recommend {
+          display: grid;
+          text-align: center;
+          background-color: yellow;
+          grid-template-columns: auto;
+          grid-template-rows: 1fr 1fr;
+        }
+        .text_center {
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .image_attr {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
         }
     </style>
 
@@ -14,11 +62,36 @@
 
 <body>
 
-    <div class="content">
+    <div class="top">
+      <div><%= projectsApi_detail.name %></div>
+      <div><%= projectsApi_detail.summary %></div><br>
+      <div>Username : <%= projectsApi_detail.owner_id %></div>
+    </div>
 
-      <%= projectsApi_detail.owner_id %><br>
-      <%= projectsApi_detail.name %>
-      
+    <div class="content">
+      <div class="grid_small">
+        <div><span><%= projectsApi_detail.views %></span><br>views</div>
+        <div><span><%= projectsApi_detail.comments %></span><br>comments</div>
+        <div><span><%= projectsApi_detail.followers %></span><br>followers</div>
+        <div><span><%= projectsApi_detail.skulls %></span><br>skulls</div>
+      </div>
+
+      <div class="grid_main">
+        <div style="background-color: orange">
+          <div>Description</div>
+          <div><%= projectsApi_detail.description %></div>
+        </div>
+        <div style="background-color: red">
+          <div>Image</div>
+          <div><img class="image_attr" src="<%= projectsApi_detail.image_url %>" /></div>
+        </div>
+      </div>
+
+      <div class="grid_recommend">
+        <div>Recommended Projects</div>
+        <div>Recommended Users</div>
+      </div>
+
     </div>
 
 

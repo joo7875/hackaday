@@ -118,6 +118,7 @@ app.get('/projects/page/:page_id', function (req, res) {
     console.log('\ninside /projects/page/:page_id');
     
     let page = req.params.page_id;
+    console.log('req', req.params.page_id);
 
     var url_project = apiData.apiUrl + '/projects' + apiData.apiKey + '&page=' + page + '&per_page=21&sortby=newest';
     console.log('\nProject Data Query: ', url_project);
@@ -130,7 +131,6 @@ app.get('/projects/page/:page_id', function (req, res) {
         res.render('main', {
             projectsApi: bodyData
         });
-        console.log('req', req.params.page_id);
     });
 
 
@@ -142,12 +142,6 @@ app.get('/projects/page/:page_id', function (req, res) {
     //       console.log(err);
     //       res.sendStatus(500);
     //   });
-
-    // console.log('\ninside /');
-    // res.render('main.ejs', {
-    //     dataType: null,
-    //     apiData: null
-    // });
 });
 
 app.get('/projects/detail/:project_id', function (req, res) {

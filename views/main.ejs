@@ -14,12 +14,6 @@
             margin-top: 20em;
             margin-bottom: 1em;
         }
-        .grid-container {
-            width: 100%; 
-            display: grid;
-            grid-template-rows: 1fr 1/3fr; 
-            grid-template-columns: auto;
-        }
         .grid-image-container {
             max-width: 1200px;
             margin: auto;
@@ -92,7 +86,9 @@
             grid-column: 2 / span 3;
             grid-row: 1;
             padding-bottom: 10px;
-            text-align: center;
+        }
+        .text_center {
+          text-align: center;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -123,11 +119,11 @@
                         <%= (projectsApi.projects[i]).owner_id %>
                         <div class="grid tooltip_content">
                             <div class="tooltip_content_1" id="circle"></div>
-                            <div class="tooltip_content_2">projects&nbsp;|&nbsp;followers</div>
+                            <div class="tooltip_content_2 text_center">projects&nbsp;|&nbsp;followers</div>
                             <div class="tooltip_content_3">screen_name <br> about_me</div>
                         </div>
                     </div>
-                    <a href="/projects/detail/<%= projectsApi.projects[i].id %>" target="_blank">
+                    <a href="/projects/detail/<%= projectsApi.projects[i].id %>" target="_self">
                       <img class="image_attr" src="<%= (projectsApi.projects[i]).image_url %>" />
                     </a>
                     <div><%= (projectsApi.projects[i]).name %></div>
@@ -139,11 +135,11 @@
                         <%= (projectsApi.projects[i]).owner_id %>
                         <div class="grid tooltip_content">
                             <div class="tooltip_content_1" id="circle"></div>
-                            <div class="tooltip_content_2">projects&nbsp;|&nbsp;followers</div>
+                            <div class="tooltip_content_2 text_center">projects&nbsp;|&nbsp;followers</div>
                             <div class="tooltip_content_3">screen_name <br> about_me</div>
                         </div>
                     </div>
-                    <a href="/projects/detail/<%= projectsApi.projects[i].id %>" target="_blank">
+                    <a href="/projects/detail/<%= projectsApi.projects[i].id %>" target="_self">
                       <img class="image_attr image_default" />
                     </a>
                     <div><%= (projectsApi.projects[i]).name %></div>
@@ -155,13 +151,13 @@
         </div>
 
         <!-- pagination -->
-        <div>
+  <!--       <div>
             <% for (var i = 1; i <= projectsApi.last_page; i++) { %>
                 <a href="/projects/page/<%= i %>" target="_self"><span><%= i %>&nbsp;</span></a>
             <% } %>
 
             <% var page_id = i %>
-        </div>
+        </div> -->
 
     </div>
 

@@ -157,13 +157,16 @@ app.get('/projects/page/:page_id', function (req, res) {
             console.log('Array', url_user);
 
             Promise
-              .all([rp({uri: url_project, json:true}), rp({uri: url_user[0], json:true})])
-              .then(([projectsApi, usersApi]) => {
-                  res.render('main', {projectsApi, usersApi});
+              .all([ url_user.map(value => rp({uri: value, json:true})), rp({uri: url_project, json: true})] ) 
+              .then((usersApi) => {
+                  res.render('main', {usersApi});
+                  console.log(JSON.stringify(usersApi));
               }).catch(err => {
                   console.log(err);
                   res.sendStatus(500);
               });
+
+            url_user = [];
 
 
             // const promises = [

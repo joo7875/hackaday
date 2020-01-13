@@ -129,45 +129,39 @@ app.get('/projects/page/:page_id', function (req, res) {
     // var url_user = apiData.apiUrl + '/users/' + userId + apiData.apiKey;
     // console.log('\nUser Data Query: ', url_user);
 
-    
-
-    // request.get(url_project, function (error, response, body) {
-    //     var bodyData = parseJSON(body);
-    //     // res.render('main', {
-    //     //     projectsApi: bodyData
-    //     // });
-
-    //     for (var i = 0; i < (bodyData.projects).length; i++) {
-    //         url_user.push(apiData.apiUrl + '/users/' + (bodyData.projects[i]).owner_id + apiData.apiKey);
-    //     }
-    //     console.log('\nArray: ', url_user);
-    // });
 
      request(url_project, function(error, response, body) {
         if (!error && response.statusCode == 200) {
-            var data1 = JSON.parse(body);
+            var bodyData = JSON.parse(body);
 
-            for (var i = 0; i < (data1.projects).length; i++) {
-               url_user.push(apiData.apiUrl + '/users/' + (data1.projects[i]).owner_id + apiData.apiKey);
+            url_user.push(url_project);
+
+            for (var i = 0; i < (bodyData.projects).length; i++) {
+               url_user.push(apiData.apiUrl + '/users/' + (bodyData.projects[i]).owner_id + apiData.apiKey);
             }
 
             // for (var j = 0; j < url_user.length; j++) {
             //     console.log('Output', j + ' ' + url_user[j]);
             // }
-            console.log('Array', url_user);
 
+            // ***url_user array 에 url_project 를 마지막에 더함
+            console.log('Array-user', url_user);
+            console.log('Array-project', url_project);
+
+            // [] 씌우면 url_user array 속 array 가 출력, projectsApi 잘 나옴
+            // .then 만 [] 씌우면 url_user[0], url_project[0] 만 출력
+            // .all 만 [] 씌우면 usersApi 만 잘 나옴, projectsApi undefined
             Promise
-              .all([ url_user.map(value => rp({uri: value, json:true})), rp({uri: url_project, json: true})] ) 
-              .then((usersApi) => {
-                  res.render('main', {usersApi});
-                  console.log(JSON.stringify(usersApi));
+              .all(url_user.map(value => rp({uri: value, json:true}))) 
+              .then((mainApi) => {
+                  res.render('main', {mainApi});
+                  console.log('\nmainApi', JSON.stringify(mainApi));
               }).catch(err => {
                   console.log(err);
                   res.sendStatus(500);
               });
 
             url_user = [];
-
 
             // const promises = [
             //       rp({uri: url_project, json:true}), url_user.map(value => rp({uri: value, json:true}))
@@ -182,17 +176,6 @@ app.get('/projects/page/:page_id', function (req, res) {
             //       console.log(err);
             //       res.sendStatus(500);
             //   });
-
-
-            // Request Array 보내기 검색
-            // request(url_user, function(error, response, body) {
-            //     if (!error && response.statusCode == 200) {
-            //         var data2 = JSON.parse(body);
-            //         console.log('data1', data1, 'data2', data2);
-
-            //         res.render("main.ejs", { data1: data1, data2: data2 });
-            //     }
-            // });
         }
     });
 

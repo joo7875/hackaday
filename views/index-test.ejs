@@ -15,8 +15,8 @@
     <!-- Renders API Data: -->
 
     <div>
-        <% for (var i = 0; i < (projectsApi.projects).length; i++) { %>
-            
+        <% for (var i = 0; i < (mainApi[0].projects).length; i++) { %>
+            <%= (mainApi[0].projects[i]).name %><br>
         <% } %>
     </div>
 

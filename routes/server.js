@@ -46,7 +46,7 @@ var http = require('http'),
     server = http.createServer(app),
     port = 3000,
     async = require('async'),
-    request_p = require('request-promise');
+    rp = require("request-promise");
 
 server.listen(port);
 console.log('Listening on port: ', port);
@@ -63,8 +63,6 @@ app.get('/index', function (req, res) {
         description: 'Index Description'
     });
 });
-
-const rp = require("request-promise");
 
 app.get('/users', function (req, res) {
 
@@ -114,6 +112,7 @@ app.get('/users', function (req, res) {
 
 });
 
+var url_user = [];
 
 app.get('/projects/page/:page_id', function (req, res) {
     console.log('\ninside /projects/page/:page_id');
@@ -129,7 +128,7 @@ app.get('/projects/page/:page_id', function (req, res) {
     // var url_user = apiData.apiUrl + '/users/' + userId + apiData.apiKey;
     // console.log('\nUser Data Query: ', url_user);
 
-    var url_user = [];
+    
 
     // request.get(url_project, function (error, response, body) {
     //     var bodyData = parseJSON(body);
@@ -151,19 +150,40 @@ app.get('/projects/page/:page_id', function (req, res) {
                url_user.push(apiData.apiUrl + '/users/' + (data1.projects[i]).owner_id + apiData.apiKey);
             }
 
-            console.log('Array', url_user);
+            for (var j = 0; j < url_user.length; j++) {
+                console.log('Output', j + ' ' + url_user[j]);
+            }
+            // console.log('Array', url_user);
+
+            const promises = [
+                  rp({uri: url_project, json:true}), url_user.map(value => rp({uri: value, json:true}))
+            ];
+
+            Promise
+              .all(promises)
+              .then(([projectsApi, usersApi]) => {
+                  res.render('index-test', {projectsApi, usersApi});
+                  console.log('result', JSON.stringify(usersApi));
+              }).catch(err => {
+                  console.log(err);
+                  res.sendStatus(500);
+              });
+
 
             // Request Array 보내기 검색
-            request(url_user, function(error, response, body) {
-                if (!error && response.statusCode == 200) {
-                    var data2 = JSON.parse(body);
-                    console.log('data1', data1, 'data2', data2);
+            // request(url_user, function(error, response, body) {
+            //     if (!error && response.statusCode == 200) {
+            //         var data2 = JSON.parse(body);
+            //         console.log('data1', data1, 'data2', data2);
 
-                    res.render("main.ejs", { data1: data1, data2: data2 });
-                }
-            });
+            //         res.render("main.ejs", { data1: data1, data2: data2 });
+            //     }
+            // });
         }
     });
+
+     // console.log('Out Array', url_user);
+
 
     // request.get(url_user, function (error, response, body) {
     //     var userData = parseJSON(body);
@@ -182,6 +202,11 @@ app.get('/projects/page/:page_id', function (req, res) {
     //       res.sendStatus(500);
     //   });
 });
+
+app.use('/user/:id', function (req, res, next) {
+  console.log('Request Type:', req.method)
+  next()
+})
 
 app.get('/projects/detail/:project_id', function (req, res) {
     console.log('\ninside /projects/detail/:project_id');

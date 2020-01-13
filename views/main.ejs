@@ -114,6 +114,12 @@
 
     <div class="content">
 
+      <div>
+        <% for (var k = 0; k < usersApi.length; k++) { %>
+            <%= usersApi[k].screen_id %>
+        <% } %>
+      </div>
+
         <!-- grid -->
         <div class="grid-image-container">
             <% for (var i = 0; i < (projectsApi.projects).length; i++) { %>

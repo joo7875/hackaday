@@ -218,21 +218,18 @@ app.get('/projects/detail/:project_id', function (req, res) {
 
     request.get(url_project, function (error, response, body) {
         var bodyData = parseJSON(body);
-        res.render('main_detail', {
-            projectsApi_detail: bodyData
+        
+        var url_user = apiData.apiUrl + '/users/' + bodyData.owner_id + apiData.apiKey;
+
+        Promise
+          .all([rp({uri: url_project, json:true}), rp({uri: url_user, json:true})])
+          .then(([projectsApi_detail, usersApi]) => {
+              res.render('main_detail', {projectsApi_detail, usersApi});
+          }).catch(err => {
+              console.log(err);
+              res.sendStatus(500);
+          });
         });
-        console.log('req', req.params.project_id);
-    });
-
-
-    // Promise
-    //   .all([rp({uri: url_project, json:true}), rp({uri: url_user, json:true})])
-    //   .then(([projectsApi, usersApi]) => {
-    //       res.render('main', {projectsApi, usersApi});
-    //   }).catch(err => {
-    //       console.log(err);
-    //       res.sendStatus(500);
-    //   });
 
     // console.log('\ninside /');
     // res.render('main.ejs', {

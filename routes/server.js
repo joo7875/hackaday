@@ -46,7 +46,8 @@ var http = require('http'),
     server = http.createServer(app),
     port = 3000,
     async = require('async'),
-    rp = require("request-promise");
+    rp = require("request-promise"),
+    _ = require('lodash');
 
 server.listen(port);
 console.log('Listening on port: ', port);
@@ -150,24 +151,34 @@ app.get('/projects/page/:page_id', function (req, res) {
                url_user.push(apiData.apiUrl + '/users/' + (data1.projects[i]).owner_id + apiData.apiKey);
             }
 
-            for (var j = 0; j < url_user.length; j++) {
-                console.log('Output', j + ' ' + url_user[j]);
-            }
-            // console.log('Array', url_user);
-
-            const promises = [
-                  rp({uri: url_project, json:true}), url_user.map(value => rp({uri: value, json:true}))
-            ];
+            // for (var j = 0; j < url_user.length; j++) {
+            //     console.log('Output', j + ' ' + url_user[j]);
+            // }
+            console.log('Array', url_user);
 
             Promise
-              .all(promises)
+              .all([rp({uri: url_project, json:true}), rp({uri: url_user[0], json:true})])
               .then(([projectsApi, usersApi]) => {
-                  res.render('index-test', {projectsApi, usersApi});
-                  console.log('result', JSON.stringify(usersApi));
+                  res.render('main', {projectsApi, usersApi});
               }).catch(err => {
                   console.log(err);
                   res.sendStatus(500);
               });
+
+
+            // const promises = [
+            //       rp({uri: url_project, json:true}), url_user.map(value => rp({uri: value, json:true}))
+            // ];
+
+            // Promise
+            //   .all(promises)
+            //   .then(([projectsApi, usersApi]) => {
+            //       res.render('main', {projectsApi, usersApi});
+            //       console.log('result', JSON.stringify(usersApi));
+            //   }).catch(err => {
+            //       console.log(err);
+            //       res.sendStatus(500);
+            //   });
 
 
             // Request Array 보내기 검색

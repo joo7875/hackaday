@@ -7,6 +7,8 @@
     <style>
         body {
             font: 15px arial, san-serif;
+            color: white;
+            background-color: #06143d;
         }
         .content {
             margin-left: 1em;
@@ -21,7 +23,7 @@
             display: grid;
             grid-auto-rows: 390px; 
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
-            grid-column-gap: 1em;
+            grid-column-gap: 2em;
             grid-row-gap: 4em;
         }
         .item {
@@ -106,6 +108,15 @@
           margin-top: 100px;
           text-align: center;
         }
+        /*.title {
+          margin-top: 5px;
+          text-decoration: none;
+          font-size: 10px;
+          color: #eb2226;
+        }
+        .title:hover {
+          color: #ff474b;
+        }*/
     </style>
 
 </head>
@@ -113,12 +124,12 @@
 <body>
 
     <div class="content">
-
+<!-- 
       <div>
         <% for (var k = 0; k < usersApi.length; k++) { %>
             <%= usersApi[k].screen_id %>
         <% } %>
-      </div>
+      </div> -->
 
         <!-- grid -->
         <div class="grid-image-container">
@@ -138,7 +149,9 @@
                     <a href="/projects/detail/<%= projectsApi.projects[i].id %>" target="_self">
                       <img class="image_attr" src="<%= (projectsApi.projects[i]).image_url %>" />
                     </a>
-                    <div><%= (projectsApi.projects[i]).name %></div>
+                    <a href="/projects/detail/<%= projectsApi.projects[i].id %>" target="_self">
+                      <div class="title"><%= (projectsApi.projects[i]).name %></div>
+                    </a>
                   
                 </div>
                 <% } else { %>

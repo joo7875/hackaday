@@ -228,30 +228,36 @@
 
               <div>
                 <% var page = 3 %>
-                <% var project_user_array = (projectsApi_detail.tags).concat(usersApi_detail.tags); %>
+                <% var project_user_array = (projectsApi_detail.tags).concat(usersApi_detail.tags) %>
                 <% var sorted = project_user_array.map(v => v.toLowerCase()) %>
 
-                <!-- Optimizing array -->
-
-                <%= project_user_array %><br>
-                <%= sorted  %>
-
+                <!-- Optimizing selected project's and user's tags array -->
                 <% var unique_sorted = Array.from(new Set(sorted)) %>
                 <div style="color:blue"><%= unique_sorted %></div>
 
-                <br>
+                <!-- Optimizing all user's tags/page=1 array -->
+                <% var user_array = [] %>
+                <% var user_array_sorted = [] %>
+                <% var unique_user_array = [] %>
+
                 
-               <!--  <% for (let i = 0; i < (usersApi.users).length; i++) { %> 
+                <% for (let i = 0; i < (usersApi.users).length; i++) { %> 
 
                   <% if ((usersApi.users[i]).tags != null) { %>
 
                     <% for (let j = 0; j < ((usersApi.users[i]).tags).length; j++) { %>
 
                       <span><%= i %>: <%= (usersApi.users[i]).tags[j] %>&nbsp;</span>
+                      <% user_array.push((usersApi.users[i]).tags[j]) %>
+                      <% user_array_sorted = user_array.map(v => v.toLowerCase()) %>
+                      <% unique_user_array = Array.from(new Set(user_array_sorted)) %>
+
 
                     <% } %>
                   <% } %>
-                <% } %> -->
+                <% } %>
+                <hr>
+                <%= unique_user_array %>
 
             
               </div>

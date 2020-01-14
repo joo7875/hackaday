@@ -139,8 +139,8 @@
         <br>
         <div class="header_summary"><%= projectsApi_detail.summary %></div><br>
         <br>
-        <div><img id="icon_circle" src="<%= usersApi.image_url %>"/></div>
-        <div><%= usersApi.screen_name %></div>
+        <div><img id="icon_circle" src="<%= usersApi_detail.image_url %>"/></div>
+        <div><%= usersApi_detail.screen_name %></div>
       </div>
   </div>
 
@@ -225,7 +225,16 @@
 
             <div style="background-color: orange;">
               <div class="content_title">Recommended Users</div>
-              <div></div>
+
+              <div>
+                <% var page = 3 %>
+                <% var project_user_array = (projectsApi_detail.tags).concat(usersApi_detail.tags); %>
+                <%= project_user_array %>
+                  <br>
+
+            
+              </div>
+
             </div>
         </div>
 

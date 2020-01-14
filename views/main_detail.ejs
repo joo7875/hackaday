@@ -125,6 +125,9 @@
         .header_image {
           opacity: 30%;
         }
+        .grid_content {
+          padding: 0px 10px;
+        }
     </style>
 
 </head>
@@ -160,9 +163,10 @@
 
     <div class="content">
         <div class="grid_main">
-            <div>
+            <div class="grid_content">
               <div class="content_title">Description</div>
               <div class="content_desc"><%= projectsApi_detail.description %></div>
+              <!-- Description a 구별 함수 -->
             </div>
             <div class="grid_content">
               <div class="content_title" style="visibility: hidden">Image</div>

@@ -125,9 +125,6 @@
         .header_image {
           opacity: 30%;
         }
-        .image_default {
-            background-color: lightgray;
-        }
     </style>
 
 </head>
@@ -137,7 +134,7 @@
   <div class="header">
     <% if (projectsApi_detail.image_url != null) { %>
       <img src="<%= projectsApi_detail.image_url %>" class="image_attr header_image">
-    <% } %}
+    <% } %>
       <div class="centered">
         <div class="header_title"><%= projectsApi_detail.name %></div>
         <br>
@@ -172,7 +169,7 @@
               <% if (projectsApi_detail.image_url != null) { %>
                 <div><img class="image_attr" src="<%= projectsApi_detail.image_url %>" /></div>
               <% } else { %>
-                <div><img class="image_attr image_default" /></div>
+                <div><img class="image_attr" src="<%= projectsApi_detail.image_url %>"/></div>
               <% } %>
             </div>
         </div>

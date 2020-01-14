@@ -229,35 +229,46 @@
               <div>
                 <% var page = 3 %>
                 <% var project_user_array = (projectsApi_detail.tags).concat(usersApi_detail.tags) %>
-                <% var sorted = project_user_array.map(v => v.toLowerCase()) %>
+                <%= project_user_array %>
+                <% var project_user_array_sorted = project_user_array.map(v => v.toLowerCase()) %>
 
                 <!-- Optimizing selected project's and user's tags array -->
-                <% var unique_sorted = Array.from(new Set(sorted)) %>
-                <div style="color:blue"><%= unique_sorted %></div>
+                <% var project_user_array_unique = Array.from(new Set(project_user_array_sorted)) %>
+                <div style="color:blue"><%= project_user_array_unique %></div>
 
                 <!-- Optimizing all user's tags/page=1 array -->
-                <% var user_array = [] %>
-                <% var user_array_sorted = [] %>
-                <% var unique_user_array = [] %>
+                <% var all_user_array = [] %>
+                <% var all_user_array_sorted = [] %>
+                <% var all_user_array_unique = [] %>
+                <% var test = [] %>
 
-                
+                <!-- All users -->
                 <% for (let i = 0; i < (usersApi.users).length; i++) { %> 
-
+                  <!-- Only Existed Tags -->
                   <% if ((usersApi.users[i]).tags != null) { %>
-
+                    <!-- Each elements from array[i] -->
                     <% for (let j = 0; j < ((usersApi.users[i]).tags).length; j++) { %>
+                      <%= i %>: <%= ((usersApi.users[i]).tags[j]).toLowerCase() %>&nbsp;
 
-                      <span><%= i %>: <%= (usersApi.users[i]).tags[j] %>&nbsp;</span>
-                      <% user_array.push((usersApi.users[i]).tags[j]) %>
-                      <% user_array_sorted = user_array.map(v => v.toLowerCase()) %>
-                      <% unique_user_array = Array.from(new Set(user_array_sorted)) %>
+                      <% for (let k = 0; k < project_user_array_unique.length; k++) { %>
+                        <% if (project_user_array_unique[k] == ((usersApi.users[i]).tags[j]).toLowerCase()) { %>
+                          <span style="color:red"><%= (usersApi.users[i]).screen_name %>&nbsp;</span>
+                        <% } %>
+                      <% } %>
 
+
+
+<!-- 
+                      <% all_user_array.push((usersApi.users[i]).tags[j]) %>
+                      <% all_user_array_sorted = all_user_array.map(v => v.toLowerCase()) %>
+                      <% all_user_array_unique = Array.from(new Set(all_user_array_sorted)) %> -->
 
                     <% } %>
                   <% } %>
                 <% } %>
                 <hr>
-                <%= unique_user_array %>
+                <%= test %><br>
+                <!-- <%= all_user_array_unique %> -->
 
             
               </div>

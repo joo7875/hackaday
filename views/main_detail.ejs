@@ -8,53 +8,122 @@
         body {
             font: 15px arial, san-serif;
             margin: 0px;
+            color: white;
+            background-color: #06143d;
         }
-        .top {
+        .footer {
           text-align: center;
-          background-color: orange;
-          height: 300px;
+          color: #e3e3e3;
+          font-size: 10px;
+          margin-bottom: 3em;
         }
         .content {
-          margin-left: 0px;
-          margin-right: 0px;
-          display: grid;
-          grid-template-columns: 1fr;
-          grid-template-rows: 50px 1fr 1fr;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 1200px;
+            margin-bottom: 10em;
+            margin-top: -5em;
+
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr 1fr;
         }
         .grid_small {
-          background-color: yellow;
+          color: black;
           text-align: center;
-          float: right;
           min-width: 300px;
           max-width: 500px;
           width: 500px;
           display: grid;
           grid-template-columns: 1fr 1fr 1fr 1fr;
           grid-template-rows: 1fr;
+          padding: 10px 0px;
         }
         .grid_main {
-          background-color: lightgray;
           display: grid;
           grid-template-columns: 2fr 1fr;
           grid-template-rows: 1fr;
+          grid-gap: 1em;
+          margin-bottom: 3em;
         }
         .grid_recommend {
           display: grid;
           text-align: center;
-          background-color: yellow;
           grid-template-columns: auto;
           grid-template-rows: 1fr 1fr;
-        }
-        .text_center {
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
         .image_attr {
             height: 100%;
             width: 100%;
             object-fit: cover;
+        }
+        .header_title {
+          font-weight: bold;
+          font-size: 35px;
+        }
+        #icon_circle {
+          width: 60px;
+          height: 60px;
+          -webkit-border-radius: 30px;
+          -moz-border-radius: 30px;
+          border-radius: 30px;
+          background: white;
+          margin-bottom: 10px;
+        }
+        .header_summary {
+          font-size: 20px;
+        }
+        a {
+          text-decoration: none;
+          color: #8fd2ff;
+        }
+        .float_right {
+          margin-left: auto;
+          margin-right: 0;
+        }
+        .content_title {
+          font-weight: bold;
+          font-size: 20px;
+          padding-bottom: 10px;
+        }
+        .content_desc {
+          font-size: 16px;
+          line-height: 150%;
+        }
+        .line {
+          background-color: orange;
+        }
+        .content_line {
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 1200px;
+            margin-bottom: 10em;
+            margin-top: 0em;
+            position: relative;
+
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr;
+        }
+        .header {
+          text-align: center;
+          margin-left: auto;
+          margin-right: auto;
+
+          position: relative;
+          text-align: center;
+          color: white;
+          height: 400px;
+        }
+        .centered {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          padding-top: 5em;
+        }
+        .header_image {
+          opacity: 30%;
         }
     </style>
 
@@ -62,36 +131,53 @@
 
 <body>
 
-    <div class="top">
-      <div><%= projectsApi_detail.name %></div>
-      <div><%= projectsApi_detail.summary %></div><br>
-      <div><%= usersApi.screen_name %></div>
+  <div class="header">
+    <img src="<%= projectsApi_detail.image_url %>" class="image_attr header_image">
+      <div class="centered">
+        <div class="header_title"><%= projectsApi_detail.name %></div>
+        <br>
+        <div class="header_summary"><%= projectsApi_detail.summary %></div><br>
+        <br>
+        <div><img id="icon_circle" src="<%= usersApi.image_url %>"/></div>
+        <div><%= usersApi.screen_name %></div>
+      </div>
+  </div>
+
+    <div class="line">
+      <div class="content_line">
+        <div class="float_right">
+          <div class="grid_small">
+            <div><span><b><%= projectsApi_detail.views %></b></span><br>views</div>
+            <div><span><b><%= projectsApi_detail.comments %></b></span><br>comments</div>
+            <div><span><b><%= projectsApi_detail.followers %></b></span><br>followers</div>
+            <div><span><b><%= projectsApi_detail.skulls %></b></span><br>skulls</div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="content">
-      <div class="grid_small">
-        <div><span><%= projectsApi_detail.views %></span><br>views</div>
-        <div><span><%= projectsApi_detail.comments %></span><br>comments</div>
-        <div><span><%= projectsApi_detail.followers %></span><br>followers</div>
-        <div><span><%= projectsApi_detail.skulls %></span><br>skulls</div>
-      </div>
 
-      <div class="grid_main">
-        <div style="background-color: orange">
-          <div>Description</div>
-          <div><%= projectsApi_detail.description %></div>
+        <div class="grid_main">
+            <div>
+              <div class="content_title">Description</div>
+              <div class="content_desc"><%= projectsApi_detail.description %></div>
+            </div>
+            <div class="grid_content">
+              <div class="content_title" style="visibility: hidden">Image</div>
+              <div><img class="image_attr" src="<%= projectsApi_detail.image_url %>" /></div>
+            </div>
         </div>
-        <div style="background-color: red">
-          <div>Image</div>
-          <div><img class="image_attr" src="<%= projectsApi_detail.image_url %>" /></div>
+
+        <div class="grid_recommend">
+            <div style="background-color: yellow;">Recommended Projects</div>
+            <div style="background-color: orange;">Recommended Users</div>
         </div>
-      </div>
 
-      <div class="grid_recommend">
-        <div>Recommended Projects</div>
-        <div>Recommended Users</div>
-      </div>
+    </div>
 
+    <div class="footer">
+      <div>Service provided by <a href="https://supplyframe.com/" target="_blank">SupplyFrame</a>. API provided by <a href="https://hackaday.io/" target="_blank">Hackaday.io</a>. Developed by <a href="mailto:joo7875@gmail.com">Hyewon Joo</a>.</div>
     </div>
 
 

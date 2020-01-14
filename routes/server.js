@@ -211,7 +211,9 @@ app.get('/projects/detail/:project_id', function (req, res) {
     let projectId = req.params.project_id;
 
 
-    var url_user = apiData.apiUrl + '/users' + apiData.apiKey;
+    var url_user_p1 = apiData.apiUrl + '/users' + apiData.apiKey;
+    var url_user_p2 = apiData.apiUrl + '/users' + apiData.apiKey + '&page=2';
+    var url_user_p3 = apiData.apiUrl + '/users' + apiData.apiKey + '&page=3';;
 
     var url_project = apiData.apiUrl + '/projects' + apiData.apiKey + '&sortby=newest';
     var url_project_id = apiData.apiUrl + '/projects/' + projectId + apiData.apiKey;
@@ -222,10 +224,19 @@ app.get('/projects/detail/:project_id', function (req, res) {
         
         var url_user_id = apiData.apiUrl + '/users/' + bodyData.owner_id + apiData.apiKey;
 
+        var promise = [
+            rp({uri: url_user_p1, json:true}), 
+            rp({uri: url_user_p2, json:true}),
+            rp({uri: url_user_p3, json:true}),
+            rp({uri: url_project, json:true}), 
+            rp({uri: url_project_id, json:true}), 
+            rp({uri: url_user_id, json:true})
+        ];
+
         Promise
-          .all([rp({uri: url_user, json:true}), rp({uri: url_project, json:true}), rp({uri: url_project_id, json:true}), rp({uri: url_user_id, json:true})])
-          .then(([usersApi, projectsApi, projectsApi_detail, usersApi_detail]) => {
-              res.render('main_detail', {usersApi, projectsApi, projectsApi_detail, usersApi_detail});
+          .all(promise)
+          .then(([usersApi, usersApi_p2, usersApi_p3, projectsApi, projectsApi_detail, usersApi_detail]) => {
+              res.render('main_detail', {usersApi, usersApi_p2, usersApi_p3, projectsApi, projectsApi_detail, usersApi_detail});
           }).catch(err => {
               console.log(err);
               res.sendStatus(500);

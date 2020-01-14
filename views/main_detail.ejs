@@ -162,26 +162,37 @@
     </div>
 
     <div class="content">
+
         <div class="grid_main">
+
             <div class="grid_content">
               <div class="content_title">Description</div>
-              <div class="content_desc"><%= projectsApi_detail.description %></div>
+              <div class="content_desc"><%- projectsApi_detail.description %></div>
               <!-- Description a 구별 함수 -->
             </div>
+
             <div class="grid_content">
               <div class="content_title" style="visibility: hidden">Image</div>
               <% if (projectsApi_detail.image_url != null) { %>
                 <div><img class="image_attr" src="<%= projectsApi_detail.image_url %>" /></div>
               <% } else { %>
-                <div><img class="image_attr" src="<%= projectsApi_detail.image_url %>"/></div>
+                <div><img class="image_attr" src="<%= projectsApi_detail.image_url %>" /></div>
               <% } %>
             </div>
+
         </div>
 
         <div class="grid_recommend">
-            <div style="background-color: yellow;">Recommended Projects</div>
-            <div style="background-color: orange;">Recommended Users</div>
+            <div style="background-color: yellow;">
+              <div class="content_title">Recommended Projects</div>
+              <div></div>
+            </div>
+            <div style="background-color: orange;">
+              <div class="content_title">Recommended Users</div>
+              <div></div>
+            </div>
         </div>
+
     </div>
 
     <div class="footer">
@@ -190,4 +201,10 @@
 
 
 </body>
+
+<script type="text/javascript">
+  for (int i = 0; i < 5; i++) {
+
+  }
+</script>
 </html>

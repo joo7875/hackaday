@@ -183,10 +183,6 @@
                 <div class="content_title">Recommended Projects</div>
 
                 <div>
-                  <% for (let i = 0; i < (projectsApi_detail.tags).length; i++) { %>
-                    <div><%= projectsApi_detail.tags[i] %></div> 
-                  <% } %>
-                  <hr>
 
                   <% var array = [] %>
                   <!-- for i, 50 -->
@@ -202,23 +198,28 @@
 
                                 <% array.push(i) %>
 
-                            <div><%= array %></div>
-                            <div><%= i %>: <%= projectsApi_detail.tags[k] %></div>
-                            <div><%= (projectsApi.projects[i]).name %></div>
                           <% } %>
                         <% } %>
                         <!-- if end -->
                       <% } %>
                       <!-- for k end -->
                     <% } %>
-                    <br>
                     <!-- for j end -->
                   <% } %>
                   <!-- for i end -->
 
-                  <% var unique = Array.from(new Set(array)) %>
-                  <div style="color:blue"><%= unique %></div>
-                  
+                  <% var unique_array = Array.from(new Set(array)) %>
+                  <div style="color:blue"><%= unique_array %></div>
+
+              
+                  <% for (let a = 0; a < (projectsApi.projects).length; a++) { %>
+                    <% for (let b = 0; b < unique_array.length; b++) { %>
+                      <% if (a == unique_array[b]) { %>
+                      <div><%= (projectsApi.projects[a]).name %></div>
+                      <% } %>
+                    <% } %>
+                  <% } %>
+
                 </div>
             </div>
 

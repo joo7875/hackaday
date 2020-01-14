@@ -228,12 +228,19 @@
 
               <div>
                 <% var page = 3 %>
-                <% var project_user_array = (projectsApi_detail.tags).concat(usersApi_detail.tags) %>
-                <%= project_user_array %>
-                <% var project_user_array_sorted = project_user_array.map(v => v.toLowerCase()) %>
+                <% var project_user_array = [] %>
+                <% var project_user_array_sorted = [] %>
+                <% var project_user_array_unique = [] %>
+
+                <% if (usersApi_detail.tags != null) { %>
+                  <% project_user_array = (projectsApi_detail.tags).concat(usersApi_detail.tags) %>
+                  <% project_user_array_sorted = project_user_array.map(v => v.toLowerCase()) %>
+                <% } else { %>
+                  <% project_user_array_sorted = (projectsApi_detail.tags).map(v => v.toLowerCase()) %>
+                <% } %>
 
                 <!-- Optimizing selected project's and user's tags array -->
-                <% var project_user_array_unique = Array.from(new Set(project_user_array_sorted)) %>
+                <% project_user_array_unique = Array.from(new Set(project_user_array_sorted)) %>
                 <div style="color:blue"><%= project_user_array_unique %></div>
 
                 <!-- Optimizing all user's tags/page=1 array -->

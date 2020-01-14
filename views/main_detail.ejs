@@ -23,10 +23,6 @@
             max-width: 1200px;
             margin-bottom: 10em;
             margin-top: -5em;
-
-            display: grid;
-            grid-template-columns: 1fr;
-            grid-template-rows: 1fr 1fr;
         }
         .grid_small {
           color: black;
@@ -84,7 +80,7 @@
         .content_title {
           font-weight: bold;
           font-size: 20px;
-          padding-bottom: 10px;
+          padding-bottom: 15px;
         }
         .content_desc {
           font-size: 16px;
@@ -183,10 +179,49 @@
         </div>
 
         <div class="grid_recommend">
-            <div style="background-color: yellow;">
-              <div class="content_title">Recommended Projects</div>
-              <div></div>
+            <div style="background-color: red;">
+                <div class="content_title">Recommended Projects</div>
+
+                <div>
+                  <% for (let i = 0; i < (projectsApi_detail.tags).length; i++) { %>
+                    <div><%= projectsApi_detail.tags[i] %></div> 
+                  <% } %>
+                  <hr>
+
+                  <% var array = [] %>
+                  <!-- for i, 50 -->
+                  <% for (let i = 0; i < (projectsApi.projects).length; i++) { %> 
+                    <!-- for j -->
+                    <% for (let j = 0; j < ((projectsApi.projects[i]).tags).length; j++) { %>
+                      <!-- for k -->
+                      <% for (let k = 0; k < (projectsApi_detail.tags).length; k++) { %>
+                        <!-- if -->
+                        <% if (projectsApi_detail.tags[k] == (projectsApi.projects[i]).tags[j]) { %>
+                          <!-- Search different projects -->
+                          <% if (projectsApi_detail.id != (projectsApi.projects[i]).id) { %>
+
+                                <% array.push(i) %>
+
+                            <div><%= array %></div>
+                            <div><%= i %>: <%= projectsApi_detail.tags[k] %></div>
+                            <div><%= (projectsApi.projects[i]).name %></div>
+                          <% } %>
+                        <% } %>
+                        <!-- if end -->
+                      <% } %>
+                      <!-- for k end -->
+                    <% } %>
+                    <br>
+                    <!-- for j end -->
+                  <% } %>
+                  <!-- for i end -->
+
+                  <% var unique = Array.from(new Set(array)) %>
+                  <div style="color:blue"><%= unique %></div>
+                  
+                </div>
             </div>
+
             <div style="background-color: orange;">
               <div class="content_title">Recommended Users</div>
               <div></div>
@@ -203,8 +238,9 @@
 </body>
 
 <script type="text/javascript">
-  for (int i = 0; i < 5; i++) {
-
+  function onlyUnique(value, index, self) { 
+    return self.indexOf(value) === index;
   }
 </script>
+
 </html>

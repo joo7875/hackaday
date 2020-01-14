@@ -210,21 +210,20 @@ app.get('/projects/detail/:project_id', function (req, res) {
     
     let projectId = req.params.project_id;
 
-    var url_project = apiData.apiUrl + '/projects/' + projectId + apiData.apiKey;
+    var url_project = apiData.apiUrl + '/projects' + apiData.apiKey + '&sortby=newest';
+    var url_project_id = apiData.apiUrl + '/projects/' + projectId + apiData.apiKey;
+    console.log('\nProject Data Query-detail: ', url_project_id);
     console.log('\nProject Data Query: ', url_project);
 
-    // var url_user = apiData.apiUrl + '/users' + apiData.apiKey;
-    // console.log('\nUser Data Query: ', url_user);
-
-    request.get(url_project, function (error, response, body) {
+    request.get(url_project_id, function (error, response, body) {
         var bodyData = parseJSON(body);
         
         var url_user = apiData.apiUrl + '/users/' + bodyData.owner_id + apiData.apiKey;
 
         Promise
-          .all([rp({uri: url_project, json:true}), rp({uri: url_user, json:true})])
-          .then(([projectsApi_detail, usersApi]) => {
-              res.render('main_detail', {projectsApi_detail, usersApi});
+          .all([rp({uri: url_project, json:true}), rp({uri: url_project_id, json:true}), rp({uri: url_user, json:true})])
+          .then(([projectsApi, projectsApi_detail, usersApi]) => {
+              res.render('main_detail', {projectsApi, projectsApi_detail, usersApi});
           }).catch(err => {
               console.log(err);
               res.sendStatus(500);

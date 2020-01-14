@@ -210,14 +210,12 @@ app.get('/projects/detail/:project_id', function (req, res) {
     
     let projectId = req.params.project_id;
 
+
     var url_user = apiData.apiUrl + '/users' + apiData.apiKey;
 
     var url_project = apiData.apiUrl + '/projects' + apiData.apiKey + '&sortby=newest';
     var url_project_id = apiData.apiUrl + '/projects/' + projectId + apiData.apiKey;
 
-    console.log('\nProject Data Query-detail: ', url_project_id);
-    console.log('\nProject Data Query: ', url_project);
-    console.log('\nUser Data Query: ', url_user);
 
     request.get(url_project_id, function (error, response, body) {
         var bodyData = parseJSON(body);

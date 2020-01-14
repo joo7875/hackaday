@@ -228,19 +228,30 @@
 
               <div>
                 <% var page = 3 %>
-                <% var user_array = [] %>
-                  <!-- for i, 50 -->
-                  <% for (let i = 0; i < ((usersApi_p1.users).length) * page; i++) { %>  
-                        <!-- Compare with the selected project's tags and all users' tags -->
-                        <!-- Side: Compare with the selected project's user's tags and all users' tags -->
+                <% var project_user_array = (projectsApi_detail.tags).concat(usersApi_detail.tags); %>
+                <% var sorted = project_user_array.map(v => v.toLowerCase()) %>
+
+                <!-- Optimizing array -->
+
+                <%= project_user_array %><br>
+                <%= sorted  %>
+
+                <% var unique_sorted = Array.from(new Set(sorted)) %>
+                <div style="color:blue"><%= unique_sorted %></div>
+
+                <br>
+                
+               <!--  <% for (let i = 0; i < (usersApi.users).length; i++) { %> 
+
+                  <% if ((usersApi.users[i]).tags != null) { %>
+
+                    <% for (let j = 0; j < ((usersApi.users[i]).tags).length; j++) { %>
+
+                      <span><%= i %>: <%= (usersApi.users[i]).tags[j] %>&nbsp;</span>
+
+                    <% } %>
                   <% } %>
-
-                  <!-- <span><%= user_array %>&nbsp;</span> -->
-
-                  <!-- for i end -->
-
-                 <!--  <% var user_unique_array = Array.from(new Set(user_array)) %>
-                  <div style="color:blue"><%= user_unique_array %></div> -->
+                <% } %> -->
 
             
               </div>

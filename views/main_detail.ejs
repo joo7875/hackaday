@@ -224,6 +224,7 @@
                       <% if (a == unique_array[b]) { %>
                         <!-- *** Must call projects' image_url -->
                         <!-- *** Must call projects' matched tags -->
+                        <div><%= (projectsApi.projects[a]).name %></div>
                         <div><%= (projectsApi.projects[a]).name %> <%= (projectsApi.projects[a]).owner_id %></div>
                         <% owner_id_for_all.push((projectsApi.projects[a]).owner_id) %>
                         <% owner_id_for_all = Array.from(new Set(owner_id_for_all)) %>
@@ -241,7 +242,7 @@
               <div>
                 <% var page = 3 %>
                 <!-- From Users/ API -->
-                <% var all_screen_name = [] %>
+                <% var final_all_users = [] %>
 
                 <% var project_user_array = [] %>
                 <% var project_user_array_sorted = [] %>
@@ -258,20 +259,22 @@
                 <% project_user_array_unique = Array.from(new Set(project_user_array_sorted)) %>
                 <div style="color:blue"><%= project_user_array_unique %></div>
 
-        <!-- users?page=1 -->
+            <!-- Connected with 'project_user_array_unique' and users?page=1 -->
                 <!-- All users -->
                 <% for (let i = 0; i < (usersApi.users).length; i++) { %> 
                   <!-- Only Existed Tags -->
                   <% if ((usersApi.users[i]).tags != null) { %>
                     <!-- Each elements from array[i] -->
                     <% for (let j = 0; j < ((usersApi.users[i]).tags).length; j++) { %>
-                      <%= i %>: <%= ((usersApi.users[i]).tags[j]).toLowerCase() %>&nbsp;
+                      <!-- <%= i %>: <%= ((usersApi.users[i]).tags[j]).toLowerCase() %>&nbsp; -->
 
                       <% for (let k = 0; k < project_user_array_unique.length; k++) { %>
 
+                      <!-- ***** FINAL PRINTOUT PART 1 ***** -->
                         <% if (project_user_array_unique[k] == ((usersApi.users[i]).tags[j]).toLowerCase()) { %>
-                          <span style="color:red"><%= (usersApi.users[i]).screen_name %>&nbsp;</span>
-                          <% all_screen_name.push((usersApi.users[i]).screen_name) %>
+                          <div><%= (usersApi.users[i]).image_url %></div>
+                          <div><%= (usersApi.users[i]).screen_name %></div>
+                          <div><%= project_user_array_unique[k] %></div>
                         <% } %>
 
                       <% } %>
@@ -281,14 +284,15 @@
                 <% } %>
                 <hr>
 
-
+            <!-- Connected with 'owner_id_for_all'(Selected project's tags == /projects&sortby=newest tags) and users?page=1 -->
                 <% for (let h = 0; h < (usersApi.users).length; h++) { %>
                   <% for (let g = 0; g < owner_id_for_all.length; g++) { %>
 
-                  <!-- ***** FINAL PRINTOUT PART ***** -->
+                  <!-- ***** FINAL PRINTOUT PART 2 ***** -->
                     <% if (owner_id_for_all[g] == (usersApi.users[h]).id) { %>
                       <div><%= (usersApi.users[h]).image_url %></div>
                       <div><%= (usersApi.users[h]).screen_name %></div>
+                      <div><%= owner_id_for_all[g] %></div>
                     <% } %>
 
                   <% } %>

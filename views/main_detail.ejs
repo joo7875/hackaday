@@ -224,8 +224,9 @@
                       <% if (a == unique_array[b]) { %>
                         <!-- *** Must call projects' image_url -->
                         <!-- *** Must call projects' matched tags -->
+                        <div><%= (projectsApi.projects[a]).image_url %></div>
                         <div><%= (projectsApi.projects[a]).name %></div>
-                        <div><%= (projectsApi.projects[a]).name %> <%= (projectsApi.projects[a]).owner_id %></div>
+
                         <% owner_id_for_all.push((projectsApi.projects[a]).owner_id) %>
                         <% owner_id_for_all = Array.from(new Set(owner_id_for_all)) %>
                       <% } %>
@@ -259,7 +260,7 @@
                 <% project_user_array_unique = Array.from(new Set(project_user_array_sorted)) %>
                 <div style="color:blue"><%= project_user_array_unique %></div>
 
-            <!-- Connected with 'project_user_array_unique' and users?page=1 -->
+            <!-- Connected with 'project_user_array_unique'(Selected project's tag + Selected project's User's tags) and users?page=1 -->
                 <!-- All users -->
                 <% for (let i = 0; i < (usersApi.users).length; i++) { %> 
                   <!-- Only Existed Tags -->
@@ -274,7 +275,6 @@
                         <% if (project_user_array_unique[k] == ((usersApi.users[i]).tags[j]).toLowerCase()) { %>
                           <div><%= (usersApi.users[i]).image_url %></div>
                           <div><%= (usersApi.users[i]).screen_name %></div>
-                          <div><%= project_user_array_unique[k] %></div>
                         <% } %>
 
                       <% } %>
@@ -292,7 +292,6 @@
                     <% if (owner_id_for_all[g] == (usersApi.users[h]).id) { %>
                       <div><%= (usersApi.users[h]).image_url %></div>
                       <div><%= (usersApi.users[h]).screen_name %></div>
-                      <div><%= owner_id_for_all[g] %></div>
                     <% } %>
 
                   <% } %>

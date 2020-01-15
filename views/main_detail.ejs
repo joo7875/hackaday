@@ -185,9 +185,13 @@
                 <div>
 
                   <% var array = [] %>
-                  <!-- for i, 50 -->
+                  <% var unique_array = [] %>
+                  <% var owner_id_for_all = [] %>
+
+
+                  <!-- All projects, 50 -->
                   <% for (let i = 0; i < (projectsApi.projects).length; i++) { %> 
-                    <!-- for j -->
+                    <!-- All projects' tags -->
                     <% for (let j = 0; j < ((projectsApi.projects[i]).tags).length; j++) { %>
                       <!-- for k -->
                       <% for (let k = 0; k < (projectsApi_detail.tags).length; k++) { %>
@@ -208,15 +212,20 @@
                   <% } %>
                   <!-- for i end -->
 
-                  <% var unique_array = Array.from(new Set(array)) %>
+                  <% unique_array = Array.from(new Set(array)) %>
                   <div style="color:blue"><%= unique_array %></div>
 
               
                   <% for (let a = 0; a < (projectsApi.projects).length; a++) { %>
                     <% for (let b = 0; b < unique_array.length; b++) { %>
+
                       <% if (a == unique_array[b]) { %>
-                      <div><%= (projectsApi.projects[a]).name %></div>
+                        <!-- *** Must call projects' image_url -->
+                        <!-- *** Must call projects' matched tags -->
+                        <div><%= (projectsApi.projects[a]).name %></div>
+                        <% owner_id_for_all.push((projectsApi.projects[a]).owner_id) %>
                       <% } %>
+                      
                     <% } %>
                   <% } %>
 
@@ -248,9 +257,6 @@
                 <% var all_user_array = [] %>
                 <% var all_user_array_sorted = [] %>
                 <% var all_user_array_unique = [] %>
-                <% var test = [] %>
-
-                
 
                 <!-- All users -->
                 <% for (let i = 0; i < (usersApi.users).length; i++) { %> 
@@ -266,18 +272,10 @@
                         <% } %>
                       <% } %>
 
-
-
-<!-- 
-                      <% all_user_array.push((usersApi.users[i]).tags[j]) %>
-                      <% all_user_array_sorted = all_user_array.map(v => v.toLowerCase()) %>
-                      <% all_user_array_unique = Array.from(new Set(all_user_array_sorted)) %> -->
-
                     <% } %>
                   <% } %>
                 <% } %>
                 <hr>
-                <%= test %><br>
                 <!-- <%= all_user_array_unique %> -->
 
             

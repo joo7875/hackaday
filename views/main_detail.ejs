@@ -38,7 +38,7 @@
         .grid_main {
           display: grid;
           grid-template-columns: 2fr 1fr;
-          grid-template-rows: 1fr;
+          grid-template-rows: auto;
           grid-gap: 1em;
           margin-bottom: 3em;
         }
@@ -124,6 +124,19 @@
         .grid_content {
           padding: 0px 10px;
         }
+        @media only screen and (max-width: 1200px) {
+          .grid_main {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto;
+            grid-gap: 1em;
+            margin-bottom: 3em;
+          }
+        }
+
+        /**/
+        /**/
+              
     </style>
 
 </head>
@@ -177,6 +190,7 @@
             </div>
 
         </div>
+
 
         <div class="grid_recommend">
             <div style="background-color: red;">
@@ -302,6 +316,7 @@
 
             </div>
         </div>
+        <!-- end recommend grid -->
 
     </div>
 

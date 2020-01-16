@@ -404,37 +404,18 @@
 
 
             <!-- Recommeded Users Slider -->
-              <div>
-                  <div class="carousel">
-                        
-                        <div class="nav nav-left"><button type="button" data-direction="prev" class="slider_control slider_control--prev"><</button></div>
-
-                        <div class="carousel-content">
 
                             <% for (var q = 0; q < (usersApi.users).length; q++) { %> 
                               <% for (var u = 0; u < final_all_users.length; u++) { %>
                                 <% if ((usersApi.users[q]).id == final_all_users[u]) { %>
                                   <!-- ***** FINAL PRINTOUT PART ***** -->
 
-                                  <div class="slide">
-                                    <div class="slide_item slide_item_image">
-                                      <img class="slide_item_image_attr" src="<%= (usersApi.users[q]).image_url %>" />
-                                    </div>
-                                    <div class="slide_item slide_item_title">
-                                      <%= (usersApi.users[q]).screen_name %>
-                                    </div>
-                                  </div>
-
+                                      <div><%= (usersApi.users[q]).image_url %></div>
+                                      <div><%= (usersApi.users[q]).screen_name %></div>
                                 <% } %>
                               <% } %>
                             <% } %>
 
-                        </div>
-
-                        <div class="nav nav-right"><button type="button" data-direction="next" class="slider_control slider_control--next">></button></div>
-
-                  </div>
-              </div>
             <!-- End Recommeded Users Slider -->
 
             
@@ -453,6 +434,8 @@
 </body>
 
 <script>
+  // Slider #1
+{
       var carousel = document.querySelector('.carousel');
       var carouselContent = document.querySelector('.carousel-content');
       var slides = document.querySelectorAll('.slide');
@@ -573,7 +556,7 @@
         moving = true;
         firstSlide.removeEventListener('transitionend', replaceToEnd);
       }
-
+}
 
 </script>
 

@@ -134,7 +134,58 @@
           }
         }
 
+        /* Recommended Projects */
+        .carousel {
+          position: relative;
+          height: 50px; 
+          margin: 0 auto;
+        }
+
+        .carousel-content {
+          position: relative;
+          overflow: hidden;
+          transition: width .4s;
+          height: 100%;
+        }
+
+        .slide {
+          height: 100%;
+          position: absolute;
+          z-index: 1;
+          transition: left .4s cubic-bezier(.47,.13,.15,.89);
+        }
+        *,
+        *:before,
+        *:after {
+          box-sizing: border-box;
+        }
+
         /**/
+        .slider_control {
+          font-size: 2rem;
+          background: none;
+          border: none;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 20;
+        }
+        .slider_control--prev {
+          left: 10px;
+          opacity: 30%;
+        }
+        .slider_control--next {
+          right: 10px;
+          opacity: 30%;
+        }
+        .slider_control--prev:hover {
+          left: 10px;
+          opacity: 100%;
+        }
+        .slider_control--next:hover {
+          right: 10px;
+          opacity: 100%;
+        }
         /**/
               
     </style>
@@ -214,9 +265,7 @@
                         <% if (projectsApi_detail.tags[k] == (projectsApi.projects[i]).tags[j]) { %>
                           <!-- Search different projects -->
                           <% if (projectsApi_detail.id != (projectsApi.projects[i]).id) { %>
-
                                 <% array.push(i) %>
-
                           <% } %>
                         <% } %>
                         <!-- if end -->
@@ -230,23 +279,45 @@
                   <% unique_array = Array.from(new Set(array)) %>
                   <div style="color:blue"><%= unique_array %></div>
 
-              
-                  <% for (let a = 0; a < (projectsApi.projects).length; a++) { %>
-                    <% for (let b = 0; b < unique_array.length; b++) { %>
 
-                    <!-- ***** FINAL PRINTOUT PART ***** -->
-                      <% if (a == unique_array[b]) { %>
-                        <!-- *** Must call projects' image_url -->
-                        <!-- *** Must call projects' matched tags -->
-                        <div><%= (projectsApi.projects[a]).image_url %></div>
-                        <div><%= (projectsApi.projects[a]).name %></div>
+                <!-- Recommeded Projects Slider -->
+                <div>
+                  <div class="carousel">
+                        
+                        <div class="nav nav-left">
+                          <button type="button" data-direction="prev" class="js-arrow-button slider_control slider_control--prev"><</button>
+                        </div>
 
-                        <% owner_id_for_all.push((projectsApi.projects[a]).owner_id) %>
-                        <% owner_id_for_all = Array.from(new Set(owner_id_for_all)) %>
-                      <% } %>
+                        <div class="carousel-content">
 
-                    <% } %>
-                  <% } %>
+                          <% for (let a = 0; a < (projectsApi.projects).length; a++) { %>
+                            <% for (let b = 0; b < unique_array.length; b++) { %>
+
+                            <!-- ***** FINAL PRINTOUT PART ***** -->
+                              <% if (a == unique_array[b]) { %>
+                              <div class="slide">
+                                <div style="background-color: white;color:black"><%= a %></div>
+                                <div style="background-color: white;color:black"><%= a %></div>
+                                  <!-- <div><%= (projectsApi.projects[a]).image_url %></div>
+                                  <div><%= (projectsApi.projects[a]).name %></div> -->
+                              </div>
+
+                                <% owner_id_for_all.push((projectsApi.projects[a]).owner_id) %>
+                                <% owner_id_for_all = Array.from(new Set(owner_id_for_all)) %>
+                              <% } %>
+
+                            <% } %>
+                          <% } %>
+
+                        </div>
+
+                        <div class="nav nav-right">
+                          <button type="button" data-direction="next" class="js-arrow-button slider_control slider_control--next">></button>
+                        </div>
+                  </div>
+                </div>
+                      
+                <!-- End Recommeded Projects Slider -->
 
                 </div>
             </div>
@@ -324,13 +395,7 @@
       <div>Service provided by <a href="https://supplyframe.com/" target="_blank">SupplyFrame</a>. API provided by <a href="https://hackaday.io/" target="_blank">Hackaday.io</a>. Developed by <a href="mailto:joo7875@gmail.com">Hyewon Joo</a>.</div>
     </div>
 
-
+  <script type="text/javascript" src="javascripts/slider.js"></script>
 </body>
-
-<script type="text/javascript">
-  function onlyUnique(value, index, self) { 
-    return self.indexOf(value) === index;
-  }
-</script>
 
 </html>

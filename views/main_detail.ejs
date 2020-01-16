@@ -147,7 +147,7 @@
         }
 
         .slide {
-          height: 100%;
+          height: 100%; 
           position: absolute;
           z-index: 1;
           transition: left .4s cubic-bezier(.47,.13,.15,.89);
@@ -301,9 +301,7 @@
                 <div>
                   <div class="carousel">
                         
-                        <div class="nav nav-left">
-                          <button type="button" data-direction="prev" class="slider_control slider_control--prev"><</button>
-                        </div>
+                        <div class="nav nav-left"><button type="button" data-direction="prev" class="slider_control slider_control--prev"><</button></div>
 
                         <div class="carousel-content">
 
@@ -313,8 +311,12 @@
                             <!-- ***** FINAL PRINTOUT PART ***** -->
                               <% if (a == unique_array[b]) { %>
                               <div class="slide">
-                                  <div class="slide_item slide_item_image"><a href="/projects/detail/<%= (projectsApi.projects[a]).id %>" target="_self"><img class="slide_item_image_attr" src="<%= (projectsApi.projects[a]).image_url %>" /></a></div>
-                                  <div class="slide_item slide_item_title"><a class="slide_item_title" href="/projects/detail/<%= (projectsApi.projects[a]).id %>" target="_self"><%= (projectsApi.projects[a]).name %></a></div>
+                                  <div class="slide_item slide_item_image">
+                                    <a href="/projects/detail/<%= (projectsApi.projects[a]).id %>" target="_self"><img class="slide_item_image_attr" src="<%= (projectsApi.projects[a]).image_url %>" /></a>
+                                  </div>
+                                  <div class="slide_item slide_item_title">
+                                    <a class="slide_item_title" href="/projects/detail/<%= (projectsApi.projects[a]).id %>" target="_self"><%= (projectsApi.projects[a]).name %></a>
+                                  </div>
                               </div>
 
                                 <% owner_id_for_all.push((projectsApi.projects[a]).owner_id) %>
@@ -326,9 +328,7 @@
 
                         </div>
 
-                        <div class="nav nav-right">
-                          <button type="button" data-direction="next" class="slider_control slider_control--next">></button>
-                        </div>
+                        <div class="nav nav-right"><button type="button" data-direction="next" class="slider_control slider_control--next">></button></div>
                   </div>
                 </div>
                       
@@ -402,15 +402,40 @@
 
                 <% final_all_users = Array.from(new Set(final_all_users)) %>
 
-                <% for (var q = 0; q < (usersApi.users).length; q++) { %> 
-                  <% for (var u = 0; u < final_all_users.length; u++) { %>
-                    <% if ((usersApi.users[q]).id == final_all_users[u]) { %>
-                      <!-- ***** FINAL PRINTOUT PART ***** -->
-                      <div><%= (usersApi.users[q]).image_url %></div>
-                      <div><%= (usersApi.users[q]).screen_name %></div>
-                    <% } %>
-                  <% } %>
-                <% } %>
+
+            <!-- Recommeded Users Slider -->
+              <div>
+                  <div class="carousel">
+                        
+                        <div class="nav nav-left"><button type="button" data-direction="prev" class="slider_control slider_control--prev"><</button></div>
+
+                        <div class="carousel-content">
+
+                            <% for (var q = 0; q < (usersApi.users).length; q++) { %> 
+                              <% for (var u = 0; u < final_all_users.length; u++) { %>
+                                <% if ((usersApi.users[q]).id == final_all_users[u]) { %>
+                                  <!-- ***** FINAL PRINTOUT PART ***** -->
+
+                                  <div class="slide">
+                                    <div class="slide_item slide_item_image">
+                                      <img class="slide_item_image_attr" src="<%= (usersApi.users[q]).image_url %>" />
+                                    </div>
+                                    <div class="slide_item slide_item_title">
+                                      <%= (usersApi.users[q]).screen_name %>
+                                    </div>
+                                  </div>
+
+                                <% } %>
+                              <% } %>
+                            <% } %>
+
+                        </div>
+
+                        <div class="nav nav-right"><button type="button" data-direction="next" class="slider_control slider_control--next">></button></div>
+
+                  </div>
+              </div>
+            <!-- End Recommeded Users Slider -->
 
             
               </div>

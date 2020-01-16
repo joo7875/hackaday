@@ -21,7 +21,7 @@
             margin-left: auto;
             margin-right: auto;
             max-width: 1200px;
-            margin-bottom: 10em;
+            margin-bottom: 7em;
             margin-top: -5em;
         }
         .grid_small {
@@ -80,7 +80,7 @@
         .content_title {
           font-weight: bold;
           font-size: 20px;
-          padding-bottom: 15px;
+          padding-bottom: 20px;
         }
         .content_desc {
           font-size: 16px;
@@ -122,7 +122,7 @@
         .grid_content {
           padding: 0px 10px;
         }
-        @media only screen and (max-width: 1200px) {
+    /*    @media only screen and (max-width: 1200px) {
           .grid_main {
             display: grid;
             grid-template-columns: 1fr;
@@ -130,7 +130,7 @@
             grid-gap: 1em;
             margin-bottom: 3em;
           }
-        }
+        }*/
 
         /* Recommended Projects */
         .carousel {
@@ -164,6 +164,12 @@
           object-fit: cover;
           border-radius: 5px;
         }
+        .slide_item_image_attr_user {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+          border-radius: 200px;
+        }
         .slide_item_title {
           color: orange;
           font-size: 20px;
@@ -171,6 +177,8 @@
         .slide_item_title:hover {
           color: #eb2226;
         }
+
+        
 
         /**/
         .slider_control {
@@ -209,6 +217,26 @@
         }
         .a_screen_name:hover {
           color: #dbd9d9;
+        }
+
+        .carousel1 {
+          position: relative;
+          height: 600px; 
+          margin: 0 auto;
+        }
+
+        .carousel-content1 {
+          position: relative;
+          overflow: hidden;
+          transition: width .4s;
+          height: 100%;
+        }
+
+        .slide1 {
+          height: 100%; 
+          position: absolute;
+          z-index: 1;
+          transition: left .4s cubic-bezier(.47,.13,.15,.89);
         }
               
     </style>
@@ -252,7 +280,12 @@
 
             <div class="grid_content">
               <div class="content_title">Description</div>
-              <div class="content_desc"><%- projectsApi_detail.description %></div>
+              <!-- catch -->
+              <% if (projectsApi_detail.id == 169506) { %>
+                <div class="content_desc"><%= projectsApi_detail.description %></div>
+              <% } else { %>
+                <div class="content_desc"><%- projectsApi_detail.description %></div>
+              <% } %>
               <!-- Description a 구별 함수 -->
             </div>
 
@@ -271,7 +304,7 @@
         <div class="grid_recommend">
             <div style="background-color: transparent;">
                 <div class="content_title">Recommended Projects</div>
-
+       
                 <div>
 
                   <% var array = [] %>
@@ -302,7 +335,7 @@
                   <!-- for i end -->
 
                   <% unique_array = Array.from(new Set(array)) %>
-                  <!-- <div style="color:blue"><%= unique_array %></div> -->
+                  <div style="color:blue"><%= unique_array %></div>
 
 
                 <!-- Recommeded Projects Slider -->
@@ -345,7 +378,7 @@
                 </div>
             </div>
 
-            <div style="background-color: orange;">
+            <div style="background-color: transparent;">
               <div class="content_title">Recommended Users</div>
 
               <div>
@@ -367,7 +400,7 @@
 
                 <!-- Optimizing selected project's and user's tags array -->
                 <% project_user_array_unique = Array.from(new Set(project_user_array_sorted)) %>
-                <div style="color:blue"><%= project_user_array_unique %></div>
+                <!-- <div style="color:blue"><%= project_user_array_unique %></div> -->
 
             <!-- Connected with 'project_user_array_unique'(Selected project's tag + Selected project's User's tags) and users?page=1 -->
                 <!-- All users -->
@@ -412,17 +445,34 @@
 
 
             <!-- Recommeded Users Slider -->
+              <div>
+                  <div class="carousel1">
+                        
+                        <div class="nav1 nav-left1"><button type="button" data-direction="prev" class="slider_control slider_control--prev"><</button></div>
+
+                        <div class="carousel-content1">
 
                             <% for (var q = 0; q < (usersApi.users).length; q++) { %> 
                               <% for (var u = 0; u < final_all_users.length; u++) { %>
                                 <% if ((usersApi.users[q]).id == final_all_users[u]) { %>
                                   <!-- ***** FINAL PRINTOUT PART ***** -->
-
-                                      <div><%= (usersApi.users[q]).image_url %></div>
-                                      <div><%= (usersApi.users[q]).screen_name %></div>
+                                  <div class="slide1">
+                                      <div class="slide_item slide_item_image">
+                                        <a href="<%= (usersApi.users[q]).url %>" target="_self"><img class="slide_item_image_attr_user" src="<%= (usersApi.users[q]).image_url %>" /></a>
+                                      </div>
+                                      <div class="slide_item slide_item_title">
+                                        <a class="slide_item_title" href="<%= (usersApi.users[q]).url %>" target="_self"><%= (usersApi.users[q]).screen_name %></a>
+                                      </div>
+                                  </div>
                                 <% } %>
                               <% } %>
                             <% } %>
+
+                        </div>
+
+                        <div class="nav1 nav-right1"><button type="button" data-direction="next" class="slider_control slider_control--next">></button></div>
+                  </div>
+              </div>
 
             <!-- End Recommeded Users Slider -->
 
@@ -443,7 +493,6 @@
 
 <script>
   // Slider #1
-{
       var carousel = document.querySelector('.carousel');
       var carouselContent = document.querySelector('.carousel-content');
       var slides = document.querySelectorAll('.slide');
@@ -564,7 +613,128 @@
         moving = true;
         firstSlide.removeEventListener('transitionend', replaceToEnd);
       }
-}
+
+
+  // ****************************************************************************
+  // Slider #2
+    var carousel1 = document.querySelector('.carousel1');
+    var carouselContent1 = document.querySelector('.carousel-content1');
+    var slides = document.querySelectorAll('.slide1');
+    var arrayOfSlides = Array.prototype.slice.call(slides);
+    var carouselDisplaying1;
+    var screenSize;
+    setScreenSize1();
+    var lengthOfSlide;
+
+    function addClone1() {
+       var lastSlide = carouselContent1.lastElementChild.cloneNode(true);
+       lastSlide.style.left = (-lengthOfSlide) + "px";
+       carouselContent1.insertBefore(lastSlide, carouselContent1.firstChild);
+    }
+
+    function removeClone1() {
+      var firstSlide = carouselContent1.firstElementChild;
+      firstSlide.parentNode.removeChild(firstSlide);
+    }
+
+    function moveSlidesRight1() {
+      var slides = document.querySelectorAll('.slide1');
+      var slidesArray = Array.prototype.slice.call(slides);
+      var width = 0;
+
+      slidesArray.forEach(function(el, i){
+        el.style.left = width + "px";
+        width += lengthOfSlide;
+      });
+      addClone1();
+    }
+
+    moveSlidesRight1();
+
+    function moveSlidesLeft1() {
+      var slides = document.querySelectorAll('.slide1');
+      var slidesArray = Array.prototype.slice.call(slides);
+      slidesArray = slidesArray.reverse();
+      var maxWidth = (slidesArray.length - 1) * lengthOfSlide;
+
+      slidesArray.forEach(function(el, i){
+        maxWidth -= lengthOfSlide;
+        el.style.left = maxWidth + "px";
+      });
+    }
+
+
+    function setScreenSize1() {
+      if ( window.innerWidth >= 500 ) {
+        carouselDisplaying1 = 3;
+      } else if ( window.innerWidth >= 300 ) {
+        carouselDisplaying1 = 2;
+      } else {
+        carouselDisplaying1 = 1;
+      }
+      getScreenSize1();
+    }
+
+    function getScreenSize1() {
+      var slides = document.querySelectorAll('.slide1');
+      var slidesArray = Array.prototype.slice.call(slides);
+      lengthOfSlide = ( carousel1.offsetWidth  / carouselDisplaying1 );
+      var initialWidth = -lengthOfSlide;
+      slidesArray.forEach(function(el) {
+        el.style.width = lengthOfSlide + "px";
+        el.style.left = initialWidth + "px";
+        initialWidth += lengthOfSlide;
+      });
+    }
+
+    var rightNav1 = document.querySelector('.nav-right1');
+    rightNav1.addEventListener('click', moveLeft1);
+
+    var moving1 = true;
+
+    function moveRight1() {
+      if ( moving1 ) {
+        moving1 = false;
+        var lastSlide = carouselContent1.lastElementChild;
+        lastSlide.parentNode.removeChild(lastSlide);
+        carouselContent1.insertBefore(lastSlide, carouselContent1.firstChild);
+        removeClone1();
+        var firstSlide = carouselContent1.firstElementChild;
+        firstSlide.addEventListener('transitionend', activateAgain1);
+        moveSlidesRight1();
+      }
+    }
+
+    function activateAgain1() {
+      var firstSlide = carouselContent1.firstElementChild;
+      moving1 = true;
+      firstSlide.removeEventListener('transitionend', activateAgain1);
+    }
+
+    var leftNav1 = document.querySelector('.nav-left1');
+    leftNav1.addEventListener('click', moveRight1);
+
+    // var moveLeftAgain = true;
+
+    function moveLeft1() {
+      if ( moving1 ) {
+        moving1 = false;
+        removeClone1();
+        var firstSlide = carouselContent1.firstElementChild;
+        firstSlide.addEventListener('transitionend', replaceToEnd1);
+        moveSlidesLeft1();
+      }
+    }
+
+    function replaceToEnd1() {
+      var firstSlide = carouselContent1.firstElementChild;
+      firstSlide.parentNode.removeChild(firstSlide);
+      carouselContent1.appendChild(firstSlide);
+      firstSlide.style.left = ( (arrayOfSlides.length -1) * lengthOfSlide) + "px";
+      addClone1();
+      moving1 = true;
+      firstSlide.removeEventListener('transitionend', replaceToEnd1);
+    }
 
 </script>
 

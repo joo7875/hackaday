@@ -170,6 +170,9 @@
           color: orange;
           font-size: 20px;
         }
+        .slide_item_title:hover {
+          color: #eb2226;
+        }
 
         /**/
         .slider_control {
@@ -201,6 +204,7 @@
           color: black;
           opacity: 50%;
         }
+
         /**/
               
     </style>
@@ -311,8 +315,8 @@
                             <!-- ***** FINAL PRINTOUT PART ***** -->
                               <% if (a == unique_array[b]) { %>
                               <div class="slide">
-                                  <div class="slide_item slide_item_image"><img class="slide_item_image_attr" src="<%= (projectsApi.projects[a]).image_url %>" /></div>
-                                  <div class="slide_item slide_item_title"><%= (projectsApi.projects[a]).name %></div>
+                                  <div class="slide_item slide_item_image"><a href="/projects/detail/<%= (projectsApi.projects[a]).id %>" target="_self"><img class="slide_item_image_attr" src="<%= (projectsApi.projects[a]).image_url %>" /></a></div>
+                                  <div class="slide_item slide_item_title"><a class="slide_item_title" href="/projects/detail/<%= (projectsApi.projects[a]).id %>" target="_self"><%= (projectsApi.projects[a]).name %></a></div>
                               </div>
 
                                 <% owner_id_for_all.push((projectsApi.projects[a]).owner_id) %>

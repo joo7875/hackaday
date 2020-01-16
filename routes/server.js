@@ -47,7 +47,8 @@ var http = require('http'),
     port = 3000,
     async = require('async'),
     rp = require("request-promise"),
-    _ = require('lodash');
+    _ = require('lodash'),
+    path = require('path');
 
 server.listen(port);
 console.log('Listening on port: ', port);
@@ -56,6 +57,13 @@ console.log('Listening on port: ', port);
 // app.set('views', __dirname);
 app.set('views', './views');
 app.set('view engine', 'ejs');
+
+// app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 
 app.get('/index', function (req, res) {
     console.log('\ninside /index');

@@ -344,6 +344,7 @@
                 <% var page = 3 %>
                 <!-- From Users/ API -->
                 <% var final_all_users = [] %>
+                <% var recommended_users = [] %>
 
                 <% var project_user_array = [] %>
                 <% var project_user_array_sorted = [] %>
@@ -371,10 +372,11 @@
 
                       <% for (let k = 0; k < project_user_array_unique.length; k++) { %>
 
-                      <!-- ***** FINAL PRINTOUT PART 1 ***** -->
                         <% if (project_user_array_unique[k] == ((usersApi.users[i]).tags[j]).toLowerCase()) { %>
-                          <div><%= (usersApi.users[i]).image_url %></div>
-                          <div><%= (usersApi.users[i]).screen_name %></div>
+                         <!--  <div><%= (usersApi.users[i]).image_url %></div>
+                          <div><%= (usersApi.users[i]).screen_name %></div> -->
+
+                          <% final_all_users.push((usersApi.users[i]).id) %>
                         <% } %>
 
                       <% } %>
@@ -382,18 +384,31 @@
                     <% } %>
                   <% } %>
                 <% } %>
-                <hr>
+                
 
             <!-- Connected with 'owner_id_for_all'(Selected project's tags == /projects&sortby=newest tags) and users?page=1 -->
                 <% for (let h = 0; h < (usersApi.users).length; h++) { %>
                   <% for (let g = 0; g < owner_id_for_all.length; g++) { %>
 
-                  <!-- ***** FINAL PRINTOUT PART 2 ***** -->
                     <% if (owner_id_for_all[g] == (usersApi.users[h]).id) { %>
-                      <div><%= (usersApi.users[h]).image_url %></div>
-                      <div><%= (usersApi.users[h]).screen_name %></div>
+                      <!-- <div><%= (usersApi.users[h]).image_url %></div>
+                      <div><%= (usersApi.users[h]).screen_name %></div> -->
+
+                      <% final_all_users = final_all_users.concat((usersApi.users[h]).id) %>
                     <% } %>
 
+                  <% } %>
+                <% } %>
+
+                <% final_all_users = Array.from(new Set(final_all_users)) %>
+
+                <% for (var q = 0; q < (usersApi.users).length; q++) { %> 
+                  <% for (var u = 0; u < final_all_users.length; u++) { %>
+                    <% if ((usersApi.users[q]).id == final_all_users[u]) { %>
+                      <!-- ***** FINAL PRINTOUT PART ***** -->
+                      <div><%= (usersApi.users[q]).image_url %></div>
+                      <div><%= (usersApi.users[q]).screen_name %></div>
+                    <% } %>
                   <% } %>
                 <% } %>
 

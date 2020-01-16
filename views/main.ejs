@@ -171,6 +171,13 @@
           font-size: 10px;
           margin-bottom: 3em;
         }
+        .a_screen_name {
+          color:white;
+          margin-left: 10px;
+        }
+        .a_screen_name:hover {
+          color: #dbd9d9;
+        }
     </style>
 
 </head>
@@ -191,12 +198,12 @@
                 <div>
                     <div class="tooltip margin_bottom">
                         <div class="text_center">
-                          <img id="icon_circle" src="<%= mainApi[i+1].image_url %>"/>&nbsp;
-                          <%= mainApi[i+1].screen_name %>
+                          <a href="<%= mainApi[i+1].url %>" target="_self"><img id="icon_circle" src="<%= mainApi[i+1].image_url %>"/></a>
+                          <a class="a_screen_name" href="<%= mainApi[i+1].url %>" target="_self"><%= mainApi[i+1].screen_name %></a>
                         </div>
 
                         <div class="grid tooltip_content">
-                            <div class="tooltip_content_1"><img id="circle" src="<%= mainApi[i+1].image_url %>"/></div>
+                            <div class="tooltip_content_1"><a href="<%= mainApi[i+1].url %>" target="_self"><img id="circle" src="<%= mainApi[i+1].image_url %>"/></a></div>
                             <div class="tooltip_content_2 text_center"><b><%= mainApi[i+1].projects %></b>&nbsp;projects&nbsp;&nbsp;|&nbsp;&nbsp;<b><%= mainApi[i+1].followers %></b>&nbsp;followers</div>
                             <div class="tooltip_content_3"><b><%= mainApi[i+1].screen_name %></b></div>
                             <div class="tooltip_content_4"><%- mainApi[i+1].about_me %></div>
@@ -216,15 +223,15 @@
                 <div>
                     <div class="tooltip margin_bottom">
                         <div class="text_center">
-                          <img id="icon_circle" src="<%= mainApi[i+1].image_url %>"/>&nbsp;
-                          <%= mainApi[i+1].screen_name %>
+                          <a href="<%= mainApi[i+1].url %>" target="_self"><img id="icon_circle" src="<%= mainApi[i+1].image_url %>"/></a>
+                          <a class="a_screen_name" href="<%= mainApi[i+1].url %>" target="_self"><%= mainApi[i+1].screen_name %></a>
                         </div>
 
                         <div class="grid tooltip_content">
-                            <div class="tooltip_content_1"><img id="circle" src="<%= mainApi[i+1].image_url %>"/></div>
+                            <div class="tooltip_content_1"><a href="<%= mainApi[i+1].url %>" target="_self"><img id="circle" src="<%= mainApi[i+1].image_url %>"/></a></div>
                             <div class="tooltip_content_2 text_center"><b><%= mainApi[i+1].projects %></b>&nbsp;projects&nbsp;&nbsp;|&nbsp;&nbsp;<b><%= mainApi[i+1].followers %></b>&nbsp;followers</div>
                             <div class="tooltip_content_3"><b><%= mainApi[i+1].screen_name %></b></div>
-                            <div class="tooltip_content_4"><%= mainApi[i+1].about_me %></div>
+                            <div class="tooltip_content_4"><%- mainApi[i+1].about_me %></div>
                         </div>
                     </div>
 

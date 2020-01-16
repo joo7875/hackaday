@@ -112,9 +112,9 @@
         }
         .centered {
           position: absolute;
-          top: 35%;
-          left: 33%;
-          transform: translate(-20%, -20%);
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
         }
         .header_image {
           opacity: 30%;
@@ -204,6 +204,12 @@
         }
 
         /**/
+        .a_screen_name {
+          color:white;
+        }
+        .a_screen_name:hover {
+          color: #dbd9d9;
+        }
               
     </style>
 
@@ -220,8 +226,10 @@
         <br>
         <div class="header_summary"><%= projectsApi_detail.summary %></div><br>
         <br>
-        <div><img id="icon_circle" src="<%= usersApi_detail.image_url %>"/></div>
-        <div><%= usersApi_detail.screen_name %></div>
+        <div class="href">
+          <div><a href="<%= usersApi_detail.url %>" target="_self"><img id="icon_circle" src="<%= usersApi_detail.image_url %>"/></a></div>
+          <div><a class="a_screen_name" href="<%= usersApi_detail.url %>" target="_self"><%= usersApi_detail.screen_name %></a></div>
+        </div>
       </div>
   </div>
 

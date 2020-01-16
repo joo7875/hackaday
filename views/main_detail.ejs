@@ -202,8 +202,28 @@
           color: black;
           opacity: 50%;
         }
-
         /**/
+
+        /* Recommended Projects */
+        .carousel_user {
+          position: relative;
+          height: 600px; 
+          margin: 0 auto;
+        }
+
+        .carousel-content_user {
+          position: relative;
+          overflow: hidden;
+          transition: width .4s;
+          height: 100%;
+        }
+
+        .slide_user {
+          height: 100%; 
+          position: absolute;
+          z-index: 1;
+          transition: left .4s cubic-bezier(.47,.13,.15,.89);
+        }
               
     </style>
 
@@ -328,7 +348,7 @@
 
                         </div>
 
-                        <div class="nav nav-right"><button type="button" data-direction="next" class="slider_control slider_control--next">></button></div>
+                        <div class="nav_user nav-right_user"><button type="button" data-direction="next" class="slider_control slider_control--next">></button></div>
                   </div>
                 </div>
                       
@@ -405,16 +425,36 @@
 
             <!-- Recommeded Users Slider -->
 
+              <div>
+                  <div class="carousel_user">
+                        
+                        <div class="nav_user nav-left_user"><button type="button" data-direction="prev" class="slider_control slider_control--prev"><</button></div>
+
+                        <div class="carousel-content_user">
+
                             <% for (var q = 0; q < (usersApi.users).length; q++) { %> 
                               <% for (var u = 0; u < final_all_users.length; u++) { %>
                                 <% if ((usersApi.users[q]).id == final_all_users[u]) { %>
                                   <!-- ***** FINAL PRINTOUT PART ***** -->
 
-                                      <div><%= (usersApi.users[q]).image_url %></div>
-                                      <div><%= (usersApi.users[q]).screen_name %></div>
+                                  <div class="slide_user">
+                                    <div class="slide_item slide_item_image">
+                                      <img class="slide_item_image_attr" src="<%= (usersApi.users[q]).image_url %>" />
+                                    </div>
+                                    <div class="slide_item slide_item_title">
+                                      <%= (usersApi.users[q]).screen_name %>
+                                    </div>
+                                  </div>
+
                                 <% } %>
                               <% } %>
                             <% } %>
+
+                        </div>
+
+                        <div class="nav nav-right"><button type="button" data-direction="next" class="slider_control slider_control--next">></button></div>
+                  </div>
+              </div>
 
             <!-- End Recommeded Users Slider -->
 
@@ -434,6 +474,130 @@
 </body>
 
 <script>
+  // Slider #1
+{
+      var carousel = document.querySelector('.carousel');
+      var carouselContent = document.querySelector('.carousel-content');
+      var slides = document.querySelectorAll('.slide');
+      var arrayOfSlides = Array.prototype.slice.call(slides);
+      var carouselDisplaying;
+      var screenSize;
+      setScreenSize();
+      var lengthOfSlide;
+
+      function addClone() {
+         var lastSlide = carouselContent.lastElementChild.cloneNode(true);
+         lastSlide.style.left = (-lengthOfSlide) + "px";
+         carouselContent.insertBefore(lastSlide, carouselContent.firstChild);
+      }
+      // addClone();
+
+      function removeClone() {
+        var firstSlide = carouselContent.firstElementChild;
+        firstSlide.parentNode.removeChild(firstSlide);
+      }
+
+      function moveSlidesRight() {
+        var slides = document.querySelectorAll('.slide');
+        var slidesArray = Array.prototype.slice.call(slides);
+        var width = 0;
+
+        slidesArray.forEach(function(el, i){
+          el.style.left = width + "px";
+          width += lengthOfSlide;
+        });
+        addClone();
+      }
+
+      moveSlidesRight();
+
+      function moveSlidesLeft() {
+        var slides = document.querySelectorAll('.slide');
+        var slidesArray = Array.prototype.slice.call(slides);
+        slidesArray = slidesArray.reverse();
+        var maxWidth = (slidesArray.length - 1) * lengthOfSlide;
+
+        slidesArray.forEach(function(el, i){
+          maxWidth -= lengthOfSlide;
+          el.style.left = maxWidth + "px";
+        });
+      }
+
+      // window.addEventListener('resize', setScreenSize);
+
+      function setScreenSize() {
+        if ( window.innerWidth >= 300 ) {
+          carouselDisplaying = 3;
+        } else if ( window.innerWidth >= 100 ) {
+          carouselDisplaying = 2;
+        } else {
+          carouselDisplaying = 1;
+        }
+        getScreenSize();
+      }
+
+      function getScreenSize() {
+        var slides = document.querySelectorAll('.slide');
+        var slidesArray = Array.prototype.slice.call(slides);
+        lengthOfSlide = ( carousel.offsetWidth  / carouselDisplaying );
+        var initialWidth = -lengthOfSlide;
+        slidesArray.forEach(function(el) {
+          el.style.width = lengthOfSlide + "px";
+          el.style.left = initialWidth + "px";
+          initialWidth += lengthOfSlide;
+        });
+      }
+
+      var rightNav = document.querySelector('.nav-right');
+      rightNav.addEventListener('click', moveLeft);
+
+      var moving = true;
+
+      function moveRight() {
+        if ( moving ) {
+          moving = false;
+          var lastSlide = carouselContent.lastElementChild;
+          lastSlide.parentNode.removeChild(lastSlide);
+          carouselContent.insertBefore(lastSlide, carouselContent.firstChild);
+          removeClone();
+          var firstSlide = carouselContent.firstElementChild;
+          firstSlide.addEventListener('transitionend', activateAgain);
+          moveSlidesRight();
+        }
+      }
+
+      function activateAgain() {
+        var firstSlide = carouselContent.firstElementChild;
+        moving = true;
+        firstSlide.removeEventListener('transitionend', activateAgain);
+      }
+
+      var leftNav = document.querySelector('.nav-left');
+      leftNav.addEventListener('click', moveRight);
+
+      // var moveLeftAgain = true;
+
+      function moveLeft() {
+        if ( moving ) {
+          moving = false;
+          removeClone();
+          var firstSlide = carouselContent.firstElementChild;
+          firstSlide.addEventListener('transitionend', replaceToEnd);
+          moveSlidesLeft();
+        }
+      }
+
+      function replaceToEnd() {
+        var firstSlide = carouselContent.firstElementChild;
+        firstSlide.parentNode.removeChild(firstSlide);
+        carouselContent.appendChild(firstSlide);
+        firstSlide.style.left = ( (arrayOfSlides.length -1) * lengthOfSlide) + "px";
+        addClone();
+        moving = true;
+        firstSlide.removeEventListener('transitionend', replaceToEnd);
+      }
+}
+
   // Slider #1
 {
       var carousel = document.querySelector('.carousel');

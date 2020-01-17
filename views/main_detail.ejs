@@ -58,7 +58,8 @@
               <% if (projectsApi_detail.image_url != null) { %>
                 <div><img class="image_attr" src="<%= projectsApi_detail.image_url %>" /></div>
               <% } else { %>
-                <div><img class="image_attr" src="<%= projectsApi_detail.image_url %>" /></div>
+                <div><img class="image_attr"/></div>
+                <!-- <div class="image_attr default_image text_center">Photo Coming Soon</div> -->
               <% } %>
             </div>
 
@@ -116,12 +117,23 @@
                             <!-- ***** FINAL PRINTOUT PART ***** -->
                               <% if (a == unique_array[b]) { %>
                               <div class="slide">
-                                  <div class="slide_item slide_item_image">
-                                    <a href="/projects/detail/<%= (projectsApi.projects[a]).id %>" target="_self"><img class="slide_item_image_attr" src="<%= (projectsApi.projects[a]).image_url %>" /></a>
-                                  </div>
+
+                                  <% if ((projectsApi.projects[a]).image_url != null) { %>
+                                    <div class="slide_item slide_item_image">
+                                      <a href="/projects/detail/<%= (projectsApi.projects[a]).id %>" target="_self"><img class="slide_item_image_attr" src="<%= (projectsApi.projects[a]).image_url %>" /></a>
+                                    </div>
+                                  <% } else { %>
+                                    <div class="slide_item slide_item_image">
+                                      <a class="default_image" href="/projects/detail/<%= (projectsApi.projects[a]).id %>" target="_self">
+                                        <div class="image_attr default_image text_center slide_item_image_attr">Photo Coming Soon</div>
+                                      </a>
+                                    </div>
+                                  <% } %>
+
                                   <div class="slide_item slide_item_title">
                                     <a class="slide_item_title" href="/projects/detail/<%= (projectsApi.projects[a]).id %>" target="_self"><%= (projectsApi.projects[a]).name %></a>
                                   </div>
+
                               </div>
 
                                 <% owner_id_for_all.push((projectsApi.projects[a]).owner_id) %>

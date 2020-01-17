@@ -48,7 +48,8 @@ var http = require('http'),
     async = require('async'),
     rp = require("request-promise"),
     _ = require('lodash'),
-    path = require('path');
+    path = require('path'),
+    sslRedirect = require('heroku-ssl-redirect');
 
 server.listen(port);
 console.log('Listening on port: ', port);
@@ -57,6 +58,9 @@ console.log('Listening on port: ', port);
 // app.set('views', __dirname);
 app.set('views', './views');
 app.set('view engine', 'ejs');
+
+// enable ssl redirect
+app.use(sslRedirect());
 
 // app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));

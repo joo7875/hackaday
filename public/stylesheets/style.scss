@@ -180,6 +180,7 @@
         }
         .header_title {
           font-size: 35px;
+          color: $primaryText;
         }
         .header_title_bold {
           @extend .header_title;

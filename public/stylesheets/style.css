@@ -176,7 +176,8 @@ a {
   margin-top: 10em; }
 
 .header_title, .header_title_bold {
-  font-size: 35px; }
+  font-size: 35px;
+  color: white; }
 
 .header_title_bold {
   font-weight: bold; }

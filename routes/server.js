@@ -52,7 +52,6 @@ var http = require('http'),
     sslRedirect = require('heroku-ssl-redirect');
 
 server.listen(port);
-app.listen(port);
 console.log('Listening on port: ', port);
 
 // Enable EJS templates (http://www.embeddedjs.com/)

@@ -39,6 +39,24 @@ if (!apiData.userKey || !apiData.clientId || !apiData.clientSecret) {
     process.exit();
 }
 
+// if (process.env.NODE_ENV==="production") {
+//   app.use((req, res, next) => {
+//     if (req.header('x-forwarded-proto') !== 'https') {
+//       res.redirect('https://' + req.hostname + req.url);
+
+//         console.log("Heroku", process.env.NODE_ENV);
+//         console.log("Heroku2", req.header('x-forwarded-proto'));
+//         console.log("Heroku3", req.hostname);
+//         console.log("Heroku4", req.url);
+
+//     } else {
+//       next()
+//     }
+//   })
+// }
+
+
+
 var http = require('http'),
     express = require('express'), //http://expressjs.com/
     request = require('request'), // https://www.npmjs.com/package/request

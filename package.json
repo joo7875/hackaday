@@ -2,6 +2,9 @@
   "name": "test",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": "12.14.0"
+  },
   "scripts": {
     "start": "node ./routes/server.js"
   },

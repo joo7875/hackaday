@@ -3,7 +3,7 @@
             color: white;
             background-color: #06143d;
         }
-        .content {
+        .content_main {
             margin-left: auto;
             margin-right: auto;
             max-width: 1200px;
@@ -21,22 +21,11 @@
             grid-column-gap: 2em;
             grid-row-gap: 7em;
         }
-        .item {
-            border-radius: 0px;
-            padding: 0px;
-            color: black;
-            /*position: relative;
-            overflow: hidden;*/
-        }
         .image_attr {
             height: 100%;
             width: 100%;
             object-fit: cover;
             border-radius: 5px;
-        }
-        img:hover {
-            background-color: black;
-
         }
         .tooltip {
           position: relative;
@@ -72,7 +61,7 @@
         .tooltip:hover .tooltip_content {
           visibility: visible;
         }
-        #circle {
+        .tooltip_circle {
           width: 60px;
           height: 60px;
           -webkit-border-radius: 30px;
@@ -81,7 +70,7 @@
           background: white;
           border: 3px solid orange;
         }
-        #icon_circle {
+        .icon_circle {
           width: 30px;
           height: 30px;
           -webkit-border-radius: 15px;
@@ -105,12 +94,12 @@
             text-align: left;
         }
         .text_center {
-          text-align: center;
+            text-align: center;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        .grid {
+        .tooltip_grid {
             display: grid;
             grid-row-gap: 10px;
         }
@@ -141,13 +130,13 @@
           grid-gap: 0.5em;
           font-weight: bold;
         }
-        .button_page {
+        .page_button {
           border-radius: 6px;
           padding: 20px;
           background: orange;
           color: #041030;
         }
-        .button_page:hover {
+        .page_button:hover {
           background: #eb2226;
           color: white;
         }
@@ -165,11 +154,11 @@
           font-size: 10px;
           margin-bottom: 3em;
         }
-        .a_screen_name {
+        .a_screen_name_main {
           color:white;
           margin-left: 10px;
         }
-        .a_screen_name:hover {
+        .a_screen_name_main:hover {
           color: #dbd9d9;
         }
 

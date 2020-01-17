@@ -3,24 +3,23 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <style> <% include ../public/stylesheets/main_detail.css %> </style>
+    <style> <% include ../public/stylesheets/style.css %> </style>
 
 </head>
 
-<body>
+<body class="body">
 
-  <div class="header">
+  <div class="header_detail">
     <% if (projectsApi_detail.image_url != null) { %>
       <img src="<%= projectsApi_detail.image_url %>" class="image_attr header_image">
     <% } %>
       <div class="centered">
-        <div class="header_title"><%= projectsApi_detail.name %></div>
+        <div class="header_title_bold"><%= projectsApi_detail.name %></div>
         <br>
         <div class="header_summary"><%= projectsApi_detail.summary %></div><br>
         <br>
         <div class="href">
-          <div><a href="<%= usersApi_detail.url %>" target="_self"><img id="icon_circle" src="<%= usersApi_detail.image_url %>"/></a></div>
+          <div><a href="<%= usersApi_detail.url %>" target="_self"><img class="detail_icon_circle" src="<%= usersApi_detail.image_url %>"/></a></div>
           <div><a class="a_screen_name" href="<%= usersApi_detail.url %>" target="_self"><%= usersApi_detail.screen_name %></a></div>
         </div>
       </div>
@@ -29,7 +28,7 @@
     <div class="line">
       <div class="content_line">
         <div class="float_right">
-          <div class="grid_small">
+          <div class="grid_line">
             <div><span><b><%= projectsApi_detail.views %></b></span><br>views</div>
             <div><span><b><%= projectsApi_detail.comments %></b></span><br>comments</div>
             <div><span><b><%= projectsApi_detail.followers %></b></span><br>followers</div>
@@ -39,11 +38,11 @@
       </div>
     </div>
 
-    <div class="content">
+    <div class="content_detail">
 
-        <div class="grid_main">
+        <div class="grid_detail_main">
 
-            <div class="grid_content">
+            <div class="grid_detail_content">
               <div class="content_title">Description</div>
               <!-- catch -->
               <% if (projectsApi_detail.id == 169506) { %>
@@ -51,10 +50,10 @@
               <% } else { %>
                 <div class="content_desc"><%- projectsApi_detail.description %></div>
               <% } %>
-              <!-- Description a 구별 함수 -->
+              <!-- Description a distinguishable function -->
             </div>
 
-            <div class="grid_content">
+            <div class="grid_detail_content">
               <div class="content_title" style="visibility: hidden">Image</div>
               <% if (projectsApi_detail.image_url != null) { %>
                 <div><img class="image_attr" src="<%= projectsApi_detail.image_url %>" /></div>

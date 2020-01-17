@@ -3,17 +3,17 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <style> <% include ../public/stylesheets/main.css %> </style>
+    <style> <% include ../public/stylesheets/style.css %> </style>
 
 </head>
 
 <body>
 
-    <div class="header">
+    <div class="header_main">
       <div class="header_title">HACKADAY.IO</div>
     </div>
 
-    <div class="content">
+    <div class="content_main">
 
         <!-- grid -->
         <div class="grid-image-container">
@@ -23,12 +23,12 @@
                 <div>
                     <div class="tooltip margin_bottom">
                         <div class="text_center">
-                          <a href="<%= mainApi[i+1].url %>" target="_self"><img id="icon_circle" src="<%= mainApi[i+1].image_url %>"/></a>
-                          <a class="a_screen_name" href="<%= mainApi[i+1].url %>" target="_self"><%= mainApi[i+1].screen_name %></a>
+                          <a href="<%= mainApi[i+1].url %>" target="_self"><img class="icon_circle" src="<%= mainApi[i+1].image_url %>"/></a>
+                          <a class="a_screen_name_main" href="<%= mainApi[i+1].url %>" target="_self"><%= mainApi[i+1].screen_name %></a>
                         </div>
 
-                        <div class="grid tooltip_content">
-                            <div class="tooltip_content_1"><a href="<%= mainApi[i+1].url %>" target="_self"><img id="circle" src="<%= mainApi[i+1].image_url %>"/></a></div>
+                        <div class="tooltip_grid tooltip_content">
+                            <div class="tooltip_content_1"><a href="<%= mainApi[i+1].url %>" target="_self"><img class="tooltip_circle" src="<%= mainApi[i+1].image_url %>"/></a></div>
                             <div class="tooltip_content_2 text_center"><b><%= mainApi[i+1].projects %></b>&nbsp;projects&nbsp;&nbsp;|&nbsp;&nbsp;<b><%= mainApi[i+1].followers %></b>&nbsp;followers</div>
                             <div class="tooltip_content_3"><b><%= mainApi[i+1].screen_name %></b></div>
                             <div class="tooltip_content_4"><%- mainApi[i+1].about_me %></div>
@@ -48,12 +48,12 @@
                 <div>
                     <div class="tooltip margin_bottom">
                         <div class="text_center">
-                          <a href="<%= mainApi[i+1].url %>" target="_self"><img id="icon_circle" src="<%= mainApi[i+1].image_url %>"/></a>
-                          <a class="a_screen_name" href="<%= mainApi[i+1].url %>" target="_self"><%= mainApi[i+1].screen_name %></a>
+                          <a href="<%= mainApi[i+1].url %>" target="_self"><img class="icon_circle" src="<%= mainApi[i+1].image_url %>"/></a>
+                          <a class="a_screen_name_main" href="<%= mainApi[i+1].url %>" target="_self"><%= mainApi[i+1].screen_name %></a>
                         </div>
 
-                        <div class="grid tooltip_content">
-                            <div class="tooltip_content_1"><a href="<%= mainApi[i+1].url %>" target="_self"><img id="circle" src="<%= mainApi[i+1].image_url %>"/></a></div>
+                        <div class="tooltip_grid tooltip_content">
+                            <div class="tooltip_content_1"><a href="<%= mainApi[i+1].url %>" target="_self"><img class="tooltip_circle" src="<%= mainApi[i+1].image_url %>"/></a></div>
                             <div class="tooltip_content_2 text_center"><b><%= mainApi[i+1].projects %></b>&nbsp;projects&nbsp;&nbsp;|&nbsp;&nbsp;<b><%= mainApi[i+1].followers %></b>&nbsp;followers</div>
                             <div class="tooltip_content_3"><b><%= mainApi[i+1].screen_name %></b></div>
                             <div class="tooltip_content_4"><%- mainApi[i+1].about_me %></div>
@@ -83,22 +83,22 @@
               <div class="grid_pagination">
                 <div></div>
                 <div></div>
-                <div><a href="/projects/page/<%= i+1 %>" target="_self"><div class="button_page">NEXT&nbsp;&nbsp;></div></a></div>
-                <div><a href="/projects/page/<%= mainApi[0].last_page %>" target="_self"><div class="button_page">LAST&nbsp;&nbsp;>></div></a></div>
+                <div><a href="/projects/page/<%= i+1 %>" target="_self"><div class="page_button">NEXT&nbsp;&nbsp;></div></a></div>
+                <div><a href="/projects/page/<%= mainApi[0].last_page %>" target="_self"><div class="page_button">LAST&nbsp;&nbsp;>></div></a></div>
               </div>
               <% } else if(i == mainApi[0].last_page) { %>
               <div class="grid_pagination">
-                <div><a href="/projects/page/<%= 1 %>" target="_self"><div class="button_page"><<&nbsp;&nbsp;FIRST</div></a></div>
-                <div><a href="/projects/page/<%= i-1 %>" target="_self"><div class="button_page"><&nbsp;&nbsp;PREVIOUS</div></a></div>
+                <div><a href="/projects/page/<%= 1 %>" target="_self"><div class="page_button"><<&nbsp;&nbsp;FIRST</div></a></div>
+                <div><a href="/projects/page/<%= i-1 %>" target="_self"><div class="page_button"><&nbsp;&nbsp;PREVIOUS</div></a></div>
                 <div></div>
                 <div></div>
               </div>
               <% } else { %>
                 <div class="grid_pagination">
-                  <div><a href="/projects/page/<%= 1 %>" target="_self"><div class="button_page"><<&nbsp;&nbsp;FIRST</div></a></div>
-                  <div><a href="/projects/page/<%= i-1 %>" target="_self"><div class="button_page"><&nbsp;&nbsp;PREVIOUS</div></a></div>
-                  <div><a href="/projects/page/<%= i+1 %>" target="_self"><div class="button_page">NEXT&nbsp;&nbsp;></div></a></div>
-                  <div><a href="/projects/page/<%= mainApi[0].last_page %>" target="_self"><div class="button_page">LAST&nbsp;&nbsp;>></div></a></div>
+                  <div><a href="/projects/page/<%= 1 %>" target="_self"><div class="page_button"><<&nbsp;&nbsp;FIRST</div></a></div>
+                  <div><a href="/projects/page/<%= i-1 %>" target="_self"><div class="page_button"><&nbsp;&nbsp;PREVIOUS</div></a></div>
+                  <div><a href="/projects/page/<%= i+1 %>" target="_self"><div class="page_button">NEXT&nbsp;&nbsp;></div></a></div>
+                  <div><a href="/projects/page/<%= mainApi[0].last_page %>" target="_self"><div class="page_button">LAST&nbsp;&nbsp;>></div></a></div>
                 </div>
               <% } %>
               

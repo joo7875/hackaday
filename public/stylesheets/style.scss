@@ -1,0 +1,389 @@
+/*********************************************************************************** main.css */
+        
+        $primaryBackground: #06143d;
+        $primaryText: white;
+        $primaryTitleText: orange;
+        $primaryTitleTextHover: #eb2226;
+        $primaryahref: #8fd2ff;
+
+        $paginationText: #041030;
+        $footerText: #e3e3e3;
+        $usernameTextHover: #dbd9d9;
+        $defaultImageBackground: #2c3852;
+
+        @mixin media($queryString){
+          @media #{$queryString} {
+            @content;
+          }
+        }
+
+        body {
+            font: 15px arial, san-serif;
+            color: $primaryText;
+            background-color: $primaryBackground;
+        }
+        a {
+          text-decoration: none;
+          color: $primaryahref;
+        }
+        .body {
+          margin: 0px;
+        }
+        %content {
+          margin-left: auto;
+          margin-right: auto;
+          max-width: 1200px;
+        }
+        .content_main {
+            @extend %content;
+            margin-bottom: 10em;
+            margin-top: 7em;
+            position: relative;
+        }
+        .content_detail {
+            @extend %content;
+            margin-bottom: 7em;
+            margin-top: -5em;
+        }
+        .grid-image-container {
+            max-width: 1200px;
+            margin: auto;
+            width: 100%; 
+            display: grid;
+            grid-auto-rows: 390px; 
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+            grid-column-gap: 2em;
+            grid-row-gap: 7em;
+        }
+        .image_attr {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .tooltip {
+          position: relative;
+          display: inline-block;
+        }
+        .tooltip .tooltip_content {
+          visibility: hidden;
+          min-width: 300px;
+          background-color: white;
+          color: black;
+          text-align: center;
+          border-radius: 6px;
+          padding: 15px;
+          position: absolute;
+          z-index: 1;
+          /*bottom 숫자 클수록 위로*/
+          bottom: 120%;
+          left: 50%;
+          margin-left: -60px;
+        }
+        .tooltip .tooltip_content::after {
+          content: "";
+          position: absolute;
+          top: 100%;
+          left: 20%;
+          margin-left: -5px;
+          border-width: 5px;
+          border-style: solid;
+          border-color: white transparent transparent transparent;
+        }
+        .tooltip:hover .tooltip_content {
+          visibility: visible;
+        }
+        %user_circle {
+          width: 60px;
+          height: 60px;
+          -webkit-border-radius: 30px;
+          -moz-border-radius: 30px;
+          border-radius: 30px;
+          background: white;
+        }
+        .tooltip_circle {
+          @extend %user_circle;
+          border: 3px solid $primaryTitleText;
+        }
+        .icon_circle {
+          width: 30px;
+          height: 30px;
+          -webkit-border-radius: 15px;
+          -moz-border-radius: 15px;
+          border-radius: 15px;
+          background: white;
+        }
+        .tooltip_content_2 {
+            grid-column: 2 / span 3;
+            grid-row: 1;
+            padding-bottom: 10px;
+        }
+        .tooltip_content_3 {
+            grid-column: 1 / span 3;
+            grid-row: 2;
+            text-align: left;
+        }
+        .tooltip_content_4 {
+            grid-column: 1 / span 3;
+            grid-row: 3;
+            text-align: left;
+        }
+        .text_center {
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .tooltip_grid {
+            display: grid;
+            grid-row-gap: 10px;
+        }
+        .pagination {
+          margin-top: 10em;
+          text-align: center;
+        }
+        .title {
+          margin-top: 5px;
+          color: $primaryTitleText;
+          font-weight: normal;
+          font-size: 20px;
+
+            &:hover {
+      		   color: $primaryTitleTextHover;
+      		  }
+        }
+        .margin_bottom {
+          margin-bottom: 5px;
+        }
+        .grid_pagination {
+          display: grid;
+          grid-template-columns: 1fr 2fr 2fr 1fr;
+          grid-template-rows: 1fr;
+          grid-gap: 0.5em;
+          font-weight: bold;
+        }
+        .page_button {
+          border-radius: 6px;
+          padding: 20px;
+          background: $primaryTitleText;
+          color: $paginationText;
+
+          &:hover {
+              background: $primaryTitleTextHover;
+              color: $primaryText;
+          }
+        }
+        .header_main {
+          font-weight: bold; 
+          text-align: center;
+          margin-top: 10em;
+        }
+        .header_title {
+          font-size: 35px;
+        }
+        .header_title_bold {
+          @extend .header_title;
+          font-weight: bold;
+        }
+        .footer {
+          text-align: center;
+          color: $footerText;
+          font-size: 10px;
+          margin-bottom: 3em;
+        }
+        .a_screen_name_main {
+          @extend .a_screen_name;
+          margin-left: 10px;
+        }
+       .a_screen_name {
+          color:$primaryText;
+
+          &:hover {
+            color: $usernameTextHover;
+          }
+        }
+        .default_image {
+          /*background-color: #28334A;*/
+          background-color: $defaultImageBackground;
+          color: $primaryText;
+          font-weight: bold;
+        }
+
+/*********************************************************************************** main_detail.css */
+
+         .grid_line {
+          color: black;
+          text-align: center;
+          min-width: 300px;
+          max-width: 500px;
+          width: 500px;
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr 1fr;
+          grid-template-rows: 1fr;
+          padding: 10px 0px;
+        }
+        .grid_detail_main {
+          display: grid;
+          grid-template-columns: 2fr 1fr;
+          grid-template-rows: auto;
+          grid-gap: 1em;
+          margin-bottom: 10em;
+        }
+        .grid_recommend {
+          display: grid;
+          text-align: center;
+          grid-template-columns: 1fr;
+          grid-template-rows: 1fr 1fr;
+        }
+        .detail_icon_circle {
+          @extend %user_circle;
+          margin-bottom: 10px;
+        }
+        .header_summary {
+          font-size: 20px;
+        }
+        .float_right {
+          margin-left: auto;
+          margin-right: 0;
+        }
+        .content_title {
+          font-weight: bold;
+          font-size: 20px;
+          padding-bottom: 20px;
+        }
+        .content_desc {
+          font-size: 16px;
+          line-height: 150%;
+        }
+        .line {
+          background-color: $primaryTitleText;
+        }
+        .content_line {
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 1200px;
+            margin-bottom: 10em;
+            margin-top: 0em;
+            position: relative;
+
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr;
+        }
+        .header_detail {
+          position: relative;
+          text-align: center;
+          color: $primaryText;
+          height: 450px;
+        }
+        .centered {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+        .header_image {
+          opacity: 30%;
+        }
+        .grid_detail_content {
+          padding: 0px 10px;
+        }
+        @media screen and (max-width: 1200px) {
+          .grid_detail_main {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto;
+            grid-gap: 1em;
+            margin-bottom: 10em;
+          }
+        }
+        @media screen and (min-width: 1200px) {
+          .slider_control--prev {
+              left: -50px;
+              opacity: 30%;
+          }
+          .slider_control--next {
+              right: -50px;
+              opacity: 30%;
+          }
+        }
+
+/* Recommended Projects / Recommended Users */
+        .carousel, .carousel1 {
+          position: relative;
+          height: 600px; 
+          margin: 0 auto;
+        }
+        .carousel-content, .carousel-content1 {
+          position: relative;
+          overflow: hidden;
+          transition: width .4s;
+          height: 100%;
+        }
+        .slide, .slide1 {
+          height: 100%; 
+          position: absolute;
+          z-index: 1;
+          transition: left .4s cubic-bezier(.47,.13,.15,.89);
+        }
+        .slide_item {
+          padding: 10px;
+        }
+        .slide_item_image {
+          height: 400px;
+        }
+        %slide_image_common {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
+        .slide_item_image_attr {
+          @extend %slide_image_common;
+          border-radius: 5px;
+        }
+        .slide_item_image_attr_user {
+          @extend %slide_image_common;
+          border-radius: 200px;
+        }
+        .slide_item_title {
+          color: $primaryTitleText;
+          font-size: 20px;
+
+          &:hover {
+            color: $primaryTitleTextHover;
+          }
+        }
+
+/* Slider Control */
+        .slider_control {
+          font-size: 2rem;
+          background: none;
+          color: $primaryText;
+          border: none;
+          position: absolute;
+          top: 35%;
+          transform: translateY(-50%);
+          z-index: 20;
+          opacity: 0%;
+        }
+        .slider_control--prev {
+          left: 10px;
+          opacity: 30%;
+
+          &:hover {
+            background: white;
+            color: black;
+            opacity: 50%;
+          }
+        }
+        .slider_control--next {
+          right: 10px;
+          opacity: 30%;
+
+          &:hover {
+            background: white;
+            color: black;
+            opacity: 50%;
+          }
+        }
+        

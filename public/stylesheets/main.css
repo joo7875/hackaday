@@ -1,0 +1,177 @@
+    body {
+            font: 15px arial, san-serif;
+            color: white;
+            background-color: #06143d;
+        }
+        .content {
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 1200px;
+            margin-bottom: 10em;
+            margin-top: 7em;
+            position: relative;
+        }
+        .grid-image-container {
+            max-width: 1200px;
+            margin: auto;
+            width: 100%; 
+            display: grid;
+            grid-auto-rows: 390px; 
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+            grid-column-gap: 2em;
+            grid-row-gap: 7em;
+        }
+        .item {
+            border-radius: 0px;
+            padding: 0px;
+            color: black;
+            /*position: relative;
+            overflow: hidden;*/
+        }
+        .image_attr {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .tooltip {
+          position: relative;
+          display: inline-block;
+        }
+
+        .tooltip .tooltip_content {
+          visibility: hidden;
+          min-width: 300px;
+          background-color: white;
+          color: black;
+          text-align: center;
+          border-radius: 6px;
+          padding: 15px;
+          position: absolute;
+          z-index: 1;
+          /*bottom 숫자 클수록 위로*/
+          bottom: 120%;
+          left: 50%;
+          margin-left: -60px;
+        }
+
+        .tooltip .tooltip_content::after {
+          content: "";
+          position: absolute;
+          top: 100%;
+          left: 20%;
+          margin-left: -5px;
+          border-width: 5px;
+          border-style: solid;
+          border-color: white transparent transparent transparent;
+        }
+        .tooltip:hover .tooltip_content {
+          visibility: visible;
+        }
+        #circle {
+          width: 60px;
+          height: 60px;
+          -webkit-border-radius: 30px;
+          -moz-border-radius: 30px;
+          border-radius: 30px;
+          background: white;
+          border: 3px solid orange;
+        }
+        #icon_circle {
+          width: 30px;
+          height: 30px;
+          -webkit-border-radius: 15px;
+          -moz-border-radius: 15px;
+          border-radius: 15px;
+          background: white;
+        }
+        .tooltip_content_2 {
+            grid-column: 2 / span 3;
+            grid-row: 1;
+            padding-bottom: 10px;
+        }
+        .tooltip_content_3 {
+            grid-column: 1 / span 3;
+            grid-row: 2;
+            text-align: left;
+        }
+        .tooltip_content_4 {
+            grid-column: 1 / span 3;
+            grid-row: 3;
+            text-align: left;
+        }
+        .text_center {
+          text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .grid {
+            display: grid;
+            grid-row-gap: 10px;
+        }
+        .pagination {
+          margin-top: 10em;
+          text-align: center;
+        }
+        .title {
+          margin-top: 5px;
+          color: orange;
+          font-weight: normal;
+          font-size: 20px;
+        }
+        .title:hover {
+          color: #eb2226;
+        }
+        a {
+          text-decoration: none;
+          color: #8fd2ff;
+        }
+        .margin_bottom {
+          margin-bottom: 5px;
+        }
+        .grid_pagination {
+          display: grid;
+          grid-template-columns: 1fr 2fr 2fr 1fr;
+          grid-template-rows: 1fr;
+          grid-gap: 0.5em;
+          font-weight: bold;
+        }
+        .button_page {
+          border-radius: 6px;
+          padding: 20px;
+          background: orange;
+          color: #041030;
+        }
+        .button_page:hover {
+          background: #eb2226;
+          color: white;
+        }
+        .header {
+          font-weight: bold; 
+          text-align: center;
+          margin-top: 10em;
+        }
+        .header_title {
+          font-size: 35px;
+        }
+        .footer {
+          text-align: center;
+          color: #e3e3e3;
+          font-size: 10px;
+          margin-bottom: 3em;
+        }
+        .a_screen_name {
+          color:white;
+          margin-left: 10px;
+        }
+        .a_screen_name:hover {
+          color: #dbd9d9;
+        }
+
+        .default_image {
+          /*background-color: #28334A;*/
+          background-color: #2c3852;
+          color: white;
+          font-weight: bold;
+        }

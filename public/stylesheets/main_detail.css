@@ -126,11 +126,11 @@ body {
         }
         @media screen and (min-width: 1200px) {
           .slider_control--prev {
-              left: 0px;
+              left: -50px;
               opacity: 30%;
           }
           .slider_control--next {
-              right: 0px;
+              right: -50px;
               opacity: 30%;
           }
         }
@@ -210,11 +210,11 @@ body {
           opacity: 0%;
         }
         .slider_control--prev {
-          left: -50px;
+          left: 10px;
           opacity: 30%;
         }
         .slider_control--next {
-          right: -50px;
+          right: 10px;
           opacity: 30%;
         }
         .slider_control--prev:hover {

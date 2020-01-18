@@ -64,7 +64,6 @@
                 <!-- tags -->
                 <div class="margin_top">
                   <% for (var i = 0; i < (projectsApi_detail.tags).length; i++) { %>
-                    
                       <a class="tag_text" href="https://hackaday.io/projects?tag=<%= projectsApi_detail.tags[i] %>" target="_self">
                         <button class="tag_button"><%= (projectsApi_detail.tags[i]).toUpperCase() %></button>
                       </a>
@@ -77,8 +76,9 @@
             </div>
 
             <div class="grid_detail_content">
-              <div class="content_title" style="visibility: hidden">Image</div>
-                <% if (projectsApi_detail.image_url != null) { %>
+              <% if (projectsApi_detail.image_url != null) { %>
+                  <div class="content_title" style="visibility: hidden">Image</div>
+
                   <div><img class="image_attr" src="<%= projectsApi_detail.image_url %>" /></div>
 
                     <!-- team -->
@@ -91,12 +91,12 @@
                     <% } %>
                     <!-- End team -->
 
-                <% } else { %>
+              <% } else { %>
                   <!-- <div><img class="image_attr"/></div> -->
                   <!-- <div class="image_attr default_image text_center">Photo Coming Soon</div> -->
 
                   <!-- team -->
-                    <div class="content_title margin_top">Team (<%= projectsApi_team.total %>)</div>
+                    <div class="content_title margin_top_media">Team (<%= projectsApi_team.total %>)</div>
                     <% for (var j = 0; j < (projectsApi_team.team).length; j++) { %>
                       <div class="text_center_left_align">
                           <a href="<%= (projectsApi_team.team[j]).user.url %>" target="_self"><img class="icon_circle" src="<%= (projectsApi_team.team[j]).user.image_url %>"/></a>

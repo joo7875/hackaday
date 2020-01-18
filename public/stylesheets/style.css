@@ -367,4 +367,8 @@ a {
 .margin_top {
   margin-top: 20px; }
 
+@media screen and (max-width: 1200px) {
+  .margin_top_media {
+    margin-top: 40px; } }
+
 /*# sourceMappingURL=style.css.map */

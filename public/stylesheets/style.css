@@ -370,5 +370,7 @@ a {
 @media screen and (max-width: 1200px) {
   .margin_top_media {
     margin-top: 40px; } }
+.text_line {
+  color: black; }
 
 /*# sourceMappingURL=style.css.map */

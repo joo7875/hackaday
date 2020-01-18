@@ -9,6 +9,7 @@
 
 <body class="body">
 
+  <% let hackaday = "https://hackaday.io" %>
   <div class="header_detail">
     <% if (projectsApi_detail.image_url != null) { %>
       <img src="<%= projectsApi_detail.image_url %>" class="image_attr header_image">
@@ -31,8 +32,17 @@
           <div class="grid_line">
             <div><span><b><%= projectsApi_detail.views %></b></span><br>views</div>
             <div><span><b><%= projectsApi_detail.comments %></b></span><br>comments</div>
-            <div><span><b><%= projectsApi_detail.followers %></b></span><br>followers</div>
-            <div><span><b><%= projectsApi_detail.skulls %></b></span><br>skulls</div>
+              <% if (projectsApi_detail.followers > 0) { %>
+                <div><span><b><a class="text_line" href="<%= hackaday %>/hackers/all/project/<%= projectsApi_detail.id %>/following" target="_self"><%= projectsApi_detail.followers %></a></b></span><br>followers</div>
+              <% } else { %>
+                <div><span><b><%= projectsApi_detail.followers %></b></span><br>followers</div>
+              <% } %>
+
+              <% if (projectsApi_detail.skulls > 0) { %>
+                <div><span><b><a class="text_line" href="<%= hackaday %>/hackers/all/project/<%= projectsApi_detail.id %>/likers" target="_self"><%= projectsApi_detail.skulls %></a></b></span><br>skulls</div>
+              <% } else { %>
+                <div><span><b><%= projectsApi_detail.skulls %></b></span><br>skulls</div>
+              <% } %>
           </div>
         </div>
       </div>
@@ -51,7 +61,7 @@
                 <!-- tags -->
                 <div class="margin_top">
                   <% for (var i = 0; i < (projectsApi_detail.tags).length; i++) { %>
-                    <a class="tag_text" href="https://hackaday.io/projects?tag=<%= projectsApi_detail.tags[i] %>" target="_self">
+                    <a class="tag_text" href="<%= hackaday %>/projects?tag=<%= projectsApi_detail.tags[i] %>" target="_self">
                       <button class="tag_button"><%= (projectsApi_detail.tags[i]).toUpperCase() %></button>
                     </a>
                   <% } %>
@@ -64,7 +74,7 @@
                 <!-- tags -->
                 <div class="margin_top">
                   <% for (var i = 0; i < (projectsApi_detail.tags).length; i++) { %>
-                      <a class="tag_text" href="https://hackaday.io/projects?tag=<%= projectsApi_detail.tags[i] %>" target="_self">
+                      <a class="tag_text" href="<%= hackaday %>/projects?tag=<%= projectsApi_detail.tags[i] %>" target="_self">
                         <button class="tag_button"><%= (projectsApi_detail.tags[i]).toUpperCase() %></button>
                       </a>
                   <% } %>
@@ -307,7 +317,7 @@
     </div>
 
     <div class="footer">
-      <div>Service provided by <a href="https://supplyframe.com/" target="_blank">SupplyFrame</a>. API provided by <a href="https://hackaday.io/" target="_blank">Hackaday.io</a>. Developed by <a href="mailto:joo7875@gmail.com">Hyewon Joo</a>.</div>
+      <div>Service provided by <a href="https://supplyframe.com/" target="_blank">SupplyFrame</a>. API provided by <a href="<%= hackaday %>/" target="_blank">Hackaday.io</a>. Developed by <a href="mailto:joo7875@gmail.com">Hyewon Joo</a>.</div>
     </div>
 
 </body>

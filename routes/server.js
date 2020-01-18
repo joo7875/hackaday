@@ -247,6 +247,8 @@ app.get('/projects/detail/:project_id', function (req, res) {
 
     var url_project = apiData.apiUrl + '/projects' + apiData.apiKey + '&sortby=newest';
     var url_project_id = apiData.apiUrl + '/projects/' + projectId + apiData.apiKey;
+    var url_project_id_team = apiData.apiUrl + '/projects/' + projectId + '/team' + apiData.apiKey + '&sortby=influence';
+    console.log('team', url_project_id_team);
 
 
     request.get(url_project_id, function (error, response, body) {
@@ -259,14 +261,15 @@ app.get('/projects/detail/:project_id', function (req, res) {
             // rp({uri: url_user_p2, json:true}),
             // rp({uri: url_user_p3, json:true}),
             rp({uri: url_project, json:true}), 
-            rp({uri: url_project_id, json:true}), 
+            rp({uri: url_project_id, json:true}),
+            rp({uri: url_project_id_team, json:true}),
             rp({uri: url_user_id, json:true})
         ];
 
         Promise
           .all(promise)
-          .then(([usersApi, projectsApi, projectsApi_detail, usersApi_detail]) => {
-              res.render('main_detail', {usersApi, projectsApi, projectsApi_detail, usersApi_detail});
+          .then(([usersApi, projectsApi, projectsApi_detail, projectsApi_team, usersApi_detail]) => {
+              res.render('main_detail', {usersApi, projectsApi, projectsApi_detail, projectsApi_team, usersApi_detail});
           }).catch(err => {
               console.log(err);
               res.sendStatus(500);

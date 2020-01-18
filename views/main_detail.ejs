@@ -47,8 +47,31 @@
               <!-- catch -->
               <% if (projectsApi_detail.id == 169506) { %>
                 <div class="content_desc"><%= projectsApi_detail.description %></div>
+
+                <!-- tags -->
+                <div class="margin_top">
+                  <% for (var i = 0; i < (projectsApi_detail.tags).length; i++) { %>
+                    <a class="tag_text" href="https://hackaday.io/projects?tag=<%= projectsApi_detail.tags[i] %>" target="_self">
+                      <button class="tag_button"><%= (projectsApi_detail.tags[i]).toUpperCase() %></button>
+                    </a>
+                  <% } %>
+                </div>
+                <!-- End tags -->
+
               <% } else { %>
                 <div class="content_desc"><%- projectsApi_detail.description %></div>
+
+                <!-- tags -->
+                <div class="margin_top">
+                  <% for (var i = 0; i < (projectsApi_detail.tags).length; i++) { %>
+                    
+                      <a class="tag_text" href="https://hackaday.io/projects?tag=<%= projectsApi_detail.tags[i] %>" target="_self">
+                        <button class="tag_button"><%= (projectsApi_detail.tags[i]).toUpperCase() %></button>
+                      </a>
+                  <% } %>
+                </div>
+                <!-- End tags -->
+
               <% } %>
               <!-- Description a distinguishable function -->
             </div>
@@ -57,9 +80,31 @@
               <div class="content_title" style="visibility: hidden">Image</div>
                 <% if (projectsApi_detail.image_url != null) { %>
                   <div><img class="image_attr" src="<%= projectsApi_detail.image_url %>" /></div>
+
+                    <!-- team -->
+                    <div class="content_title margin_top">Team (<%= projectsApi_team.total %>)</div>
+                    <% for (var j = 0; j < (projectsApi_team.team).length; j++) { %>
+                      <div class="text_center_left_align">
+                          <a href="<%= (projectsApi_team.team[j]).user.url %>" target="_self"><img class="icon_circle" src="<%= (projectsApi_team.team[j]).user.image_url %>"/></a>
+                          <a class="a_screen_name_main" href="<%= (projectsApi_team.team[j]).user.url %>" target="_self"><%= (projectsApi_team.team[j]).user.screen_name %></a>
+                      </div>
+                    <% } %>
+                    <!-- End team -->
+
                 <% } else { %>
-                <div><img class="image_attr"/></div>
-                <!-- <div class="image_attr default_image text_center">Photo Coming Soon</div> -->
+                  <!-- <div><img class="image_attr"/></div> -->
+                  <!-- <div class="image_attr default_image text_center">Photo Coming Soon</div> -->
+
+                  <!-- team -->
+                    <div class="content_title margin_top">Team (<%= projectsApi_team.total %>)</div>
+                    <% for (var j = 0; j < (projectsApi_team.team).length; j++) { %>
+                      <div class="text_center_left_align">
+                          <a href="<%= (projectsApi_team.team[j]).user.url %>" target="_self"><img class="icon_circle" src="<%= (projectsApi_team.team[j]).user.image_url %>"/></a>
+                          <a class="a_screen_name_main" href="<%= (projectsApi_team.team[j]).user.url %>" target="_self"><%= (projectsApi_team.team[j]).user.screen_name %></a>
+                      </div>
+                    <% } %>
+                  <!-- End team -->
+
               <% } %>
             </div>
 

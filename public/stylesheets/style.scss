@@ -129,10 +129,13 @@
             text-align: left;
         }
         .text_center {
+            @extend .text_center_left_align;
+            justify-content: center;
+        }
+        .text_center_left_align {
             text-align: center;
             display: flex;
             align-items: center;
-            justify-content: center;
         }
         .tooltip_grid {
             display: grid;
@@ -387,4 +390,34 @@
             opacity: 50%;
           }
         }
-        
+/* End Slider Control */
+   
+.tag_text {
+  color: $primaryText;
+  font-weight: bold;
+  font-size: 12px;
+
+  &:hover {
+    color: black;
+  }
+}
+.tag_button {
+  @extend .tag_text;
+  padding: 12px 20px;
+  margin-right: 6px;
+  margin-top: 10px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  background-color: $defaultImageBackground;
+  border-radius: 30px;
+
+  &:hover {
+    @extend .tag_text:hover;
+    background-color: $primaryText;
+  }
+}
+.margin_top {
+  margin-top: 20px;
+}

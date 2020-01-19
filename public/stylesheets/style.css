@@ -356,12 +356,26 @@ a {
     color: #eb2226; }
 
 /* Slider Control */
+.slider_control, .prev, .next {
+  cursor: pointer;
+  position: absolute;
+  font-size: 20px;
+  font-weight: bold;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-user-select: none;
+  padding: 10px; }
+
+.slider_control--prev:hover, .slider_control--next:hover, .prev:hover, .next:hover {
+  background: white;
+  color: black;
+  opacity: 50%; }
+
 .slider_control {
-  font-size: 2rem;
   background: none;
   color: white;
   border: none;
-  position: absolute;
   top: 35%;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
@@ -371,19 +385,13 @@ a {
 
 .slider_control--prev {
   left: 10px;
-  opacity: 30%; }
-  .slider_control--prev:hover {
-    background: white;
-    color: black;
-    opacity: 50%; }
+  opacity: 30%;
+  border-radius: 0 3px 3px 0; }
 
 .slider_control--next {
   right: 10px;
-  opacity: 30%; }
-  .slider_control--next:hover {
-    background: white;
-    color: black;
-    opacity: 50%; }
+  opacity: 30%;
+  border-radius: 3px 0 0 3px; }
 
 /* End Slider Control */
 .tag_text, .tag_button {
@@ -417,72 +425,42 @@ a {
   color: black; }
 
 /* IMAGE SLIDER */
-/* Position the image container (needed to position the left and right arrows) */
 .container {
   position: relative; }
 
-/* Hide the images by default */
 .mySlides {
   display: none; }
 
-/* Add a pointer when hovering over the thumbnail images */
 .cursor {
   cursor: pointer; }
 
-/* Next & previous buttons */
 .prev, .next {
-  cursor: pointer;
-  position: absolute;
   top: 42%;
   width: auto;
-  padding: 10px;
   margin-top: -50px;
   color: white;
-  font-weight: bold;
-  font-size: 20px;
-  border-radius: 0 3px 3px 0;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-user-select: none; }
+  opacity: 30%; }
+
+.prev {
+  border-radius: 0 3px 3px 0; }
 
 .next {
   right: 0;
   border-radius: 3px 0 0 3px; }
-
-.prev:hover,
-.next:hover {
-  background-color: rgba(0, 0, 0, 0.8); }
-
-/* Number text (1/3 etc) */
-.numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0; }
-
-/* Container for image text */
-.caption-container {
-  text-align: center;
-  background-color: #222;
-  padding: 2px 16px;
-  color: white; }
 
 .row:after {
   content: "";
   display: table;
   clear: both; }
 
-/* Six columns side by side */
 .column {
   float: left;
   width: 16.66%; }
 
-/* Add a transparency effect for thumnbail images */
 .demo {
   opacity: 0.6; }
+  .demo:hover {
+    opacity: 1; }
 
-.active,
-.demo:hover {
+.active {
   opacity: 1; }

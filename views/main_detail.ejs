@@ -54,19 +54,19 @@
 
             <div class="grid_detail_content">
               <div class="content_title">
-                <span onClick="contentFunc(description)" class="content_title">Description</span><span class="content_title_col">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                <span onClick="contentFunc(details)" class="content_title">Details</span><span class="content_title_col">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                <span onClick="contentFunc(components)" class="content_title">Components</span><span class="content_title_col">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                <span onClick="contentFunc(instuctions)" class="content_title">Instructions</span><span class="content_title_col">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                <span onClick="contentFunc(comments)" class="content_title">Comments</span>
+                <span onclick="contentFunc(description)" class="content_title">Description</span><span class="content_title_col">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                <span onclick="contentFunc(details)" class="content_title">Details</span><span class="content_title_col">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                <span onclick="contentFunc(components)" class="content_title">Components</span><span class="content_title_col">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                <span onclick="contentFunc(instuctions)" class="content_title">Instructions</span><span class="content_title_col">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                <span onclick="contentFunc(comments)" class="content_title">Comments</span>
               </div>
               <!-- catch -->
               <% if (projectsApi_detail.id == 169506) { %>
-                <div id="description" class="content_desc" style="display:block;"><%= projectsApi_detail.description %></div>
-                <div id="details" class="content_desc"><%= projectsApi_detail.description %></div>
+                <div id="description" class="content_desc"><%= projectsApi_detail.description %></div>
+<!--                 <div id="details" class="content_desc"><%= projectsApi_detail.description %></div>
                 <div id="components" class="content_desc"><%= projectsApi_detail.description %></div>
                 <div id="instuctions" class="content_desc"><%= projectsApi_detail.description %></div>
-                <div id="comments" class="content_desc"><%= projectsApi_detail.description %></div>
+                <div id="comments" class="content_desc"><%= projectsApi_detail.description %></div> -->
 
 
                 <!-- tags -->

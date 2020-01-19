@@ -89,7 +89,32 @@
               <% if (projectsApi_detail.image_url != null) { %>
                   <div class="content_title" style="visibility: hidden">Image</div>
 
-                  <div><img class="image_attr" src="<%= projectsApi_detail.image_url %>" /></div>
+<!-- IMAGE SLIDER -->
+                  <div>
+                    <div class="container">
+
+                      <% for (var i = 0; i < (projectsApi_images.images).length; i++) { %>
+                        <div class="mySlides slide_item_image margin_bottom_10">
+                          <img src="<%= (projectsApi_images.images[i]).url %>" class="slide_image_common">
+                        </div>
+                      <% } %>                        
+                        
+                      <a class="prev" onclick="plusSlides(-1)">❮</a>
+                      <a class="next" onclick="plusSlides(1)">❯</a>
+                      
+                      <!-- Thumbnail images -->
+                      <div class="row">
+                        <% for (var j = 0; j < (projectsApi_images.images).length; j++) { %>
+                          <div class="column">
+                            <img class="demo cursor" src="<%= (projectsApi_images.images[j]).url %>" style="width:100%" onclick="currentSlide(<%= j+1 %>)">
+                          </div>
+                        <% } %>  
+                      </div>
+
+                     
+                    </div>
+                  </div>
+<!-- END IMAGE SLIDER -->
 
                     <!-- team -->
                     <div class="content_title margin_top">Team (<%= projectsApi_team.total %>)</div>
@@ -162,7 +187,7 @@
                 <div>
                   <div class="carousel">
                         
-                        <div class="nav nav-left"><button type="button" data-direction="prev" class="slider_control slider_control--prev"><</button></div>
+                        <div class="nav nav-left"><button type="button" data-direction="prev" class="slider_control slider_control--prev">❮</button></div>
 
                         <div class="carousel-content">
 
@@ -175,12 +200,12 @@
 
                                   <% if ((projectsApi.projects[a]).image_url != null) { %>
                                     <div class="slide_item slide_item_image">
-                                      <a href="/projects/detail/<%= (projectsApi.projects[a]).id %>" target="_self"><img class="slide_item_image_attr" src="<%= (projectsApi.projects[a]).image_url %>" /></a>
+                                      <a href="/projects/detail/<%= (projectsApi.projects[a]).id %>" target="_self"><img class="image_attr" src="<%= (projectsApi.projects[a]).image_url %>" /></a>
                                     </div>
                                   <% } else { %>
                                     <div class="slide_item slide_item_image">
                                       <a class="default_image" href="/projects/detail/<%= (projectsApi.projects[a]).id %>" target="_self">
-                                        <div class="image_attr default_image text_center slide_item_image_attr">Photo Coming Soon</div>
+                                        <div class="image_attr default_image text_center">Photo Coming Soon</div>
                                       </a>
                                     </div>
                                   <% } %>
@@ -200,7 +225,7 @@
 
                         </div>
 
-                        <div class="nav nav-right"><button type="button" data-direction="next" class="slider_control slider_control--next">></button></div>
+                        <div class="nav nav-right"><button type="button" data-direction="next" class="slider_control slider_control--next">❯</button></div>
                   </div>
                 </div>
                       
@@ -279,7 +304,7 @@
               <div>
                   <div class="carousel1">
                         
-                        <div class="nav1 nav-left1"><button type="button" data-direction="prev" class="slider_control slider_control--prev"><</button></div>
+                        <div class="nav1 nav-left1"><button type="button" data-direction="prev" class="slider_control slider_control--prev">❮</button></div>
 
                         <div class="carousel-content1">
                           <!-- ***** FINAL PRINTOUT PART ***** -->
@@ -301,7 +326,7 @@
 
                         </div>
 
-                        <div class="nav1 nav-right1"><button type="button" data-direction="next" class="slider_control slider_control--next">></button></div>
+                        <div class="nav1 nav-right1"><button type="button" data-direction="next" class="slider_control slider_control--next">❯</button></div>
                   </div>
               </div>
 

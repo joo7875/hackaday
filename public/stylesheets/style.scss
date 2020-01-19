@@ -55,12 +55,6 @@
             grid-column-gap: 2em;
             grid-row-gap: 7em;
         }
-        .image_attr {
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-            border-radius: 5px;
-        }
         .tooltip {
           position: relative;
           display: inline-block;
@@ -158,6 +152,9 @@
         .margin_bottom {
           margin-bottom: 5px;
         }
+        .margin_bottom_10 {
+          margin-bottom: 10px;
+        }
         .grid_pagination {
           display: grid;
           grid-template-columns: 1fr 2fr 2fr 1fr;
@@ -228,7 +225,7 @@
         }
         .grid_detail_main {
           display: grid;
-          grid-template-columns: 2fr 1fr;
+          grid-template-columns: 3fr 2fr;
           grid-template-rows: auto;
           grid-gap: 1em;
           margin-bottom: 10em;
@@ -336,17 +333,17 @@
         .slide_item_image {
           height: 400px;
         }
-        %slide_image_common {
+        .slide_image_common {
           height: 100%;
           width: 100%;
           object-fit: cover;
         }
-        .slide_item_image_attr {
-          @extend %slide_image_common;
+        .image_attr {
+          @extend .slide_image_common;
           border-radius: 5px;
         }
         .slide_item_image_attr_user {
-          @extend %slide_image_common;
+          @extend .slide_image_common;
           border-radius: 200px;
         }
         .slide_item_title {
@@ -429,4 +426,92 @@
 }
 .text_line {
   color: black;
+}
+
+
+
+
+
+
+/* IMAGE SLIDER */
+/* Position the image container (needed to position the left and right arrows) */
+.container {
+  position: relative;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Add a pointer when hovering over the thumbnail images */
+.cursor {
+  cursor: pointer;
+}
+
+/* Next & previous buttons */
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 42%;
+  width: auto;
+  padding: 10px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* Container for image text */
+.caption-container {
+  text-align: center;
+  background-color: #222;
+  padding: 2px 16px;
+  color: white;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Six columns side by side */
+.column {
+  float: left;
+  width: 16.66%;
+}
+
+/* Add a transparency effect for thumnbail images */
+.demo {
+  opacity: 0.6;
+}
+
+.active,
+.demo:hover {
+  opacity: 1;
 }

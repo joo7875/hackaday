@@ -271,3 +271,40 @@ function showSlides(n) {
   slides[slideIndex-1].style.display = "block";
   dots[slideIndex-1].className += " active";
 }
+
+
+// *************************************************************** CONTENT FUNCTION
+
+function contentFunc(n) {
+  if (n == 'description') {
+    document.getElementById('description').style.display = "visible";
+    document.getElementById('details').style.display = "none";
+    document.getElementById('components').style.display = "none";
+    document.getElementById('instructions').style.display = "none";
+    document.getElementById('comments').style.display = "none";
+  } else (n == 'details') {
+    document.getElementById('description').style.display = "none";
+    document.getElementById('details').style.display = "visible";
+    document.getElementById('components').style.display = "none";
+    document.getElementById('instructions').style.display = "none";
+    document.getElementById('comments').style.display = "none";
+  } else (n == 'components') {
+    document.getElementById('description').style.display = "none";
+    document.getElementById('details').style.display = "none";
+    document.getElementById('components').style.display = "none";
+    document.getElementById('instructions').style.display = "visible";
+    document.getElementById('comments').style.display = "none";
+  } else (n == 'instructions') {
+    document.getElementById('description').style.display = "none";
+    document.getElementById('details').style.display = "none";
+    document.getElementById('components').style.display = "none";
+    document.getElementById('instructions').style.display = "visible";
+    document.getElementById('comments').style.display = "none";
+  } else (n == 'comments') {
+    document.getElementById('description').style.display = "none";
+    document.getElementById('details').style.display = "none";
+    document.getElementById('components').style.display = "none";
+    document.getElementById('instructions').style.display = "none";
+    document.getElementById('comments').style.display = "visible";
+  }
+}

@@ -245,13 +245,20 @@ a {
   margin-right: 0; }
 
 .content_title {
-  font-weight: bold;
   font-size: 20px;
-  padding-bottom: 20px; }
+  padding-bottom: 20px;
+  font-weight: bold; }
+  .content_title:hover {
+    color: white; }
+
+.content_title_col {
+  font-size: 13px;
+  padding-bottom: 30px; }
 
 .content_desc {
   font-size: 16px;
-  line-height: 150%; }
+  line-height: 150%;
+  display: none; }
 
 .line {
   background-color: orange; }

@@ -270,6 +270,7 @@ function showSlides(n) {
   }
   slides[slideIndex-1].style.display = "block";
   dots[slideIndex-1].className += " active";
+<<<<<<< HEAD
 }
 
 
@@ -307,4 +308,6 @@ function contentFunc(n) {
     document.getElementById('instructions').style.display = "none";
     document.getElementById('comments').style.display = "block";
   }
+=======
+>>>>>>> parent of ca68165... Updated main_detail content
 }

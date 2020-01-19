@@ -245,15 +245,9 @@ a {
   margin-right: 0; }
 
 .content_title {
+  font-weight: bold;
   font-size: 20px;
-  padding-bottom: 20px;
-  font-weight: bold; }
-  .content_title:hover {
-    color: white; }
-
-.content_title_col {
-  font-size: 13px;
-  padding-bottom: 30px; }
+  padding-bottom: 20px; }
 
 .content_desc {
   font-size: 16px;

@@ -53,6 +53,7 @@
         <div class="grid_detail_main">
 
             <div class="grid_detail_content">
+<<<<<<< HEAD
               <div class="content_title">
                 <span onclick="contentFunc(description)" class="content_title">Description</span><span class="content_title_col">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span>
                 <span onclick="contentFunc(details)" class="content_title">Details</span><span class="content_title_col">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span>
@@ -68,6 +69,12 @@
                 <div id="instuctions" class="content_desc"><%= projectsApi_detail.description %></div>
                 <div id="comments" class="content_desc"><%= projectsApi_detail.description %></div> -->
 
+=======
+              <div class="content_title">Description</div>
+              <!-- catch -->
+              <% if (projectsApi_detail.id == 169506) { %>
+                <div class="content_desc"><%= projectsApi_detail.description %></div>
+>>>>>>> parent of ca68165... Updated main_detail content
 
                 <!-- tags -->
                 <div class="margin_top">

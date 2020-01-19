@@ -462,7 +462,7 @@
 }
 
 %image_slide_ctrl {
-  top: 42%;
+  top: 50%;
   width: auto;
   margin-top: -50px;
   color: $primaryText;
@@ -487,15 +487,18 @@
           }
         }
 
+.row {
 
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 }
 
 .column {
   float: left;
+  height: 75px;
   width: 16.66%;
 }
 

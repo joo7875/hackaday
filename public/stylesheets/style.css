@@ -435,7 +435,7 @@ a {
   cursor: pointer; }
 
 .prev, .next {
-  top: 42%;
+  top: 50%;
   width: auto;
   margin-top: -50px;
   color: white;
@@ -455,6 +455,7 @@ a {
 
 .column {
   float: left;
+  height: 75px;
   width: 16.66%; }
 
 .demo {

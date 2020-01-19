@@ -106,7 +106,7 @@
                       <div class="row">
                         <% for (var j = 0; j < (projectsApi_images.images).length; j++) { %>
                           <div class="column">
-                            <img class="demo cursor" src="<%= (projectsApi_images.images[j]).url %>" style="width:100%" onclick="currentSlide(<%= j+1 %>)">
+                            <img class="demo cursor slide_image_common" src="<%= (projectsApi_images.images[j]).url %>" onclick="currentSlide(<%= j+1 %>)">
                           </div>
                         <% } %>  
                       </div>

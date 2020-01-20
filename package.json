@@ -4,7 +4,7 @@
   "private": true,
   "engines": {
     "node": "12.14.0",
-    "npm": "6.13.4"
+    "npm": "6.4.1"
   },
   "scripts": {
     "start": "node ./routes/server.js"

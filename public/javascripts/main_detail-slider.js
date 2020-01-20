@@ -270,44 +270,42 @@ function showSlides(n) {
   }
   slides[slideIndex-1].style.display = "block";
   dots[slideIndex-1].className += " active";
-<<<<<<< HEAD
+
 }
 
 
 // *************************************************************** CONTENT FUNCTION
 
-function contentFunc(n) {
-  if (n == 'description') {
-    document.getElementById('description').style.display = "block";
-    document.getElementById('details').style.display = "none";
-    document.getElementById('components').style.display = "none";
-    document.getElementById('instructions').style.display = "none";
-    document.getElementById('comments').style.display = "none";
-  } else (n == 'details') {
-    document.getElementById('description').style.display = "none";
-    document.getElementById('details').style.display = "block";
-    document.getElementById('components').style.display = "none";
-    document.getElementById('instructions').style.display = "none";
-    document.getElementById('comments').style.display = "none";
-  } else (n == 'components') {
-    document.getElementById('description').style.display = "none";
-    document.getElementById('details').style.display = "none";
-    document.getElementById('components').style.display = "block";
-    document.getElementById('instructions').style.display = "none";
-    document.getElementById('comments').style.display = "none";
-  } else (n == 'instructions') {
-    document.getElementById('description').style.display = "none";
-    document.getElementById('details').style.display = "none";
-    document.getElementById('components').style.display = "none";
-    document.getElementById('instructions').style.display = "block";
-    document.getElementById('comments').style.display = "none";
-  } else (n == 'comments') {
-    document.getElementById('description').style.display = "none";
-    document.getElementById('details').style.display = "none";
-    document.getElementById('components').style.display = "none";
-    document.getElementById('instructions').style.display = "none";
-    document.getElementById('comments').style.display = "block";
-  }
-=======
->>>>>>> parent of ca68165... Updated main_detail content
-}
+// function contentFunc(n) {
+//   if (n == 'description') {
+//     document.getElementById('description').style.display = "block";
+//     document.getElementById('details').style.display = "none";
+//     document.getElementById('components').style.display = "none";
+//     document.getElementById('instructions').style.display = "none";
+//     document.getElementById('comments').style.display = "none";
+//   } else (n == 'details') {
+//     document.getElementById('description').style.display = "none";
+//     document.getElementById('details').style.display = "block";
+//     document.getElementById('components').style.display = "none";
+//     document.getElementById('instructions').style.display = "none";
+//     document.getElementById('comments').style.display = "none";
+//   } else (n == 'components') {
+//     document.getElementById('description').style.display = "none";
+//     document.getElementById('details').style.display = "none";
+//     document.getElementById('components').style.display = "block";
+//     document.getElementById('instructions').style.display = "none";
+//     document.getElementById('comments').style.display = "none";
+//   } else (n == 'instructions') {
+//     document.getElementById('description').style.display = "none";
+//     document.getElementById('details').style.display = "none";
+//     document.getElementById('components').style.display = "none";
+//     document.getElementById('instructions').style.display = "block";
+//     document.getElementById('comments').style.display = "none";
+//   } else (n == 'comments') {
+//     document.getElementById('description').style.display = "none";
+//     document.getElementById('details').style.display = "none";
+//     document.getElementById('components').style.display = "none";
+//     document.getElementById('instructions').style.display = "none";
+//     document.getElementById('comments').style.display = "block";
+//   }
+// }

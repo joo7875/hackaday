@@ -250,11 +250,11 @@ app.get('/projects/detail/:project_id', function (req, res) {
     var url_project_id_team = apiData.apiUrl + '/projects/' + projectId + '/team' + apiData.apiKey + '&sortby=influence';
     var url_project_id_images = apiData.apiUrl + '/projects/' + projectId + '/images' + apiData.apiKey;
 
-    var url_project_id_details = apiData.apiUrl + '/projects/' + projectId + '/details' + apiData.apiKey;
-    var url_project_id_components = apiData.apiUrl + '/projects/' + projectId + '/components' + apiData.apiKey;
-    var url_project_id_instructions = apiData.apiUrl + '/projects/' + projectId + '/instructions' + apiData.apiKey;
-    var url_project_id_logs = apiData.apiUrl + '/projects/' + projectId + '/logs' + apiData.apiKey;
-    var url_project_id_comments = apiData.apiUrl + '/projects/' + projectId + '/comments' + apiData.apiKey;
+    // var url_project_id_details = apiData.apiUrl + '/projects/' + projectId + '/details' + apiData.apiKey;
+    // var url_project_id_components = apiData.apiUrl + '/projects/' + projectId + '/components' + apiData.apiKey;
+    // var url_project_id_instructions = apiData.apiUrl + '/projects/' + projectId + '/instructions' + apiData.apiKey;
+    // var url_project_id_logs = apiData.apiUrl + '/projects/' + projectId + '/logs' + apiData.apiKey;
+    // var url_project_id_comments = apiData.apiUrl + '/projects/' + projectId + '/comments' + apiData.apiKey;
 
 
     request.get(url_project_id, function (error, response, body) {
@@ -271,19 +271,19 @@ app.get('/projects/detail/:project_id', function (req, res) {
             rp({uri: url_project_id_team, json:true}),
             rp({uri: url_project_id_images, json:true}),
 
-            rp({uri: url_project_id_details, json:true}),
-            rp({uri: url_project_id_components, json:true}),
-            rp({uri: url_project_id_instructions, json:true}),
-            rp({uri: url_project_id_logs, json:true}),
-            rp({uri: url_project_id_comments, json:true}),
+            // rp({uri: url_project_id_details, json:true}),
+            // rp({uri: url_project_id_components, json:true}),
+            // rp({uri: url_project_id_instructions, json:true}),
+            // rp({uri: url_project_id_logs, json:true}),
+            // rp({uri: url_project_id_comments, json:true}),
 
             rp({uri: url_user_id, json:true})
         ];
 
         Promise
           .all(promise)
-          .then(([usersApi, projectsApi, projectsApi_detail, projectsApi_team, projectsApi_images, projectsApi_id_details, projectsApi_components, projectsApi_instructions, projectsApi_logs, projectsApi_comments, usersApi_detail]) => {
-              res.render('main_detail', {usersApi, projectsApi, projectsApi_detail, projectsApi_team, projectsApi_images, projectsApi_id_details, projectsApi_components, projectsApi_instructions, projectsApi_logs, projectsApi_comments, usersApi_detail});
+          .then(([usersApi, projectsApi, projectsApi_detail, projectsApi_team, projectsApi_images, usersApi_detail]) => {
+              res.render('main_detail', {usersApi, projectsApi, projectsApi_detail, projectsApi_team, projectsApi_images, usersApi_detail});
           }).catch(err => {
               console.log(err);
               res.sendStatus(500);

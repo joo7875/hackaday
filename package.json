@@ -7,6 +7,7 @@
     "npm": "6.4.1"
   },
   "scripts": {
+    "prestart": "npm install",
     "start": "node ./routes/server.js"
   },
   "dependencies": {

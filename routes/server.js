@@ -67,7 +67,8 @@ var http = require('http'),
     rp = require("request-promise"),
     _ = require('lodash'),
     path = require('path'),
-    sslRedirect = require('heroku-ssl-redirect');
+    sslRedirect = require('heroku-ssl-redirect'),
+    url_user = [];
 
 server.listen(port);
 console.log('Listening on port: ', port);
@@ -94,56 +95,6 @@ app.get('/index', function (req, res) {
         description: 'Index Description'
     });
 });
-
-app.get('/users', function (req, res) {
-
-    var id = req.params.id;
-    var url_project = apiData.apiUrl + '/projects' + apiData.apiKey + '&per_page=18&sortby=newest';
-    var url_user = apiData.apiUrl + '/projects/' + id + '/team' + apiData.apiKey + '&per_page=18&sortby=newest';
-
-    Promise.all([rp({uri: url_project, json:true}), rp({uri: url_user, json:true})])
-      .then(([projectsApi, usersApi]) => {
-
-          let usersList = usersApi.team.map(g => g.user);
-          usersList = usersList.flat();
-
-          const finalList = [];
-          for (let i = 0; i < projectsApi.projects.length; i++) {
-            const object = {};
-            object.projectName = projectsApi.projects[i].name;
-
-            for (let j = 0; j < usersList.length; j++) {
-              if (projectsApi.projects[i].owner_id === usersList[j].id) {
-                object.userName = usersList[j].screen_name;
-              }
-            }
-
-            finalList.push(object);
-          }
-          res.render('index-test', {finalList});
-      }).catch(err => {
-          console.log(err);
-          res.sendStatus(500);
-      });
-
-    // console.log('\ninside /users');
-    // res.send('respond with a resource');
-
-    // console.log('\ninside /users');
-
-    // var url = apiData.apiUrl + '/users' + apiData.apiKey,
-    //     url_test = apiData.apiUrl + '/projects' + apiData.apiKey + '&sortby=newest';
-
-    // request.get(url_test, function (error, response, body) {
-    //     var bodyData = parseJSON(body);
-    //     res.render('index-test', {
-    //         apiData: bodyData
-    //     });
-    // });
-
-});
-
-var url_user = [];
 
 app.get('/projects/page/:page_id', function (req, res) {
     console.log('\ninside /projects/page/:page_id');
@@ -192,48 +143,11 @@ app.get('/projects/page/:page_id', function (req, res) {
               });
 
             url_user = [];
-
-            // const promises = [
-            //       rp({uri: url_project, json:true}), url_user.map(value => rp({uri: value, json:true}))
-            // ];
-
-            // Promise
-            //   .all(promises)
-            //   .then(([projectsApi, usersApi]) => {
-            //       res.render('main', {projectsApi, usersApi});
-            //       console.log('result', JSON.stringify(usersApi));
-            //   }).catch(err => {
-            //       console.log(err);
-            //       res.sendStatus(500);
-            //   });
         }
     });
 
-     // console.log('Out Array', url_user);
-
-
-    // request.get(url_user, function (error, response, body) {
-    //     var userData = parseJSON(body);
-    //     res.render('main', {
-    //         usersApi: userData  
-    //     });
-    //     console.log('userData: ', JSON.stringify(userData));
-    // });
-
-    // Promise
-    //   .all([rp({uri: url_project, json:true}), rp({uri: url_user, json:true})])
-    //   .then(([projectsApi, usersApi]) => {
-    //       res.render('main', {projectsApi, usersApi});
-    //   }).catch(err => {
-    //       console.log(err);
-    //       res.sendStatus(500);
-    //   });
 });
 
-app.use('/user/:id', function (req, res, next) {
-  console.log('Request Type:', req.method)
-  next()
-})
 
 app.get('/projects/detail/:project_id', function (req, res) {
     console.log('\ninside /projects/detail/:project_id');
@@ -303,12 +217,6 @@ app.get('/projects/detail/:project_id', function (req, res) {
 // Parse JSON bodies (as sent by API clients)
 app.use(express.json());
 
-app.post('/test', function(request, response){
-      var user_name=req.body.user;
-      var password=req.body.password;
-      console.log("User name = "+user_name+", password is "+password);
-      res.end("yes");
-});
 
 // Queries HAD API for user data
 app.get('/users/:id', function (req, res) {
@@ -352,20 +260,6 @@ app.get('/projects/skulls', function (req, res) {
     });
 });
 
-app.get('/projects/:id/team', function (req, res) {
-    console.log('\ninside /projects/:id/team');
-    var id = req.params.id,
-        url = apiData.apiUrl + '/projects/' + id + '/team' + apiData.apiKey + '&sortby=newest';
-    console.log('\nProject Data Query: ', url);
-
-    request.get(url, function (error, response, body) {
-        var bodyData = parseJSON(body);
-        res.render('index-test', {
-            dataType: 'Top Skulled Projects',
-            apiData: bodyData
-        });
-    });
-});
 
 // HAD API oAuth
 app.get('/authorize', function (req, res) {

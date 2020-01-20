@@ -87,11 +87,15 @@
               <% } %>
               <!-- Description a distinguishable function -->
 
+              <% var filtered_detail = [] %>
+
               <% if ((projectsApi_id_details.details).length > 0) { %>
                 <div class="content_title margin_top_70">Details</div>
                 <div class="category"></div> 
                 <% for (var d = 0; d < (projectsApi_id_details.details).length; d++) { %>
-                  <div class="content_desc"><%- (projectsApi_id_details.details[d]).body %></div>
+                    <% filtered_detail[d] = ((projectsApi_id_details.details[d]).body).replace(/data-src/g, 'src') %>
+                    <% filtered_detail[d] = ((projectsApi_id_details.details[d]).body).replace(/data-src/g, "src") %>
+                  <div class="content_desc"><%- filtered_detail[d] %></div>
                 <% } %>
               <% } %>
 
@@ -123,7 +127,8 @@
                 <% for (var l = 0; l < (projectsApi_logs.logs).length; l++) { %>
                   <div class="content_desc"><%- (projectsApi_logs.logs[l]).title %></div>
 
-                    <% filtered[l] = ((projectsApi_logs.logs[l]).body).replace('data-src', 'src') %>
+                    <% filtered[l] = ((projectsApi_logs.logs[l]).body).replace(/data-src/g, 'src') %>
+                    <% filtered[l] = ((projectsApi_logs.logs[l]).body).replace(/data-src/g, "src") %>
                     <!-- <% var count = ((projectsApi_logs.logs[l]).body).includes("data-src") %>
                     <%= count %><br> -->
                     <div class="content_desc"><%- filtered[l] %></div>

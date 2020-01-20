@@ -54,30 +54,30 @@
         <div class="grid_detail_main">
 
             <div class="grid_detail_content">
-              <div class="content_title">
-                <span onclick="contentFunc(description)" class="content_title">Description</span>
+              <div class="margin_bottom_20">
+                <span onclick="contentFunc(1)" class="detail_title cursor">Description</span>
                 <span class="content_title_col">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span>
 
-                <span onclick="contentFunc(details)" class="content_title">Details</span>
+                <span onclick="contentFunc(2)" class="detail_title cursor">Details</span>
                 <span class="content_title_col">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span>
 
-                <span onclick="contentFunc(components)" class="content_title">Components</span>
+                <span onclick="contentFunc(3)" class="detail_title cursor">Components</span>
                 <span class="content_title_col">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span>
 
-                <span onclick="contentFunc(logs)" class="content_title">Logs</span>
+                <span onclick="contentFunc(4)" class="detail_title cursor">Logs</span>
                 <span class="content_title_col">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span>
 
-                <span onclick="contentFunc(instructions)" class="content_title">Instructions</span>
+                <span onclick="contentFunc(5)" class="detail_title cursor">Instructions</span>
                 
               </div>
 
               <!-- catch -->
               <% if (projectsApi_detail.id == 169506) { %>
                 <div id="description" class="content_desc"><%= projectsApi_detail.description %></div>
-<!--                 <div id="details" class="content_desc"><%= projectsApi_detail.description %></div>
-                <div id="components" class="content_desc"><%= projectsApi_detail.description %></div>
-                <div id="instuctions" class="content_desc"><%= projectsApi_detail.description %></div>
-                <div id="comments" class="content_desc"><%= projectsApi_detail.description %></div> -->
+                <div id="details" class="content_desc">details</div>
+                <div id="components" class="content_desc">components</div>
+                <div id="logs" class="content_desc">logs</div>
+                <div id="instuctions" class="content_desc">instuctions</div>
 
 
                 <!-- tags -->
@@ -91,7 +91,11 @@
                 <!-- End tags -->
 
               <% } else { %>
-                <div class="content_desc"><%- projectsApi_detail.description %></div>
+                <div id="description" class="content_desc"><%= projectsApi_detail.description %></div>
+                <div id="details" class="content_desc">details</div>
+                <div id="components" class="content_desc">components</div>
+                <div id="logs" class="content_desc">logs</div>
+                <div id="instuctions" class="content_desc">instuctions</div>
 
                 <!-- tags -->
                 <div class="margin_top">
@@ -368,8 +372,9 @@
     </div>
 
 
-<!-- <script src="/javascripts/main_detail-slider.js">  </script> -->
-    <script> <%include ../public/javascripts/main_detail-slider.js%> </script>
+    <script> <% include ../public/javascripts/main_detail-slider.js %> </script>
+    <script> <% include ../public/javascripts/main_detail-desc.js %> </script>
+
 
 
 </body>

@@ -273,39 +273,3 @@ function showSlides(n) {
 
 }
 
-
-// *************************************************************** CONTENT FUNCTION
-
-// function contentFunc(n) {
-//   if (n == 'description') {
-//     document.getElementById('description').style.display = "block";
-//     document.getElementById('details').style.display = "none";
-//     document.getElementById('components').style.display = "none";
-//     document.getElementById('instructions').style.display = "none";
-//     document.getElementById('logs').style.display = "none";
-//   } else (n == 'details') {
-//     document.getElementById('description').style.display = "none";
-//     document.getElementById('details').style.display = "block";
-//     document.getElementById('components').style.display = "none";
-//     document.getElementById('instructions').style.display = "none";
-//     document.getElementById('logs').style.display = "none";
-//   } else (n == 'components') {
-//     document.getElementById('description').style.display = "none";
-//     document.getElementById('details').style.display = "none";
-//     document.getElementById('components').style.display = "block";
-//     document.getElementById('instructions').style.display = "none";
-//     document.getElementById('logs').style.display = "none";
-//   } else (n == 'instructions') {
-//     document.getElementById('description').style.display = "none";
-//     document.getElementById('details').style.display = "none";
-//     document.getElementById('components').style.display = "none";
-//     document.getElementById('instructions').style.display = "block";
-//     document.getElementById('logs').style.display = "none";
-//   } else (n == 'logs') {
-//     document.getElementById('description').style.display = "none";
-//     document.getElementById('details').style.display = "none";
-//     document.getElementById('components').style.display = "none";
-//     document.getElementById('instructions').style.display = "none";
-//     document.getElementById('logs').style.display = "block";
-//   }
-// }

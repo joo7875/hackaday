@@ -83,22 +83,22 @@
               <div class="grid_pagination">
                 <div></div>
                 <div></div>
-                <div><a href="/projects/page/<%= i+1 %>" target="_self"><div class="page_button">NEXT&nbsp;&nbsp;></div></a></div>
-                <div><a href="/projects/page/<%= mainApi[0].last_page %>" target="_self"><div class="page_button">LAST&nbsp;&nbsp;>></div></a></div>
+                <div><a href="/projects/page/<%= i+1 %>" target="_self"><div class="page_button">NEXT&nbsp;&nbsp;❯</div></a></div>
+                <div><a href="/projects/page/<%= mainApi[0].last_page %>" target="_self"><div class="page_button">LAST&nbsp;&nbsp;❯❯</div></a></div>
               </div>
               <% } else if(i == mainApi[0].last_page) { %>
               <div class="grid_pagination">
-                <div><a href="/projects/page/<%= 1 %>" target="_self"><div class="page_button"><<&nbsp;&nbsp;FIRST</div></a></div>
-                <div><a href="/projects/page/<%= i-1 %>" target="_self"><div class="page_button"><&nbsp;&nbsp;PREVIOUS</div></a></div>
+                <div><a href="/projects/page/<%= 1 %>" target="_self"><div class="page_button">❮❮&nbsp;&nbsp;FIRST</div></a></div>
+                <div><a href="/projects/page/<%= i-1 %>" target="_self"><div class="page_button">❮&nbsp;&nbsp;PREVIOUS</div></a></div>
                 <div></div>
                 <div></div>
               </div>
               <% } else { %>
                 <div class="grid_pagination">
-                  <div><a href="/projects/page/<%= 1 %>" target="_self"><div class="page_button"><<&nbsp;&nbsp;FIRST</div></a></div>
-                  <div><a href="/projects/page/<%= i-1 %>" target="_self"><div class="page_button"><&nbsp;&nbsp;PREVIOUS</div></a></div>
-                  <div><a href="/projects/page/<%= i+1 %>" target="_self"><div class="page_button">NEXT&nbsp;&nbsp;></div></a></div>
-                  <div><a href="/projects/page/<%= mainApi[0].last_page %>" target="_self"><div class="page_button">LAST&nbsp;&nbsp;>></div></a></div>
+                  <div><a href="/projects/page/<%= 1 %>" target="_self"><div class="page_button">❮❮&nbsp;&nbsp;FIRST</div></a></div>
+                  <div><a href="/projects/page/<%= i-1 %>" target="_self"><div class="page_button">❮&nbsp;&nbsp;PREVIOUS</div></a></div>
+                  <div><a href="/projects/page/<%= i+1 %>" target="_self"><div class="page_button">NEXT&nbsp;&nbsp;❯</div></a></div>
+                  <div><a href="/projects/page/<%= mainApi[0].last_page %>" target="_self"><div class="page_button">LAST&nbsp;&nbsp;❯❯</div></a></div>
                 </div>
               <% } %>
               

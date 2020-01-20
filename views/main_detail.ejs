@@ -115,12 +115,19 @@
                 <% } %>
               <% } %>
 
+              <% var filtered = [] %>
+
               <% if ((projectsApi_logs.logs).length > 0) { %>
                 <div class="content_title margin_top_70">Logs</div>
                 <div class="category"></div> 
                 <% for (var l = 0; l < (projectsApi_logs.logs).length; l++) { %>
                   <div class="content_desc"><%- (projectsApi_logs.logs[l]).title %></div>
-                  <div class="content_desc"><%- (projectsApi_logs.logs[l]).body %></div>
+
+                    <% filtered[l] = ((projectsApi_logs.logs[l]).body).replace('data-src', 'src') %>
+                    <!-- <% var count = ((projectsApi_logs.logs[l]).body).includes("data-src") %>
+                    <%= count %><br> -->
+                    <div class="content_desc"><%- filtered[l] %></div>
+                    <!-- <div class="content_desc"><%= (projectsApi_logs.logs[l]).body %></div> -->
                 <% } %>
               <% } %>
 

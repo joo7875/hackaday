@@ -227,6 +227,9 @@ a {
   font-size: 16px;
   line-height: 150%; }
 
+.content_desc img {
+  max-width: 690px; }
+
 .display_none {
   display: none; }
 

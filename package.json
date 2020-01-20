@@ -7,7 +7,6 @@
     "npm": "6.4.1"
   },
   "scripts": {
-    "prestart": "npm install",
     "start": "node ./routes/server.js"
   },
   "dependencies": {
@@ -25,6 +24,7 @@
     "nightwatch": "^1.3.2",
     "node-fetch": "^2.6.0",
     "request-promise": "^4.2.5",
+    "request-promise-core": "^1.1.3",
     "server": "^1.0.21"
   }
 }

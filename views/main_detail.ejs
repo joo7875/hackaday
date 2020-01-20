@@ -115,12 +115,12 @@
                 <% } %>
               <% } %>
 
-              <% if (projectsApi_logs.length > 0) { %>
+              <% if ((projectsApi_logs.logs).length > 0) { %>
                 <div class="content_title margin_top_70">Logs</div>
                 <div class="category"></div> 
-                <% for (var l = 0; l < projectsApi_logs.length; l++) { %>
-                  <div class="content_desc"><%- projectsApi_logs[l].title %></div>
-                  <div class="content_desc"><%- projectsApi_logs[l].body %></div>
+                <% for (var l = 0; l < (projectsApi_logs.logs).length; l++) { %>
+                  <div class="content_desc"><%- (projectsApi_logs.logs[l]).title %></div>
+                  <div class="content_desc"><%- (projectsApi_logs.logs[l]).body %></div>
                 <% } %>
               <% } %>
 

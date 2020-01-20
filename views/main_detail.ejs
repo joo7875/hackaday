@@ -54,31 +54,12 @@
         <div class="grid_detail_main">
 
             <div class="grid_detail_content">
-              <div class="margin_bottom_20">
-                <span onclick="contentFunc(1)" class="detail_title cursor">Description</span>
-                <span class="content_title_col">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-
-                <span onclick="contentFunc(2)" class="detail_title cursor">Details</span>
-                <span class="content_title_col">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-
-                <span onclick="contentFunc(3)" class="detail_title cursor">Components</span>
-                <span class="content_title_col">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-
-                <span onclick="contentFunc(4)" class="detail_title cursor">Logs</span>
-                <span class="content_title_col">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-
-                <span onclick="contentFunc(5)" class="detail_title cursor">Instructions</span>
-                
-              </div>
+                <div class="content_title">Description</div>
+                <div class="category"></div>     
 
               <!-- catch -->
               <% if (projectsApi_detail.id == 169506) { %>
-                <div id="description" class="content_desc"><%= projectsApi_detail.description %></div>
-                <div id="details" class="content_desc">details</div>
-                <div id="components" class="content_desc">components</div>
-                <div id="logs" class="content_desc">logs</div>
-                <div id="instuctions" class="content_desc">instuctions</div>
-
+                <div class="content_desc"><%= projectsApi_detail.description %></div>
 
                 <!-- tags -->
                 <div class="margin_top">
@@ -91,11 +72,7 @@
                 <!-- End tags -->
 
               <% } else { %>
-                <div id="description" class="content_desc"><%= projectsApi_detail.description %></div>
-                <div id="details" class="content_desc">details</div>
-                <div id="components" class="content_desc">components</div>
-                <div id="logs" class="content_desc">logs</div>
-                <div id="instuctions" class="content_desc">instuctions</div>
+                <div class="content_desc"><%- projectsApi_detail.description %></div>
 
                 <!-- tags -->
                 <div class="margin_top">
@@ -109,11 +86,51 @@
 
               <% } %>
               <!-- Description a distinguishable function -->
+
+              <% if ((projectsApi_id_details.details).length > 0) { %>
+                <div class="content_title margin_top_70">Details</div>
+                <div class="category"></div> 
+                <% for (var d = 0; d < (projectsApi_id_details.details).length; d++) { %>
+                  <div class="content_desc"><%- (projectsApi_id_details.details[d]).body %></div>
+                <% } %>
+              <% } %>
+
+              <% if ((projectsApi_components.components).length > 0) { %>
+                <div class="content_title margin_top_70">Components</div>
+                <div class="category"></div> 
+                <% for (var c = 0; c < (projectsApi_components.components).length; c++) { %>
+                  <div class="grid_components">
+                    <div class="content_desc grid_components_qty"><%- (projectsApi_components.components[c]).quantity %></div>
+                    <div class="content_desc"><%- (projectsApi_components.components[c]).name %></div>
+                    <div class="content_desc components_desc"><%- (projectsApi_components.components[c]).description %></div>
+                  </div>
+                <% } %>
+              <% } %>
+
+              <% if ((projectsApi_instructions.instructions).length > 0) { %>
+                <div class="content_title margin_top_70">Instructions</div>
+                <div class="category"></div> 
+                <% for (var i = 0; i < (projectsApi_instructions.instructions).length; i++) { %>
+                  <div class="content_desc"><%- (projectsApi_instructions.instructions[i]).body %></div>
+                <% } %>
+              <% } %>
+
+              <% if (projectsApi_logs.length > 0) { %>
+                <div class="content_title margin_top_70">Logs</div>
+                <div class="category"></div> 
+                <% for (var l = 0; l < projectsApi_logs.length; l++) { %>
+                  <div class="content_desc"><%- projectsApi_logs[l].title %></div>
+                  <div class="content_desc"><%- projectsApi_logs[l].body %></div>
+                <% } %>
+              <% } %>
+
+
             </div>
 
             <div class="grid_detail_content">
               <% if (projectsApi_detail.image_url != null) { %>
                   <div class="content_title" style="visibility: hidden">Image</div>
+                  <div class="category" style="visibility: hidden"></div>
 
 <!-- IMAGE SLIDER -->
                   <div>
@@ -143,7 +160,8 @@
 <!-- END IMAGE SLIDER -->
 
                     <!-- team -->
-                    <div class="content_title margin_top">Team (<%= projectsApi_team.total %>)</div>
+                    <div class="content_title margin_top_50">Team (<%= projectsApi_team.total %>)</div>
+                    <div class="category"></div> 
                     <% for (var j = 0; j < (projectsApi_team.team).length; j++) { %>
                       <div class="text_center_left_align">
                           <a href="<%= (projectsApi_team.team[j]).user.url %>" target="_self"><img class="icon_circle" src="<%= (projectsApi_team.team[j]).user.image_url %>"/></a>
@@ -158,6 +176,7 @@
 
                   <!-- team -->
                     <div class="content_title margin_top_media">Team (<%= projectsApi_team.total %>)</div>
+                    <div class="category"></div> 
                     <% for (var j = 0; j < (projectsApi_team.team).length; j++) { %>
                       <div class="text_center_left_align">
                           <a href="<%= (projectsApi_team.team[j]).user.url %>" target="_self"><img class="icon_circle" src="<%= (projectsApi_team.team[j]).user.image_url %>"/></a>

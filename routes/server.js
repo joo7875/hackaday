@@ -153,7 +153,7 @@ app.get('/projects/page/:page_id', function (req, res) {
     // let userId = req.params.user_id;
     // console.log('req', req.params.user_id);
 
-    var url_project = apiData.apiUrl + '/projects' + apiData.apiKey + '&page=' + page + '&per_page=6&sortby=newest';
+    var url_project = apiData.apiUrl + '/projects' + apiData.apiKey + '&page=' + page + '&per_page=9&sortby=newest';
     console.log('\nProject Data Query: ', url_project);
 
     // var url_user = apiData.apiUrl + '/users/' + userId + apiData.apiKey;

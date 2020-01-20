@@ -269,14 +269,6 @@
           font-size: 13px;
           padding-bottom: 30px;
         }
-        .detail_title {
-          @extend .content_title;
-          color: $usernameTextHover;
-
-          &:hover {
-            color: $primaryText;
-          }
-        }
 
 
         .line {
@@ -456,6 +448,12 @@
 .margin_top {
   margin-top: 20px;
 }
+.margin_top_50 {
+  margin-top: 50px;
+}
+.margin_top_70 {
+  margin-top: 70px;
+}
 
 @media screen and (max-width: 1200px) {
   .margin_top_media {
@@ -465,23 +463,25 @@
 .text_line {
   color: black;
 }
-
-#description {
-  display:block;
+.category {
+  border-bottom: 3px solid $primaryTitleText;
+  width: 40px;
+  margin-bottom: 20px;
 }
-#details {
-  display:none;
+.grid_components {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid_template-rows: 2fr;
 }
-#components {
-  display:none;
+.grid_components_qty {
+  @extend .text_center;
+  grid-column: 1;
+  grid-row: 1 / span 2;
 }
-#instructions {
-  display:none;
+.components_desc {
+  font-size: 11px;
+  color: #9999a8;
 }
-#logs {
-  display:none;
-}
-
 
 
 
@@ -550,3 +550,4 @@
 .active {
   opacity: 1;
 }
+

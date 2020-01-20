@@ -475,6 +475,7 @@
   display: grid;
   grid-template-columns: 1fr 5fr;
   grid_template-rows: 2fr;
+  margin-bottom: 1em;
 }
 .grid_components_qty {
   @extend .text_center;

@@ -453,10 +453,6 @@
   position: relative;
 }
 
-.border_radius {
-  border-radius: 5px;
-}
-
 .mySlides {
   display: none;
 }
@@ -466,7 +462,7 @@
 }
 
 %image_slide_ctrl {
-  top: 45%;
+  top: 50%;
   width: auto;
   margin-top: -50px;
   color: $primaryText;

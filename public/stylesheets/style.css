@@ -428,9 +428,6 @@ a {
 .container {
   position: relative; }
 
-.border_radius {
-  border-radius: 5px; }
-
 .mySlides {
   display: none; }
 
@@ -438,7 +435,7 @@ a {
   cursor: pointer; }
 
 .prev, .next {
-  top: 45%;
+  top: 50%;
   width: auto;
   margin-top: -50px;
   color: white;

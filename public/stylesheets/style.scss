@@ -551,3 +551,34 @@
   opacity: 1;
 }
 
+.gallery_text {
+  color: black;
+  font-size: 12px;
+  font-weight: bold;
+
+  &:hover {
+    color: black;
+  }
+}
+.gallery_button {
+  @extend .gallery_text;
+  text-align: center;
+  padding: 12px 20px;
+  margin-right: 6px;
+  margin-top: 20px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  background-color: $primaryTitleText;
+  border-radius: 30px;
+
+  &:hover {
+    @extend .gallery_text:hover;
+    background-color: $primaryText;
+  }
+}
+
+.small_text {
+  font-size: 13px;
+}

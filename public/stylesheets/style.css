@@ -507,3 +507,27 @@ a {
 
 .active {
   opacity: 1; }
+
+.gallery_text, .gallery_button {
+  color: black;
+  font-size: 12px;
+  font-weight: bold; }
+  .gallery_text:hover, .gallery_button:hover {
+    color: black; }
+
+.gallery_button {
+  text-align: center;
+  padding: 12px 20px;
+  margin-right: 6px;
+  margin-top: 20px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  background-color: orange;
+  border-radius: 30px; }
+  .gallery_button:hover {
+    background-color: white; }
+
+.small_text {
+  font-size: 13px; }

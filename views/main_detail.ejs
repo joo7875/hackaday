@@ -31,18 +31,18 @@
       <div class="content_line">
         <div class="float_right">
           <div class="grid_line">
-            <div><span><b><%= projectsApi_detail.views %></b></span><br>views</div>
-            <div><span><b><%= projectsApi_detail.comments %></b></span><br>comments</div>
+            <div><span><b><%= projectsApi_detail.views %></b></span><br><span class="small_text">views</span></div>
+            <div><span><b><%= projectsApi_detail.comments %></b></span><br><span class="small_text">comments</span></div>
               <% if (projectsApi_detail.followers > 0) { %>
-                <div><span><b><a class="text_line" href="<%= hackaday %>/hackers/all/project/<%= projectsApi_detail.id %>/following" target="_self"><%= projectsApi_detail.followers %></a></b></span><br>followers</div>
+                <div><span><b><a class="text_line" href="<%= hackaday %>/hackers/all/project/<%= projectsApi_detail.id %>/following" target="_self"><%= projectsApi_detail.followers %></a></b></span><br><span class="small_text">followers</span></div>
               <% } else { %>
-                <div><span><b><%= projectsApi_detail.followers %></b></span><br>followers</div>
+                <div><span><b><%= projectsApi_detail.followers %></b></span><br><span class="small_text">followers</span></div>
               <% } %>
 
               <% if (projectsApi_detail.skulls > 0) { %>
-                <div><span><b><a class="text_line" href="<%= hackaday %>/hackers/all/project/<%= projectsApi_detail.id %>/likers" target="_self"><%= projectsApi_detail.skulls %></a></b></span><br>skulls</div>
+                <div><span><b><a class="text_line" href="<%= hackaday %>/hackers/all/project/<%= projectsApi_detail.id %>/likers" target="_self"><%= projectsApi_detail.skulls %></a></b></span><br><span class="small_text">likes</span></div>
               <% } else { %>
-                <div><span><b><%= projectsApi_detail.skulls %></b></span><br>likes</div>
+                <div><span><b><%= projectsApi_detail.skulls %></b></span><br><span class="small_text">likes</span></div>
               <% } %>
           </div>
         </div>
@@ -156,6 +156,12 @@
 
                      
                     </div>
+                  </div>
+
+                  <div style="text-align: center;">
+                    <a class="gallery_text" href="<%= hackaday %>/project/<%= projectsApi_detail.id %>/gallery" target="_blank">
+                      <button class="gallery_button">More Images</button>
+                    </a>
                   </div>
 <!-- END IMAGE SLIDER -->
 

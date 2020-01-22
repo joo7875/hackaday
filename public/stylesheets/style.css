@@ -33,7 +33,7 @@ a {
   display: -ms-grid;
   display: grid;
   grid-auto-rows: 390px;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   grid-column-gap: 2em;
   grid-row-gap: 7em; }
 
@@ -306,6 +306,9 @@ a {
 .grid_detail_content {
   padding: 0px 10px;
   /* max-width: 700px; */ }
+
+.width_regulate {
+  max-width: 700px; }
 
 @media screen and (max-width: 1200px) {
   .grid_detail_main {

@@ -320,7 +320,8 @@ a {
     -ms-grid-rows: auto;
     grid-template-rows: auto;
     grid-gap: 1em;
-    margin-bottom: 10em; } }
+    margin-bottom: 10em;
+    max-width: 1200px; } }
 
 @media screen and (min-width: 1200px) {
   .slider_control--prev {

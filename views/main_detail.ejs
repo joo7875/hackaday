@@ -111,11 +111,17 @@
                 <% } %>
               <% } %>
 
+              <% var filtered_instructions = [] %>
+
               <% if ((projectsApi_instructions.instructions).length > 0) { %>
                 <div class="content_title margin_top_70">Instructions</div>
                 <div class="category"></div> 
                 <% for (var i = 0; i < (projectsApi_instructions.instructions).length; i++) { %>
-                  <div class="content_desc"><%- (projectsApi_instructions.instructions[i]).body %></div>
+                  
+                    <% filtered_instructions[i] = ((projectsApi_instructions.instructions[i]).body).replace(/data-src/g, 'src') %>
+                    <% filtered_instructions[i] = ((projectsApi_instructions.instructions[i]).body).replace(/data-src/g, "src") %>
+                    
+                    <div class="content_desc"><%- filtered_instructions[i] %></div>
                 <% } %>
               <% } %>
               

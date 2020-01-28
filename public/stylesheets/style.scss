@@ -303,6 +303,9 @@
         }
         .header_image {
           opacity: 30%;
+          filter:alpha(opacity=30);
+          -moz-opacity:0.3;
+          -khtml-opacity: 0.3;
         }
         .grid_detail_content {
           padding: 0px 10px;
@@ -328,10 +331,16 @@
           .slider_control--prev {
               left: -50px;
               opacity: 30%;
+              filter:alpha(opacity=30);
+              -moz-opacity:0.3;
+              -khtml-opacity: 0.3;
           }
           .slider_control--next {
               right: -50px;
               opacity: 30%;
+              filter:alpha(opacity=30);
+              -moz-opacity:0.3;
+              -khtml-opacity: 0.3;
           }
         }
 
@@ -396,6 +405,9 @@
   background: white;
   color: black;
   opacity: 50%;
+  filter:alpha(opacity=50);
+  -moz-opacity:0.5;
+  -khtml-opacity: 0.5;
 }
         .slider_control {
           @extend %control;
@@ -406,10 +418,16 @@
           transform: translateY(-50%);
           z-index: 20;
           opacity: 0%;
+          filter:alpha(opacity=0);
+          -moz-opacity:0;
+          -khtml-opacity: 0;
         }
         .slider_control--prev {
           left: 10px;
           opacity: 30%;
+          filter:alpha(opacity=30);
+          -moz-opacity:0.3;
+          -khtml-opacity: 0.3;
           border-radius: 0 3px 3px 0;
 
           &:hover {
@@ -419,6 +437,9 @@
         .slider_control--next {
           right: 10px;
           opacity: 30%;
+          filter:alpha(opacity=30);
+          -moz-opacity:0.3;
+          -khtml-opacity: 0.3;
           border-radius: 3px 0 0 3px;
 
           &:hover {
@@ -516,6 +537,9 @@
   margin-top: -50px;
   color: $primaryText;
   opacity: 30%;
+  filter:alpha(opacity=30);
+  -moz-opacity:0.3;
+  -khtml-opacity: 0.3;
 }
         .prev {
           @extend %control, %image_slide_ctrl;
@@ -553,14 +577,23 @@
 
 .demo {
   opacity: 0.6;
+  filter:alpha(opacity=60);
+  -moz-opacity:0.6;
+  -khtml-opacity: 0.6;
 
   &:hover {
     opacity: 1;
+    filter:alpha(opacity=1);
+    -moz-opacity:1;
+    -khtml-opacity: 1;
   }
 }
 
 .active {
   opacity: 1;
+  filter:alpha(opacity=1);
+  -moz-opacity:1;
+  -khtml-opacity: 1;
 }
 
 .gallery_text {

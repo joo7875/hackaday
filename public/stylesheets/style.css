@@ -301,7 +301,10 @@ a {
   transform: translate(-50%, -50%); }
 
 .header_image {
-  opacity: 30%; }
+  opacity: 30%;
+  filter: alpha(opacity=30);
+  -moz-opacity: 0.3;
+  -khtml-opacity: 0.3; }
 
 .grid_detail_content {
   padding: 0px 10px;
@@ -326,10 +329,16 @@ a {
 @media screen and (min-width: 1200px) {
   .slider_control--prev {
     left: -50px;
-    opacity: 30%; }
+    opacity: 30%;
+    filter: alpha(opacity=30);
+    -moz-opacity: 0.3;
+    -khtml-opacity: 0.3; }
   .slider_control--next {
     right: -50px;
-    opacity: 30%; } }
+    opacity: 30%;
+    filter: alpha(opacity=30);
+    -moz-opacity: 0.3;
+    -khtml-opacity: 0.3; } }
 
 /* Recommended Projects / Recommended Users */
 .carousel, .carousel1 {
@@ -392,7 +401,10 @@ a {
 .slider_control--prev:hover, .slider_control--next:hover, .prev:hover, .next:hover {
   background: white;
   color: black;
-  opacity: 50%; }
+  opacity: 50%;
+  filter: alpha(opacity=50);
+  -moz-opacity: 0.5;
+  -khtml-opacity: 0.5; }
 
 .slider_control {
   background: none;
@@ -403,16 +415,25 @@ a {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   z-index: 20;
-  opacity: 0%; }
+  opacity: 0%;
+  filter: alpha(opacity=0);
+  -moz-opacity: 0;
+  -khtml-opacity: 0; }
 
 .slider_control--prev {
   left: 10px;
   opacity: 30%;
+  filter: alpha(opacity=30);
+  -moz-opacity: 0.3;
+  -khtml-opacity: 0.3;
   border-radius: 0 3px 3px 0; }
 
 .slider_control--next {
   right: 10px;
   opacity: 30%;
+  filter: alpha(opacity=30);
+  -moz-opacity: 0.3;
+  -khtml-opacity: 0.3;
   border-radius: 3px 0 0 3px; }
 
 /* End Slider Control */
@@ -491,7 +512,10 @@ a {
   width: auto;
   margin-top: -50px;
   color: white;
-  opacity: 30%; }
+  opacity: 30%;
+  filter: alpha(opacity=30);
+  -moz-opacity: 0.3;
+  -khtml-opacity: 0.3; }
 
 .prev {
   border-radius: 0 3px 3px 0; }
@@ -511,12 +535,21 @@ a {
   width: 16.66%; }
 
 .demo {
-  opacity: 0.6; }
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+  -moz-opacity: 0.6;
+  -khtml-opacity: 0.6; }
   .demo:hover {
-    opacity: 1; }
+    opacity: 1;
+    filter: alpha(opacity=1);
+    -moz-opacity: 1;
+    -khtml-opacity: 1; }
 
 .active {
-  opacity: 1; }
+  opacity: 1;
+  filter: alpha(opacity=1);
+  -moz-opacity: 1;
+  -khtml-opacity: 1; }
 
 .gallery_text, .gallery_button {
   color: black;
